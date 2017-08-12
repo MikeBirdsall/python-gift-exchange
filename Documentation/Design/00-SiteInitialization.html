@@ -1,0 +1,40 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Wish List Site Initialization Page</title>
+<link rel="stylesheet" type="text/css" href="/css/wls_default.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+<h1>Wish List Site Initialization</h1>
+<p>Welcome to the Wish List Site initialization page.</p>
+<p>  Below is a form to input needed information to initialize the site for use.  This will set up enough user information for your user which can can finish later </br>
+and allow the program to define the Master Administrator and initial user group.  The program will set up your user along with default group and initial user group, </br>
+calendar and wish list.  After this is done you will be transferred to the Site Administration Page to begin populating the site with users, groups, other </br>
+administrators and calendar information.  After you have set up more users and groups you may need to edit your user information with such information as spouse, children, ...</p>
+
+<h1>Master Administrator Setup Basic Information</h1>
+<table border="" >
+<tr><td>Master User</td><td>Value</td><td>Information</td></tr>
+<tr><td>User Id</td><td><input type="submit" name="user.Ident" value="Ident " /></td><td>Your UserId to be used internally for the database</td></tr>
+<tr><td>Full Name</td><td><input type="submit" name="user.Fullname" value="Full name " /></td><td>Your Full Name for Listings</td></tr>
+<tr><td>Display Name</td><td><input type="submit" name="user.Displayname" value="Name to display" /></td><td>Your Display Name for items</td></tr>
+<tr><td>Site Password</td><td><input type="submit" name="password1" value="password" /></td><td>Your password to login to this site</td></tr>
+<tr><td>Site Password verification</td><td><input type="submit" name="password2" value="password again" /></td><td>Your Password again for verification</td></tr>
+<tr><td>e-mail address</td><td><input type="submit" name="user.e-mail" value="e-mail address to use" /></td><td>Your e-mail address to be used for this site</td></tr>
+<tr><td>birthday</td><td><input type="submit" name="user.birthday" value="birthday" /></td><td>mm-dd-yyyy</td></tr>
+<tr></tr>
+<tr><td>Initial Group</td><td></td><td></td></tr>
+<tr><td>Name</td><td><input type="submit" name="group.Ident" value="Group Name " /></td><td>The name of the initial user group</td></tr>
+<tr><td>Unique Group Calendar</td><td><input type="submit" name="group.cal" value="Yes or No " /></td><td>Set up a group calendar with unique events for this group only?</td></tr>
+<tr><td>Import Site Calendar</td><td><input type="submit" name="group.scal" value="Yes or No " /></td><td>When users in the group see the group calendar will it also show site calendar events like holidays?  </td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+</table>
+<input type="submit" name="action" value="Continue to Site Administration" /> 
+</table>
+
+</body>
+</html>
