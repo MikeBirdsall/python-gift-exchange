@@ -1,0 +1,663 @@
+%RESERVED CHARACTERS: \ # $ % & _ ^ { } ~
+%
+%NEWCOMMMAND FORMAT: A simple substitute.
+% \newcommand{<\NewCommandName>}{text}
+%EX: \newcommand{\stamp}{\hspace{.5in}\textbf{Findings:}%
+%                        \hspace{.5in}}
+%
+%NEWENVIRONMENT FORMAT: Involving a defined Environment Name.
+% \newenvironment{<NewEnvironmentName>}%
+%{\begin{<OldEnvironmentName>}<new stuff>{/end{OldEnvironmentName>}}
+%EX: \newenvironment{smallcapit}%
+%               {\begin{itemize} \scshape}{\end{itemize}}
+%
+%FORMAT OF A MACRO WITH PLACEHOLDERS:
+% \newcommand{<\CommandName>}[#]{A single arguement: text and #.}
+%EX: \newcommand{\phonebk}[3]{NAME: #1$|$ TEL: #2$|$ FAX: #3\\}
+
+\documentclass[letterpaper]{article}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+
+%PAGE LAYOUT SETTINGS (based on 8.5'' by 11'' paper letterpaper)
+%Set page so pages have a 1'' border all around
+%header is from 1'' to 1.25'' from top and 0.25''above text
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0.25in}
+\setlength{\headsep}{0.25in}
+%body text is 9''high and 6.5'' wide
+\setlength{\hoffset}{-0.25in}
+\setlength{\voffset}{-0.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.0in}
+\setlength{\textwidth}{6.5in}
+%footer is from 1'' to 1.25'' from bottom and 0.25'' below text
+\setlength{\footskip}{0.5in}
+
+%PUNCTION ABBREVIATIONS
+\newcommand{\BS}{$\backslash$}   %backslash
+\newcommand{\LB}{$\{$}           %left brace
+\newcommand{\RB}{$\}$}           %right brace
+\newcommand{\SP}{\ }             %space
+\newcommand{\LSQ}{`}             %left single quote
+\newcommand{\LDQ}{``}            %left double quote
+\newcommand{\RSQ}{'}             %right single quote
+\newcommand{\RDQ}{''}            %right double quote
+
+%LIST COMMANDS
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bd}{\begin{description}}
+\newcommand{\ed}{\end{description}}
+
+%PRINT COMMANDS
+\newcommand{\prbf}[1]{\textbf{#1}}      %print in bold
+\newcommand{\prit}[1]{\textit{#1}}      %print in italic
+\newcommand{\prmd}[1]{\textmd{#1}}      %print in medium
+\newcommand{\prno}[1]{\textnormal{#1}}  %print in default font
+\newcommand{\prrm}[1]{\textrm{#1}}      %print in roman family
+\newcommand{\prsc}[1]{\textsc{#1}}      %print in small cap
+\newcommand{\prsf}[1]{\textsf{#1}}      %print in sans serif
+\newcommand{\prsl}[1]{\textsl{#1}}      %print in slant
+\newcommand{\prtt}[1]{\texttt{#1}}      %print in typewriter
+\newcommand{\prup}[1]{\textup{#1}}      %print in straight up
+
+%VERBATIM AND IGNORE
+\newcommand{\bv}{\begin{verbatim}}
+\newcommand{\V}{\verb} %Ex:  \V=-d{#@~}= Expr must fit on a line
+
+% Write your own instructions, aliases macros and abbreviations here
+% Time display
+% -------------
+% \time is minutes since midnight
+
+\newcounter{hours}  \newcounter{minutes}
+\newcommand{\printtime}{%
+\setcounter{hours}{\time/60}%
+\setcounter{minutes}{\time-\value{hours}*60}%
+ \thehours :\theminutes}
+% Need to figure out how to have print be xx:xx format
+
+%<!-- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----->
+\title{Wish List Program}
+\author{Birdsall}
+\date{\today \  \  \printtime}
+
+%FOR PRINTOUTS WITH EMPTY LINES BETWEEN PARAGRAPHS AND NO INDENT AT START
+\flushbottom
+\parindent=0pc
+\setlength{\parskip}{1pc}
+
+\begin{document} %End of preamble. Begin writing.
+\maketitle %Produces the title
+\pagenumbering{roman}
+\newpage
+
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{Introduction}
+This application is designed to assist a set of related families to keep track of member's wish lists for events (Christmas, birthday to name a couple) at a website and allow other members to indicate that the gift is purchased to reduce undesired duplications.  There is also a provision for Secret Santa lists for groups.
+\section{Obtaining and Installing}
+\subsection{System Requirements}
+\subsubsection{Host Machine}
+The host machine needs to run python and a web server.  For this you need;
+\bd
+\item [python]
+\bi
+\item python 3.5
+\item mysqllite
+\item 
+\ei
+\item [web services]
+\ed
+\subsubsection{Administrators and Users}
+For people to use the program they just need a browser to access the host machine.
+\subsection{Obtaining}
+This program is available on 
+\subsection{Installing}
+As part of Installing the program setup Primary(Main) Administrator credentials (ident, password, basic user information)
+\section{Initial Set up}
+During the instillation you set up a Master Administrator user and password.  So now you need to log in as Master Administrator on the new website and begin to set up users and groups. You can also designate backup administrators and group administrators to help you out.  The next section will help you with setting up preferences, users and groups.
+
+\section{Master and Backup Administrator's Guide}
+\subsection{Initial Setup}
+\be
+\item An initial set up users who can then be designated as various administrators
+\item An initial set of groups to which users can be added
+\item Backup Administrators (if desired)
+\item Group Administrators (if desired)
+\item Automatic actions/ features (if desired)
+     \be
+     \item Automatic purges at certain dates, manual purges or User controlled purges
+     \item Automatic clean vs User controlled clean
+     \item Secret Santa list generation for year (example: happen every October 1 for each year)
+     \item event notification margin for list (event x is y days away please update your wish list)
+     \item event notification margin for event (event x is y days away)
+     \ee
+\item Now for each member fill in the following data;
+     \bi
+     \item Full Name
+     \item Display Name
+     \item initial password
+     \item e-mail address
+     \item spouse's ident or 'none'
+     \item birthday or birthdate (need to determine if should use dates or days)
+     \item wedding anniversary day or 'none'
+     \item secret santa exclusions (spouse, children)
+     \item 'children' (true children or aging parents)
+     \ei
+\item Assigning users to groups
+\item Setting up Secret Santa lists
+\ee
+\subsection{Infrequent Items}
+\bd
+\item[Set up Secret Santa List] \ 
+     \be
+     \item name of list
+     \item members' idents with boxes
+     \item fill in a positive number for members in the list.  Those with same number can not draw each other.
+     \ee
+\item[Set up a new member] \ 
+     \be
+     \item member ident
+     \item initial password
+     \item member Full name
+     \item member display name
+     \item member's e-mail address
+     \item member's birthday \prit{year optional?}
+     \item spouse's ident or ``none''
+     \item 'in loco parentis' member's (they can act as that person for user info)
+     \ee
+\ed
+\subsection{Normal Maintenance}Home page \\
+
+\section{Group Administrator's Guide}
+\prbf{Notes to Self}  The Group Administrator Guide has all things a normal user has and additionally has group administration pages they can access and use.
+\newpage
+\section{User Guide}
+When you log into the website you start at your home page which gives you a lot of information and allows you to quickly work with your list if that is why you came here.  It is also where you will return from doing various things.
+
+\subsection{Home Page}
+\bd
+     \item [Title Banner]  Your Display name with Home Page \\
+     \item [today] day, date and time
+     \item [Top Section] Information \\
+	  Full Name, Birth day, e-mail address groups(s), messages (new,total) \\
+	  calendar events by group for today to today plus 60 days
+	  Buttons for ``go to Messages'',change password, change e-mail
+     \item [Mid Section] Choices \\
+	  Buttons to go to; Wish lists, Secret Santa List, Multiple Wish lists, Shopping list, Gifts Purchased
+     \item [Lower Section] Personal Wish list \\
+     Your Wish list to date with the following columns; \\
+     Delete, Desired, Edit, description, Expires \\
+     Below the list are buttons for: \\
+     Add Suggestion, Redraw the screen, Print page, Purge my list
+     also is a selector to choose style for pages
+\ed
+\subsection{Profile information}
+\bd
+     \item [Messages] You may send and receive anonymous messages about gifts where more information is requested.  As you will see later on you can ask purchasers or suggestors of gifs about the gifts if clarification is needed or someone posts a gift that is expensive and seeking further donors to go in on it.
+     \item [change password] You were given an initial password by an administrator but you are free to change it.
+     \item [change e-mail] You must have one working e-mail address which you may change but you can also add another address if desired.  These will be used to communicate with you for notices.
+\ed
+\subsection{Choices}
+\bd
+     \item [Wish lists] This leads you to a page where you can select a wish list for another person
+     \item [Secret Santa List] This is to a page which displays the Secret Santa selection for this year, hopefully, for each group you belong and list of members of the group so you can go to their wich list page.
+     \item [Multiple Wish Lists] This list goes to a page where you can select multiple people and then get a report on their wish lists that are not yet purchased
+     \item [Shopping List] This lets you set up a list with people to buy for, populate it with their unpurchased items similar to the multiple wish list and as you buy then allows you to denote what you purchased and remove the others.
+     \item [Gifts Purchased] This shows the gifts you have purchased so far and for whom.
+\ed
+\subsection{Personal Wish List}
+Your personal wish list shows the date of last edit and then has the following columns; Delete, Number desired, Edit, Description and Expires.  Below that are buttons for; Add Suggestion, redraw the screen, print page, Purge my list, Clear My list.
+\subsubsection{Adding Suggestion}
+Here is the start of it all.  When you click on this you will go to a page where you can enter in the information for your desired item.  The information will be; \vspace{-0.1in}
+\bd
+     \item \hspace*{0.25in}[Number] this may be an interger number or any(unlimited number of this)
+     \item \hspace*{0.25in}[Description] A description of the item or a web page URL to the item
+     \item \hspace*{0.25in}[Expiration date] a date, event or never of expiration.  After this date you may not want it or will buy it yourself
+\ed
+\subsubsection{Deleting a Suggestion}
+For each suggestion there is a delete button in the case you no longer want that item.  If the item has been bought or has expired using the Purge My List is the preferred method of removal.
+\subsubsection{Editing an item}
+\subsubsection{Purge My List}
+Selecting this item will clean up the list of items purchased or expired giving you an updated list of suggestions that are current.  This may mean you end up with an empty list or just a smaller list.  This is handy to do after major events like Christmas or birthday so that you can see just what remains.
+\subsubsection{Clear My List}
+Selecting this item wipes out the list and starts it with nothing in the list.  A fresh start.
+\subsection{Group Page}
+\subsection{Working with other People's Wish List}
+\subsection{Changing Password}
+
+\section{Appendix}
+\subsection{Program Structure}
+The initial documentation for this will be in C or Fortran Linear programmming style with references to a more python or object oriented.  As the program requirements, specifications and such gell then the documentation will shift to the python module and code descriptions.
+\subsubsection{Master Administrator}
+\subsubsection{Group Administrator}
+\subsubsection{User}
+Main
+Master Administrator
+\bd
+     \item[MA Home page]
+     \item[MA Administrators Page]
+     \item[Users Administration Page]
+     \item[Secret Santa Administration Page] Secret Santa information for each group and who is included
+     \be
+	  \item displays Secret Santa Groups and information on each
+	  \item for each Secret Santa set displays:
+	  \be
+	       \item Name of Sacret Santa Set
+	       \item Associated Group
+	       \item Users included 0==not part 1,2,3,4== part of group  Those users with numbers greater than 2 may not pick others with the same number
+	  \ee
+	  \item generate Secret Santas for year
+	  \item Usual New, Edit, Delete  buttons
+     \ee
+\ed
+Backup Administrator
+\bd
+     \item[BA Home Page]
+     \item[Group Administration Page]
+     \item[Users Administration Page]
+     \item[Secret Santa Administration Page]
+\ed
+Group Administrator
+\bd
+     \item[Group Administration Home Page]
+     \item[GA User Administration Page]
+     \item[GA Secret Santa Administration Page]
+\ed
+
+User
+\bd
+     \item[Display User Home Page]
+     \item[Display Personal Wish List]
+     \item[Display Group Page]
+     \item[Display Another's Wish List]
+     \item[]
+\ed
+\subsection{File Structure}
+\subsubsection{family.Admin}
+\bd
+     \item [Line 1] Admin
+     \item [Line 2] administrators
+\ed
+\subsubsection{group.groupid}
+This file has a list of user ids for this group
+\subsubsection{calendar.groupid}
+This file contains pairs of dates and events.  Events are either just a name like Christmas or a pair with type like Birthday or Wedding and userid
+\subsubsection{list.groupid.event.year}
+This file consists of name pairs of who picked for whom.
+\subsubsection{person.userid}
+\bd
+     \item [Line 1] Program header line
+     \item [Line 2] file header line
+     \item [Following lines] the form is item= values
+     \be
+	  \item name= Descriptive name
+	  \item exclude= exclude from picking on list
+	  \item spouse=
+	  \item group=
+	  \item admin=
+     \ee
+\ed
+\subsubsection{whishlist.userid}
+\bd
+     \item [Line 1] file title line
+     \item [Line 2] e-mail address
+     \item [Line 3] line format line
+     \item [following lines] whish list lines of data
+     \be
+	  \item Local Day
+	  \item Time
+	  \item date
+	  \item who entered line
+	  \item Operation  (added, purchased,)
+	  \item item identification
+	  \item description
+	  \item number requested
+	  \item expires
+     \ee
+\ed
+\subsection{Terms}
+\bd
+\item[Types of Users] \  \\
+\bd
+\item [Master Administrator] Administrates the whole application and site
+\item [Backup Administrator] May act as a secondary Master Administrator.  Has all the authority of the Master Administrator with the exception of designating Master and Backup Administrators.
+\item [Group Administatrator] Administrates a subset of the users known as a group.  They may add users, add users to their group, remove users from group, add calendar entries for their group.  They may not remove users from the site.
+\item [Parent] A user who also acts as a proxy for other defined users.  Normally their children or senior parents.
+\item [User] normal user of the application and site
+\ed
+\item [Secret Santa Group] A group of individuals who 'draw' names to determine who in the group for whom they will buy presents - there may be exclusion rules such as a husband can't draw wife
+\item [Secret Santa List] A record of current or past picks for the Secret Santa Group 
+\item [purged] removed from database 
+\item [Ident] Database unique identity of an individual member
+\item [Full Name] Name for Self home Page
+\item [Display Name] a uniques shorter version of the Full Name for display with lists and such
+\item [Clan] group of members who have some relationship, members belong to one or more of these
+\ed
+\subsection{Database Structure}
+\bd
+\item[person] Ident, password, Full name, Display name, birthdate, e-mail address
+\item[group]GroupIdent, group members
+\item[Santa] SSIdent, set of user idents and number
+\item[Santa list] list id, year, (person, santa for)
+\item[proxy] Ident, proxy for ident
+\item[Admin] Ident, admin type(Master, backup, group)
+\item[Wish] Date\&time, Ident,operation,operation, number, Description, expires, Notes, purchased amount
+\item[Gifts] Ident(buyer), who for Ident, index, Reserved\#, purchased\#
+\item[Calendar] date, event (event may be application action such as purge or clean or birthday/event(Christmas,wedding))
+\item[notify] event, notify list
+\ed
+\subsection{Web pages}
+\bd
+\item[User Home] \  \  \\
+Displays: personal profile (name, e-mail, birthdate, group(s), spouse) \\
+Links to: Wish List, Gifts bought, multiple wish lists, edit profile, *admin Menu
+\item[Group Home] \  \  \\
+\item[Personal Wish List] \  \  \\
+\item[Another's Wish List] \  \  \\
+Displays: person's name, date/time of last edit(owner) and modification(others)
+Table Display: buy btn, reserve btn, clarify btn, group purchase btn, remaining, purchased, expires, description, notes
+Buttons: add Suggestion, pick another list, redraw screen, group home, print page
+\item[Group Calendar] \  \  \\
+\ed
+\subsection{Rule Sets}
+\bd
+\item [Administration] \  
+     \bd
+     \item[Master] Fully administers everything
+     \item[Group] Restricted to administering a group
+          \bi
+          \item May add a member to their group
+          \item May remove a member from group association but not as a member
+          \item *A member who belongs to no groups shall belong to all groups
+          \ei
+     \item[Backup]
+     \ed
+\item [Gifts] \  \  
+     \be
+     \item If a gift is bought the number desired is decremented to no less than zero
+     \item A gift may be bought or reserved
+     \item Reserving a gift just indicates the intent to buy.  If someone buys the gift then the reservation is removed
+     \item A gift may be designated as a group gift by some one reserving or buying it and additionally marking it as a group gift.
+     \ee
+\item [Secret Santa] \ \\
+     \be
+     \item From the Secret Santa group randmly pick for each member a choice
+     \item A person may not pick themself or be chosen more than once
+     \item A person may not pick a member of their exclusion list (spouse, children,...)
+     \item A person may not pick the same person in the last x years (x to be determined by size of available group)
+     \ee
+\ed
+\section{Program Set}
+\subsection{Python GUI page}
+\subsection{Python by web page}
+\bd
+\item [Login Page] display Site Welcome and login page ; Process:
+	\be
+		\item Display page
+		\item When [Sign In] button is clicked then;
+			\be
+				\item Check for valid ID - if valid then proceed else check for number of failures from source. note source and increment if number greater than 3 reject
+				\item if valid ID and password then proceed else increment failure.  If failure greater than three in last time set then reject.
+			\ee
+		\item With User ID and Password valid then display correct home page and set ID Value for user and load user information.  Home page selection is a drop through variety.
+				First checks for Master Administrator, then Group Administrator then backup Administration before defaulting to User if not an administrator.
+	\ee 
+\item [Message create page]
+\item [Message read page]
+\item [Change password page] Displays User ID and spots for Current password, new password and verify new password alongwith cancel and change buttons.  Process:
+	\be
+		\item initially change button is disabled and new password blanks locked out
+		\item Current password needs to be entered first.  When entered it is checked for validity and unlocks new password blank
+		\item When new password is being entered it is checked for password rules and notes if it passes and unlocks verify password blank
+		\item When verify new password is entered it is checked against new password and if identical enables change button
+	\ee
+\item [Edit E-Mail page]	
+\item [Master - Site Administrator]
+	\bd
+		\item [Master Administrator home page]
+		\item [Master Administration page]
+		\item [Group Add Page]
+		\item [Users administration page]
+		\item [User Edit page]
+		\item [Site Calendar administration]
+	\ed
+\item [Group Administrator]
+	\bd
+		\item [Group Administrator home page]
+		\item [group administration page]
+		\item [User add page?]
+		\item [Secret Santa administration]
+		\item [Group Calendar administration]
+	\ed
+\item [Backup Administrator]
+	\bd
+		\item [Home Page]
+		\item [Backup administration page]
+		\item [?Backup page?]
+	\ed
+\item [User]
+	\bd
+		\item [User home page] main page for user and all pages return to here:  Information displayed;
+			\bi
+			\item User Display name and \''Home page\''
+			\item Current date and time
+			\item Personal section with : Full Name, Birthday, e-mail address(es),spouse and children if appropriate
+			\item Group section with groups of which a part, current Secret Santa selection and upcoming events for site and groups
+			\item row of buttons with available actions; goto messages, change password, change e-mail, calendar, wish lists, group wish lists, multiple wish lists, shopping list, gifts purchased
+			\item Personal Wish List with date of last edit.  Item lines contain buttons for delete and edit and below that are buttons for add item, redraw screen, print page, purge list and clear list
+			\ei
+			Actions:
+			\bd
+				\item [Go to Messages] go to the message page for the user
+				\item [Change Password] go to the change password page
+				\item [Change e-mail] goes to the edit e-mail page
+				\item [Goto Calendar] goes to display calendar page
+				\item [Wish Lists] goes to individual wish list selection page for all users in site
+				\item [Group Wish Lists] goes to individual wish list selection page filtered to be only members in user's groups
+				\item [Multiple wish lists] goes to wish list selection site wich allows more than one person's wish list to be selected
+				\item [Shopping list] goes to the shopping list page
+				\item [gifts purchased] goes to the GIfts Purchased page
+				\item [Add item] goto add an item page for the user's list
+				\item [Redraw the screen] redraws the screen
+				\item [print page] Prints the page
+				\item [Purge my list] archives all items that have been purchased
+				\item [Clear My List] archives all items and sets item list to zero listed
+			\ed
+		\item [User Messages page] This page shows messages sent, received
+		\item [Calendar View page] This page showsthe current month and following month along with system and group events listed for those months.  Future months can also be viewed
+		\item [User Shopping Page] This page is to show the user items they have purchased or reserved for purchase so it can be printed and used.  Information:
+			\bi
+			\item Header with display name and `'shopping list', curent date and time, group and current secret santa pick with year
+			\item Item listing starting with Secret santa selection first then other group members and any other groups where something has been purchased or reserved
+			\item for each line; name of recipient, Description of gift, number desired, number purchased, Notes and list actions which can be;
+				\bi
+				\item Description  `Purchased' for purchased items
+				\item buttons for Purchase (to purchase the item and mark it such), Discard (remove reservation), Query(?)
+				\ei
+			\ei
+		\item [UserPurchases page]  This page is to show the user items they have purchased.  Information:
+			\bi
+			\item Header with display name and `'shopping list', curent date and time, group and current secret santa pick with year
+			\item Item listing starting with Secret santa selection first then other group members and any other groups where something has been purchased
+			\item for each line; name of recipient, Description of gift, number desired, number purchased, Notes.
+			\ei
+		\item [Select Individual List Page] This page shows all users and allows you to select one for viewing and editing
+		\item [User Individual List Page] This show the wish list for an individual for viewing and editing
+		\item [Select multiple Wish List Page] This page shows all users and allows you to select multiple individuals for viewing and editing
+		\item [User Multiple List page] This page shows the wish lists for multiple users
+	\ed
+\ed
+\subsection{Web Page Templates}
+\bd
+\item [Login page] 
+\item [Message create page]
+\item [Message read page]
+\item [Change password page]
+\item [Edit E-mail page]
+\item [Master - Site Administrator]
+	\bd
+		\item [Master Administrator home page]
+		\item [Master Administration page]
+		\item [Group Add Page]
+		\item [Users administration page]
+		\item [User Edit page]
+		\item [Site Calendar administration]
+	\ed
+\item [Group Administrator]
+	\bd
+		\item [Group Administrator home page]
+		\item [group administration page] (parent/child/proxy)
+		\item [User add/edit page]
+		\item [Secret Santa administration]
+		\item [Group Calendar administration]
+	\ed
+\item [Backup Administrator]
+	\bd
+		\item [Home Page]
+		\item [Backup administration page]
+		\item [?Backup page?]
+	\ed
+\item [User]
+	\bd
+		\item [User home page] main page for user and all pages return to here
+		\item [User Messages page]
+		\item [User Change password page]
+		\item [Calendar View page]
+		\item [UserPurchases page] For the user has the following information:
+		\item [User Shopping List page]
+		\item [Select Individual List Page]
+		\item [Select Group Individual List Page]
+		\item [User Individual List Page]
+		\item [Select multiple Wish List Page]
+		\item [Select Group Multiple Wish List Page]
+		\item [User Multiple List page]
+		\item [add or Edit item for Wish List]
+		\item [Purge my list]
+		\item [Clear My List]
+		\item [Proxy pages]
+	\ed
+\ed
+
+\begin{verbatim}
+Wish List HTML program
+
+Administrator
+	User
+		Set up
+		Edit
+		Remove
+	Proxys
+		Set up
+		Edit
+		Remove
+	Clan Administrator
+		Set up
+		Edit
+		Remove
+	Backup Administrator
+		Set up
+		Edit
+		Remove
+	CLan
+		set up
+		edit
+		remove
+	Secret Santa Groups
+		Set up
+		edit
+		remove
+	Administrative Actions
+		Automatic actions (need not be though)
+			Clean Database
+			Purge Database
+			Run Secret Santa Pick
+			Back up Database
+			Event notification
+		Manual Only Actions
+			Calendar Event Editing
+Clan Administrator
+Backup Administrator
+Parent
+	All the same as User for self
+	Edit proxy gift list (seen?unseen by user)
+	Other actions? for proxy
+
+\end{verbatim}
+
+
+
+
+\section{Thoughts to be filtered in}
+\bi
+\item Parent - how exactly does a parent feature function - just allow the person to work on a list? but all can do that \prbf{Discussion Item on how to implement}
+\item Wish list - group filter? for other people's items add reserved which clears if purchased
+\item Wish list - group gift feature
+\item Secret Santa lists - sort by group then reverse sort by year and group assosciation
+\item Multiple wish list list - sort by group filter / association
+\item Gifts you bought (reserved) - sort by group association
+\item Gifts you bought (reserved) - sort by year/event (what did I buy lately)(may be rendered obsolete by auto clean/purge)
+\item Gifts you bought (reserved) - group / secret santa filter display (limits to what is needed to buy)
+\item password page - ident filled in but ask for old password and new one twice?
+\item tabs for web pages? (Self home with Self wish, Self bought/reserved, clan wish list, *Admin)
+\ei
+\begin{verbatim}
+ ----------------------------------------------------------------
+ Nicknames for Display for others in group - user for other users   in group
+ each user may have nicknames for all others in groups
+-----------------------------------------------------------------
+Administrator
+        User
+                Set up
+                Edit
+                Remove
+        Proxys
+                Set up
+                Edit
+                Remove
+        Group Administrator
+                Set up
+                Edit
+                Remove
+        Backup Administrator
+                Set up
+                Edit
+                Remove
+        Group
+                set up
+                edit
+                remove
+        Secret Santa Groups
+                Set up
+                edit
+                remove
+        Administrative Actions
+                Automatic actions (need not be though)
+                        Clean Database - mark out all wish list items that are bought
+                        Purge Database - clear out all wish list items that are bought
+                        Run Secret Santa Pick
+                        Back up Database
+                        Event notification
+                Manual Only Actions
+                        Calendar Event Editing
+Group Administrator
+Backup Administrator
+Parent
+        All the same as User for self
+        Edit proxy gift list (seen?unseen by user)
+        Other actions? for proxy
+\end{verbatim}
+
+\end{document}
