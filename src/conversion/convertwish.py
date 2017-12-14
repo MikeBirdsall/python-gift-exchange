@@ -3,11 +3,76 @@ import argparse
 import sys
 import sqlite3
 import re
+from datetime import datetime
 
 #from createdb import createtables;
 
+def getglobalid(username):
+    # Use the user table to find the userid for username
+    # Complain and fail if not found
+    # TODO: Fill this function in
+    return 999999
+
+def format_date(intime):
+    "Return sqlite datetime given current wishfile datetime format"
+    return datetime.strftime(datetime.strptime(intime, "%b %d %Y"), "%Y-%m-%d")
+
+def format_datetime(intime):
+    "Return sqlite date given current wishfile expires date format"
+    return datetime.strftime(datetime.strptime(intime, "%a %b %d %H:%M:%S %Y"),
+        "%Y-%m-%d %H:%M:%S")
+
+class wish:
+    "Class for a single wish"
+    def __init__(self, username, created, by, ident, description,
+        number, expires):
+
+        self.username = username
+        self.created = format_datetime(created)
+        self.suggestedby = by
+        self.localident = ident
+        self.description = description
+        self.howmany = number
+        # Do we want to use None, or a sentinel date?
+        if expires == "never":
+            self.expires = None
+        else:
+            self.expires = format_date(expires)
+
+        self.globalid = getglobalid(username)
+        self.byid = getglobalid(by)
+
+    def emit(self):
+        "Write wish to database"
+        # TODO: Fill this function in
+        pass
+
+    def __str__(self):
+        "Debug formatted wish"
+        return("Wish object:'%s' created:%s for:%s by:%s expires:%s" %
+            (self.description[:30], self.created, self.globalid, self.byid,
+            self.expires))
+
+class gift:
+    "Class for a single gift"
+    def __init__(self, buyer, wish, note, number):
+        self.wish = wish
+        self.buyer = getglobalid(buyer)
+        self.note = note
+        self.number = number
+
+    def __str__(self):
+        "Debug formatted gift string"
+        return "Gift object:%s" % self.wish.description
+
+    def emit(self):
+        pass
+
 def convert(file_, db):
     "Do the conversion for a file "
+
+    wishlist = {}
+    giftlist = []
 
     # createtables(db)
 
@@ -16,32 +81,60 @@ def convert(file_, db):
     with file_ as infile:
         sentinel = infile.readline()
         try:
-            userid = re.search('Defining a wishlist for (.+)',
+            username = re.search('Defining a wishlist for (.+)',
                 sentinel).group(1)
         except AttributeError:
             print("Input file is not in wishlist regex form. Line 1")
             sys.exit(1)
 
-        print("We got %s this far" % userid)
-
-
-
         for line in infile:
             # Ignore comments and empty lines
-            if line.startswith("#") or not line.strip(): continue
-
+            if line.startswith("#") or not line.strip():
+                continue
 
             # Lines are tab-delimited
-            #    datetime,who,op,ident,description,number,expires
-            # Each "added" op becomes a wish,
+            #    created,who,command,ident,description,number,expires
+            # Each "added" command becomes a wish,
             # each "bought" becomes a gift.
-            # Each "delete" op changes a gift.
+            # Each "delete" command changes a gift.
             # A "purge" is ignored at this point.
-            # Other ops: unbuy
-            datetime, who, op, ident, description, number, expires = line.strip().split("\t")
-            print("datetime=%s, who=%s, op=%s, ident=%s, description=%s, number=%s, expires=%s" % (datetime, who, op, ident, description, number, expires))
-            sys.exit()
+            # Other command: unbuy
 
+            # First break into enough fields to decode command
+            created, who, command, rest = line.strip().split("\t", 3)
+            if command in ['purge', 'delete']:
+                purgefrom = rest
+            elif command == 'bought':
+                ident, note, number = rest.strip().split("\t")
+            else:
+                ident, description, number, expires = rest.strip().split("\t")
+
+            if command == 'purge':
+                pass
+            elif command == 'added':
+                thiswish = wish(username, created, who, ident, description,
+                    number, expires)
+                wishlist[ident] = thiswish
+            elif command == 'delete':
+                # Write wish method for deletion
+                pass
+            elif command == 'bought':
+                thisgift = gift(who, wishlist[ident], note, number)
+                giftlist.append(thisgift)
+                # Any changes to gift?
+            elif command == 'unbuy':
+                # Write method for gift
+                pass
+            else:
+                print("Unknown operator %s" % (command))
+
+        for thiswish in wishlist.values():
+            print(thiswish)
+            thiswish.emit()
+
+        for thisgift in giftlist:
+            print(thisgift)
+            thisgift.emit()
 
 def main():
     """ Run as command line program """
