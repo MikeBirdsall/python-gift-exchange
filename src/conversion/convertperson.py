@@ -82,9 +82,9 @@ def main():
 
     parser = argparse.ArgumentParser(
         description="Load database from person files")
-    parser.add_argument("database", help="Database created or updated")
+    parser.add_argument("database", help="Database to update")
     parser.add_argument("infile", nargs='+', type=argparse.FileType('r'),
-        help="Input file (stdin used if left blank)")
+        help="Input file[s]")
     args = parser.parse_args()
 
     convert(args.infile, args.database)
