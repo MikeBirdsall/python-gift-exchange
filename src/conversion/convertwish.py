@@ -7,11 +7,15 @@ from datetime import datetime
 
 #from createdb import createtables;
 
+
+# Global translation list of user IDs.
+# Immutable list except not initialized until database connected in convert
+IDS = {}
+
 def getglobalid(username):
     # Use the user table to find the userid for username
     # Complain and fail if not found
-    # TODO: Fill this function in
-    return 999999
+    return IDS[username]
 
 def format_date(intime):
     "Return sqlite datetime given current wishfile datetime format"
@@ -28,7 +32,7 @@ class wish:
         number, expires):
 
         self.username = username
-        self.created = format_datetime(created)
+        self.when_suggested = format_datetime(created)
         self.suggestedby = by
         self.localident = ident
         self.description = description
@@ -42,99 +46,124 @@ class wish:
         self.globalid = getglobalid(username)
         self.byid = getglobalid(by)
 
-    def emit(self):
+    def emit(self, connection):
         "Write wish to database"
-        # TODO: Fill this function in
+
+        cursor = connection.cursor()
+        #cursor.execute("insert
+        # TODO: Write emit function to do sqlite3 command
         pass
 
     def __str__(self):
         "Debug formatted wish"
-        return("Wish object:'%s' created:%s for:%s by:%s expires:%s" %
-            (self.description[:30], self.created, self.globalid, self.byid,
+        return("Wish object:'%s' when_suggested:%s for:%s by:%s expires:%s" %
+            (self.description[:30], self.when_suggested, self.globalid, self.byid,
             self.expires))
 
 class gift:
     "Class for a single gift"
-    def __init__(self, buyer, wish, note, number):
-        self.wish = wish
-        self.buyer = getglobalid(buyer)
+    def __init__(self, when, buyer, thiswish, note, number):
+        self.when_bought = format_datetime(when)
+        self.wish = thiswish
+        self.giver = getglobalid(buyer)
+        self.giftee = self.wish.globalid
         self.note = note
         self.number = number
 
     def __str__(self):
         "Debug formatted gift string"
-        return "Gift object:%s" % self.wish.description
+        return("Gift object:'%s' when:%s giftee:%s(%s) giver:%s note:%s howmany:%s" %
+            (self.wish.description[:30],
+            self.when_bought,
+            self.giftee,
+            self.wish.username,
+            self.giver,
+            self.note,
+            self.number))
 
-    def emit(self):
+    def emit(self, connection):
         pass
 
-def convert(file_, db):
-    "Do the conversion for a file "
+class convert:
+    "Manage the conversion"
 
-    wishlist = {}
-    giftlist = []
+    def __init__(self, db):
+        self.conn = sqlite3.connect(db)
+        self.wishlist = {}
+        self.giftlist = []
+        self.set_global_id_dictionary()
 
-    # createtables(db)
+    def set_global_id_dictionary(self):
+        global IDS
+        cursor = self.conn.cursor()
+        cursor.execute('''select id, userid from person''')
+        IDS = {row[1]:row[0] for row in cursor.fetchall()}
 
-    conn = sqlite3.connect(db)
+    def run(self, file_):
+        "Do the conversion for a file "
 
-    with file_ as infile:
-        sentinel = infile.readline()
-        try:
-            username = re.search('Defining a wishlist for (.+)',
-                sentinel).group(1)
-        except AttributeError:
-            print("Input file is not in wishlist regex form. Line 1")
-            sys.exit(1)
+        self.wishlist = {}
+        self.giftlist = []
 
-        for line in infile:
-            # Ignore comments and empty lines
-            if line.startswith("#") or not line.strip():
-                continue
+        with file_ as infile:
+            sentinel = infile.readline()
+            try:
+                username = re.search('Defining a wishlist for (.+)',
+                    sentinel).group(1)
+            except AttributeError:
+                print("Input file is not in wishlist regex form. Line 1")
+                sys.exit(1)
 
-            # Lines are tab-delimited
-            #    created,who,command,ident,description,number,expires
-            # Each "added" command becomes a wish,
-            # each "bought" becomes a gift.
-            # Each "delete" command changes a gift.
-            # A "purge" is ignored at this point.
-            # Other command: unbuy
+            for line in infile:
+                # Ignore comments and empty lines
+                if line.startswith("#") or not line.strip():
+                    continue
 
-            # First break into enough fields to decode command
-            created, who, command, rest = line.strip().split("\t", 3)
-            if command in ['purge', 'delete']:
-                purgefrom = rest
-            elif command == 'bought':
-                ident, note, number = rest.strip().split("\t")
-            else:
-                ident, description, number, expires = rest.strip().split("\t")
+                # Lines are tab-delimited
+                #    created,who,command,ident,description,number,expires
+                # Each "added" command becomes a wish,
+                # each "bought" becomes a gift.
+                # Each "delete" command changes a gift.
+                # A "purge" is ignored at this point.
+                # Other command: unbuy
 
-            if command == 'purge':
-                pass
-            elif command == 'added':
-                thiswish = wish(username, created, who, ident, description,
-                    number, expires)
-                wishlist[ident] = thiswish
-            elif command == 'delete':
-                # Write wish method for deletion
-                pass
-            elif command == 'bought':
-                thisgift = gift(who, wishlist[ident], note, number)
-                giftlist.append(thisgift)
-                # Any changes to gift?
-            elif command == 'unbuy':
-                # Write method for gift
-                pass
-            else:
-                print("Unknown operator %s" % (command))
+                # First break into enough fields to decode command
+                created, who, command, rest = line.strip().split("\t", 3)
+                if command in ['purge', 'delete']:
+                    purgefrom = rest
+                elif command == 'bought':
+                    ident, note, number = rest.strip().split("\t")
+                else:
+                    ident, description, number, expires = rest.strip().split("\t")
 
-        for thiswish in wishlist.values():
-            print(thiswish)
-            thiswish.emit()
+                if command == 'purge':
+                    pass
+                elif command == 'added':
+                    thiswish = wish(username, created, who, ident, description,
+                        number, expires)
+                    self.wishlist[ident] = thiswish
+                elif command == 'delete':
+                    # Write wish method for deletion
+                    # TODO: implement the deletion code
+                    pass
+                elif command == 'bought':
+                    thisgift = gift(created, who, self.wishlist[ident], note,
+                        number)
+                    self.giftlist.append(thisgift)
+                    # Any changes to gift?
+                elif command == 'unbuy':
+                    # Write method for gift
+                    pass
+                else:
+                    print("Unknown operator %s" % (command))
 
-        for thisgift in giftlist:
-            print(thisgift)
-            thisgift.emit()
+            for thiswish in self.wishlist.values():
+                print(thiswish)
+                thiswish.emit(self.conn)
+
+            for thisgift in self.giftlist:
+                print(thisgift)
+                thisgift.emit(self.conn)
 
 def main():
     """ Run as command line program """
@@ -147,7 +176,7 @@ def main():
 
     args = parser.parse_args()
 
-    convert(args.infile, args.database)
+    convert(args.database).run(args.infile)
 
 if __name__ == "__main__":
     main()

@@ -27,19 +27,20 @@ def create_tables(db):
 
     cursor.execute('''CREATE TABLE wish(
         id integer primary key autoincrement not null,
-        created text,
+        when_suggested text,
         by integer references person,
-        for integer references person,
+        giftee integer references person,
         description text,
         numberwanted integer,
         expires text)''')
 
     cursor.execute('''CREATE TABLE gift(
         id integer primary key autoincrement not null,
-        bought text,
+        when_bought text,
         wishid references wish,
-        by references person,
-        for references person,
+        giver references person,
+        giftee references person,
+        when_given text,
         note text,
         numberbought integer)''')
 
