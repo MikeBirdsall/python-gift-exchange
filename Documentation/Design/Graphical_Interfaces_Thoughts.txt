@@ -1,0 +1,33 @@
+Graphical Interface thoughts for the Wish List Program
+
+Some of the graphics in python-Tk while others web pages.
+
+python-Tk
+     Site initialization - single use by Master Site Administrator
+     Admin Site
+     Admin Site Actions
+
+python-html
+     Master Site Administrator Level
+          MSA Home page
+          Edit User Profile
+          +Backup Site Administrator
+          +Group Administrator
+          +User
+     BackupSite Administrator
+          Backup Site Administrator Home Page
+          Create user Master
+          +Group Administrator
+          +User
+     Group Administrator
+          Group Administrator home page
+          Admin Group
+          Admin Group Actions - combine this and the one above?
+               similar to site actions but for the local group
+          Create User
+          +User
+     User
+          User Home Page
+          Edit User Profile
+          WIsh List
+     
