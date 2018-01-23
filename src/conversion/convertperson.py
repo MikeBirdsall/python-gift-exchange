@@ -67,7 +67,7 @@ def convert(files, db):
     connection = sqlite3.connect(db)
     cursor = connection.cursor()
     try:
-        cursor.executemany("""Insert into person
+        cursor.executemany("""insert into person
             ('userid', 'fullname', 'nickname', 'birthday', 'email') VALUES
             (?,?,?,?,?)""", people)
     except sqlite3.IntegrityError as e:

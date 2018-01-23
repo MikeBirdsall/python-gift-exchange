@@ -45,20 +45,28 @@ class wish:
 
         self.globalid = getglobalid(username)
         self.byid = getglobalid(by)
+        self.id = None #pylint: disable=invalid-name
 
     def emit(self, connection):
         "Write wish to database"
 
         cursor = connection.cursor()
-        #cursor.execute("insert
-        # TODO: Write emit function to do sqlite3 command
-        pass
+        sql = """insert into wish ('when_suggested', 'by', 'giftee',
+            'description', 'numberwanted', 'expires') VALUES (?,?,?,?,?,?)"""
+        values = (self.when_suggested, self.byid, self.globalid,
+            self.description, self.howmany, self.expires)
+
+        try:
+            cursor.execute(sql, values)
+            self.id = cursor.lastrowid
+        except sqlite3.IntegrityError as e: #pylint: disable=invalid-name
+            print("Couldn't put %s in database: %s" % (self.description, e))
 
     def __str__(self):
         "Debug formatted wish"
         return("Wish object:'%s' when_suggested:%s for:%s by:%s expires:%s" %
-            (self.description[:30], self.when_suggested, self.globalid, self.byid,
-            self.expires))
+            (self.description[:30], self.when_suggested, self.globalid,
+            self.byid, self.expires))
 
 class gift:
     "Class for a single gift"
@@ -72,7 +80,8 @@ class gift:
 
     def __str__(self):
         "Debug formatted gift string"
-        return("Gift object:'%s' when:%s giftee:%s(%s) giver:%s note:%s howmany:%s" %
+        return("Gift object:'%s' when:%s giftee:%s(%s) giver:%s note:%s "
+            "howmany:%s" %
             (self.wish.description[:30],
             self.when_bought,
             self.giftee,
@@ -82,7 +91,19 @@ class gift:
             self.number))
 
     def emit(self, connection):
-        pass
+        "Write gift to database"
+
+        cursor = connection.cursor()
+        sql = """insert into gift(when_bought, wishid, giver, giftee,
+            note, numberbought) VALUES (?,?,?,?,?,?)"""
+        values = (self.when_bought, self.wish.id, self.giver, self.giftee,
+            self.note, self.number)
+
+        try:
+            cursor.execute(sql, values)
+        except sqlite3.IntegrityError as e: #pylint: disable=invalid-name
+            print("Couldn't put %s in database: %s" % (self, e))
+
 
 class convert:
     "Manage the conversion"
@@ -164,6 +185,8 @@ class convert:
             for thisgift in self.giftlist:
                 print(thisgift)
                 thisgift.emit(self.conn)
+
+            self.conn.commit()
 
 def main():
     """ Run as command line program """
