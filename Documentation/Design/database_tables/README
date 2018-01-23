@@ -1,0 +1,3 @@
+Contains a conceptual level design of the tables needed for the application, to indicate the proper information needed in the database.
+The column names are not necessarily followed in the implementation, and the tables themselves may be refactored as we proceed through the initial design phase. 
+
