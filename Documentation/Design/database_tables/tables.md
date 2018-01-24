@@ -1,7 +1,9 @@
 # Database Tables
 
+## Tables Names
+
 Table | Description
----|---|---
+---|---
 person | Information defining a person
 group | Group names
 groupmembers | Membership for each group
