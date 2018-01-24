@@ -25,6 +25,7 @@ clanmember |
 ## Table Definitions
 
 Table | Column | Type | Description
+---|---|---|---
 person | | |
  | userid | text | id used to log in 
  | fullname | text | Unique (at least in all groups) name string which is supposed to identify a human for other users.  Have to figure out how to deal with humans with same name.  Perhaps it should be further broken into first, middle and last names
