@@ -11,6 +11,7 @@
 |santalist|conversion|group who draw for gift exchange|
 |santalistmember|conversion|membership for santalists|
 |santalistexclude|conversion|excluded links for santalist|
+|santalistdraw|conversion|full results of a drawing|
 |wish|conversion|gift suggestions for users|
 |gift|conversion|gifts purchaged for users|
 |relationship|3|Spouses, children, parents|
@@ -151,6 +152,25 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 |santalist|membera|memberb|
 |---------|-------|-------|
 |4|12|18
+
+### santalistdrawing Table
+
+#### Definition
+
+|Column|Type|Description|
+|------|----|-----------|
+|santalist|key||
+|drawingtitle|text||
+|drawingdate|datetime||
+|status|enum|(?)|
+||||
+
+#### Examples
+
+|santalist|drawingtitle|drawingdate|giftdate|status|
+|---------|------------|-----------|--------|------|
+|3|BirdsallChristmas2000|2000-11-13:00:00:00|2000-12-25|over|
+||||||
 
 ### wish Table
 
