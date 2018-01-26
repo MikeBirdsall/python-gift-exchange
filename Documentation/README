@@ -1,13 +1,19 @@
 Glossary of terms used in this application
 
 Site - an installation of the application on a particular website
-Master Administrator - (Site Adminstrator/Owner) The person with access who oversees the site and should have complete control over it.
-Backup Administrator
 
-Group
-Group Adminstrator
-Clan
-user
-ssgroup
+Master Administrator - (Site Adminstrator/Owner) The person with access who oversees the site and should have complete control over it.
+
+Backup Administrator - A user who has some rights to run some central functions on the site without being the owner.
+
+Group - A set of users who have general visibility to each others wish lists. A user can be in multiple groups
+
+Group Administrator - A user who runs administrative functions for a group.
+
+Clan - ?
+
+user - Any person who can log on to the site and/or who is represented in the wishlists and/or Secret Santa groups
+
+Secret Santa Group - a set of users who draw each others names from a virtual hat for a gift exchange
 
 
