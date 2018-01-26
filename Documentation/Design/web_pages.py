@@ -124,17 +124,17 @@ class GroupAdminHomePage(HomePage):
           """
           pass
 
-class BackupSiteAdministratorHomePage(GroupAdminHomePage):
+class SiteAdministratorHomePage(GroupAdminHomePage):
      """
      This displays the body of the Backup Site Administrator Ome Page
      """
      pass
 
-class MasterSiteAdministratorHomePage(BackupSiteAdministratorHomePage):
-     """
-     This displays the body of the Master Site Administrator Ome Page
-     """
-     pass
+     def display_site_administration_buttons(self)
+          """
+          Display Site Administration buttons
+          """
+
 
 
 
