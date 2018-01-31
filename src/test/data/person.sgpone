@@ -1,0 +1,8 @@
+# Mgb Xmas list utility
+# Person Definition File V1.0
+name=Michael Birdsall
+email=redacted@gmail.com
+group=Birdsall Kirkup
+spouse=sue
+admin=1
+exclude=mike sue
