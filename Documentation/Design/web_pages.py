@@ -124,22 +124,43 @@ class GroupAdminHomePage(HomePage):
           """
           pass
 
-class BackupSiteAdministratorHomePage(GroupAdminHomePage):
+class SiteAdministratorHomePage(GroupAdminHomePage):
      """
-     This displays the body of the Backup Site Administrator Ome Page
-     """
-     pass
-
-class MasterSiteAdministratorHomePage(BackupSiteAdministratorHomePage):
-     """
-     This displays the body of the Master Site Administrator Ome Page
+     This displays the body of the Backup Site Administrator Home Page
      """
      pass
 
+     def display_site_administration_buttons(self):
+          """
+          Display Site Administration buttons
+          """
 
+class CalendarPage(HtmlPage):
+     """
+     Displays a combined group and site calendar
+     """
 
+     def display_calendar():
+          """
+          displays the calendar
+          """
+          pass
 
+     def display_user_buttons():
+          """
+          displays actions buttons for user
+          """
+          pass
 
+     def display_group_admin_buttons():
+          """"
+          display action buttons for group administrator
+          """"
+          pass
+
+     def display_site_admin_buttons():
+          """
+          display actions buttons for site administration
 '''
 def display_create_user_body(page):
      """"
