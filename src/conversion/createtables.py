@@ -31,8 +31,8 @@ def create_tables(db):
     cursor.execute('''CREATE TABLE wish(
         id integer primary key autoincrement not null,
         when_suggested text,
-        by integer references person,
-        giftee integer references person,
+        by integer references person(id),
+        giftee integer references person(id),
         description text,
         numberwanted integer,
         expires date
@@ -41,9 +41,9 @@ def create_tables(db):
     cursor.execute('''CREATE TABLE gift(
         id integer primary key autoincrement not null,
         when_bought text,
-        wishid references wish,
-        giver references person,
-        giftee references person,
+        wishid integer references wish(id),
+        giver integer references person(id),
+        giftee integer references person(id),
         note text,
         numberbought integer,
         givedate text,
@@ -52,16 +52,29 @@ def create_tables(db):
     )''')
 
     cursor.execute('''CREATE TABLE clan(
+        id integer primary key autoincrement not null,
         clanname text,
         description text,
-        admin references person
+        admin integer references person(id)
+    )''')
+
+    cursor.execute('''CREATE TABLE clanmember(
+        clanid integer references clan(id),
+        userid integer references person(id)
     )''')
 
     cursor.execute('''CREATE TABLE santalist(
         id integer primary key autoincrement not null,
         listname text,
-        clan references clan
+        clan integer references clan(id)
     )''')
+
+    cursor.execute('''CREATE TABLE santalistmember(
+        listid integer references santalist(id),
+        userid integer references person(id)
+    )''')
+
+    return cursor
 
 
 def main():

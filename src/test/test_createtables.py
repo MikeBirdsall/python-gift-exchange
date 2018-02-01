@@ -12,11 +12,16 @@ TABLE_QUERY = """select name from sqlite_master where
 class test_table_creation(unittest.TestCase):
 
     def test_from_memory(self):
-        """ create tables in :memory: """
+        """ Create tables: create tables in :memory: """
         cursor = create_tables(":memory:")
         table_names = [x[0] for x in cursor.execute(TABLE_QUERY).fetchall()]
         self.assertCountEqual(table_names, TABLE_NAMES)
-        #self.assertCountEqual(table_names, TABLE_NAMES, "Tables {} not {}".format(table_names, TABLE_NAMES))
+
+    def test_empty_file(self):
+        """ Create database file for tables """
+        pass
+
+
 
 
 
