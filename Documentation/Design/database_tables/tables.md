@@ -31,14 +31,14 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 |userid|text|id the user uses to log in; may allow email as well, if we implement our own login|
 | fullname | text | Unique (at least in all clans) name string which is supposed to identify a human for other users.  Have to figure out how to deal with humans with same name.  Perhaps it should be further broken into first, middle and last names|
 | nickname | text | (display name) shorter name used by the user. On further reflection, this needs to be extended to alllow a different nickname by clan, but this one will be left in for the moment.|
-| birthdate | date ||
+| birthday | date ||
 | email | text ||
 |status|enum|(active,hold,left)|
 ||||
 
 #### Example Rows
 
-|userid|fullname|nickname|birthdate|email|status|
+|userid|fullname|nickname|birthday|email|status|
 |------|--------|--------|---------|-----|------|
 |mbirdsall|Michael G. Birdsall|mike|1953-08-16|fakeone@gmail.com|active|
 |ntdgn|Edward A. Birdsall|ed|1952-04-23|anothermail@gmail.com|active|
@@ -109,13 +109,13 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 
 |Column|Type|Description|
 |------|----|-----------|
-|name|text||
+|listname|text||
 |clan|key|
 ||||
 
 #### Examples
 
-|name|clan|
+|listname|clan|
 |----|----|
 |BirdsallChristmas|1|
 |OlderEatonites|3|
@@ -162,6 +162,8 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 |santalist|key||
 |drawingtitle|text||
 |drawingdate|datetime||
+|results|text||
+
 |status|enum|(?)|
 ||||
 
@@ -180,7 +182,7 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 |------|----|-----------|
 |created|datetime|Date and time wish first created|
 |by|person key| Person who created/suggested it|
-|for|person key|Person this gift is a wish for|
+|giftee|person key|Person this gift is a wish for|
 |description|description of the item|
 |numberwanted|integer+|how many of this item are desired. Some Nonnumeric values, like "any" will be used as well.|
 |expires|date|Date at which it is no longer desired. May have non-date value, like "never".|
@@ -188,7 +190,7 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 
 #### Examples
 
-|Created|by|for|description|numberwanted|expires|
+|Created|by|giftee|description|numberwanted|expires|
 |-------|--|---|-----------|------------|-------|
 |2017-08-05 10:30:29.000|85|85| A Rogue Steel stage rapier (for use, not collection): http://www.roguesteel.com/store/p1/Rapier_-_Swept_Hilt.html - Opposing Curve Quillions, Right-handed, black leather grip, tapered pommel. (Also happy to share the cost of this :) )| 1 | 2017-12-04|
 |2002-10-28 21:04:35|2|2|Frangelico, B&B, Irish Mist|Any|Never|
@@ -200,10 +202,10 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 
 |Column|Type|Description|
 |------|----|-----------|
-|Bought|datetime|When item was bought|
+|when_bought|datetime|When item was bought|
 |wishid|wish key|Which wish was bought
-|by|person key|Who bought it|
-|for|person key|Who did they buy it for|
+|giver|person key|Who bought it|
+|giftee|person key|Who did they buy it for|
 |note|text|Information to help others|
 |numberbought|integer|how many were bought|
 |givedate|date|Date of occasion when it will be given|
@@ -212,7 +214,7 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 
 #### Example
 
-|Bought|wishid|by|for|note|numberbought|givedate|status|
+|when_bought|wishid|giver|giftee|note|numberbought|givedate|status|
 |------|------|--|---|----|------------|--------|------|
 |2017-12-06|243|14|7|Purchased on Amazon.com|1|2017-12-25|given|
 
