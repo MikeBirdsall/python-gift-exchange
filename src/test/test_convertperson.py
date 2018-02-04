@@ -1,9 +1,10 @@
 """ Unit tests for conversion """
 
-from ..conversion.convertperson import person, convert
-import sqlite3
-import unittest
 import os
+import sqlite3
+
+from ..conversion.convertperson import convert
+import unittest
 
 HERE = os.path.dirname(__file__)
 
@@ -29,7 +30,7 @@ def reldir(file):
 class test_conversion(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.__mem = None
 
     def tearDown(self):
         #Database.rollback('')
@@ -54,7 +55,6 @@ class test_conversion(unittest.TestCase):
         ids_ = self.__mem.execute("select userid from person").fetchall()
         self.assertEqual(len(ids_), len(ids))
         self.assertCountEqual([x[0] for x in ids_], ids)
-        # TODO: assertCountEqual doesn't work with nose, replace?
         # from collections import Counter
         # assertEqual(Counter([x[0] for x in ids_), Counter(ids_))
 

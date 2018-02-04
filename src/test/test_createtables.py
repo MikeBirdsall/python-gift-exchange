@@ -84,6 +84,3 @@ class test_table_creation(unittest.TestCase):
         cursor = create_tables(TEMPFILE.name)
         self.assertModifiedDatabase(cursor, ["extra1", "extra2"])
 
-    def test_fail_traceback(self):
-        show_this = 'abc'
-        assert 0

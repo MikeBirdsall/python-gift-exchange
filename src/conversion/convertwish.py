@@ -5,8 +5,6 @@ import sqlite3
 import re
 from datetime import datetime
 
-#from createdb import createtables;
-
 
 # Global translation list of user IDs.
 # Immutable list except not initialized until database connected in convert
@@ -108,11 +106,12 @@ class gift:
 class convert:
     "Manage the conversion"
 
-    def __init__(self, db):
-        self.conn = sqlite3.connect(db)
+    def __init__(self, db=None):
         self.wishlist = {}
         self.giftlist = []
-        self.set_global_id_dictionary()
+        self.conn = None
+        if db:
+            self.reset_db(sqlite3.connect(db))
 
     def set_global_id_dictionary(self):
         global IDS
@@ -120,7 +119,17 @@ class convert:
         cursor.execute('''select id, userid from person''')
         IDS = {row[1]:row[0] for row in cursor.fetchall()}
 
-    def run(self, file_):
+    def reset_db(self, conn):
+        self.conn = conn
+        self.set_global_id_dictionary()
+
+    def run(self, files):
+        "Do the conversion for all files "
+
+        for file_ in files:
+            self.run_one(file_)
+
+    def run_one(self, file_):
         "Do the conversion for a file "
 
         self.wishlist = {}
@@ -179,7 +188,7 @@ class convert:
                     print("Unknown operator %s" % (command))
 
             for thiswish in self.wishlist.values():
-                print(thiswish)
+                #TODO: Remove print(thiswish)
                 thiswish.emit(self.conn)
 
             for thisgift in self.giftlist:
@@ -193,9 +202,9 @@ def main():
 
     parser = argparse.ArgumentParser(
         description="Load database from wishfile")
+    parser.add_argument("database", help="Database created or updated")
     parser.add_argument("infile", nargs='?', type=argparse.FileType('r'),
         default=sys.stdin, help="Input file (stdin used if left blank)")
-    parser.add_argument("database", help="Database created or updated")
 
     args = parser.parse_args()
 
