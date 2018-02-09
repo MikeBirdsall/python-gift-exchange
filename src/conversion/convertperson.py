@@ -1,14 +1,20 @@
 """ convert person files into database records
 
+    Creates entries into person, clan, clanmember, and relationship tables
+
     The person files don't have all the information that I'd like to put in,
     but it can start it and create palceholders. The plan is to add extra
     fields into the person file; I don't think that will cause any problem
 
+
+
 """
 
 import argparse
+from warnings import warn
 import sqlite3
 from os.path import splitext
+from collections import defaultdict
 import os
 
 
@@ -35,6 +41,7 @@ class convert():
 
     def __init__(self, db=None):
         self.files = []
+        self.clanmembers = defaultdict(set)
         if db:
             self.connection = sqlite3.connect(db)
         else:
@@ -45,7 +52,7 @@ class convert():
 
     def run(self, files):
         if not self.connection:
-            print("Warning: No database connected")
+            warn("No database connected")
             return
 
         # userid from filename
@@ -59,11 +66,11 @@ class convert():
         for personfile in files:
             # Using one file per person, can we get the file name?
             if not os.stat(personfile.name).st_size:
-                print("Warning: Empty personfile {}".format(personfile.name))
+                warn("Empty personfile {}".format(personfile.name))
                 continue
             userid = splitext(personfile.name)[1][1:]
             if not userid:
-                print("Warning: No userid found in {}".format(personfile.name))
+                warn("No userid found in {}".format(personfile.name))
                 continue
             this_person = person(userid)
 
@@ -80,29 +87,63 @@ class convert():
                     this_person.birthday = value
                 elif field == 'email':
                     this_person.email = value
-                elif field in ('group', 'exclude', 'spouse', 'admin'):
+                elif field == 'group':
+                    for clan in value.strip().split():
+                        self.clanmembers[clan].add(userid)
+                elif field in ('exclude', 'spouse', 'admin'):
                     pass
                 else:
-                    print("Warning: Unknown field %s in %s" % (field, personfile.name))
+                    warn("Unknown field %s in %s" % (field, personfile.name))
             people.append(this_person.params())
 
         if not people:
-            print("Warning: no people defined")
+            warn("No people defined")
             return
 
         cursor = self.connection.cursor()
         try:
-            # Debugging to print the tables
-            #cursor.execute("select name from sqlite_master where type='table'")
-            #print("tables:", cursor.fetchall())
-
             cursor.executemany("""insert into person
                 ('userid', 'fullname', 'nickname', 'birthday', 'email') VALUES
                 (?,?,?,?,?)""", people)
         except sqlite3.IntegrityError as e:
-            print("Warning: Couldn't put %s in database: %s" % (userid, e))
+            warn("Couldn't put %s in database: %s" % (userid, e))
 
         self.connection.commit()
+
+        # deal with clans
+        # We could use sql to only write new clans
+        #insert into clan ('clanname') select ?
+        #    where not exists(select 1 from clan where clanname = ?)
+        # but would have to read back in old ones anyway, to map clanid
+        # or use join
+
+        # Read back in all existing clans (id, clanname)
+        sql = """select id, clanname from clan"""
+        clans = cursor.execute(sql).fetchall()
+        clans = dict((clanname, id) for id, clanname in clans)
+
+        # Compute new clans
+        newclans = set(self.clanmembers)
+        newclans.difference_update(clans)
+
+        # Write out all new clans update memory copy of clans
+        sql = """insert into clan ('clanname') values (?)"""
+
+        for clan in newclans:
+            cursor.execute(sql, [clan])
+            id = cursor.lastrowid
+            clans[clan] = id
+
+        # Read in all persons (id, userid)
+        ids = cursor.execute("""select id, userid from person""").fetchall()
+        ids = {userid:id for id, userid in ids}
+        updates = [(clans[clan], ids[member]) for clan in self.clanmembers for member in self.clanmembers[clan]]
+
+        sql = """insert into clanmember ('clanid', 'userid') values (?,?)"""
+        cursor.executemany(sql, updates)
+
+        self.connection.commit()
+
 
     def ___del__(self):
         self.connection.close()
