@@ -7,8 +7,8 @@
 
 |Table|Phase|Description|
 |-----|-----|-----------|
-|person|conversion|Information defining a person| 
-|clan|1|Clan name|
+|[person](#person-table)|conversion|Information defining a person| 
+|[clan](#clan-table)|1|Clan name|
 |clanmember|1|Membership for each clan|
 |message|3|messages between users|
 |santalist|conversion|group who draw for gift exchange|
