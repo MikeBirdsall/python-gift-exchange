@@ -58,14 +58,38 @@ class test_conversion(unittest.TestCase):
         # from collections import Counter
         # assertEqual(Counter([x[0] for x in ids_), Counter(ids_))
 
+    def assertNoClan(self, clan_name):
+        cursor = self.__mem
+        cursor.execute("select count(*) from clan where clanname = ?",
+            (clan_name,))
+        self.assertFalse(cursor.fetchone()[0])
+
+    def assertClanExists(self, clan_name):
+        cursor = self.__mem
+        cursor.execute("select count(*) from clan where clanname = ?",
+            (clan_name,))
+        self.assertTrue(cursor.fetchone()[0], "Didn't add clan %s" % clan_name)
+
+    def assertClanMember(self, clan_name, member_name):
+        cursor = self.__mem
+        cursor.execute("""select 1 from clan join clanmember
+            on clanmember.clanid = clan.id join person
+            on clanmember.userid = person.id
+            where person.userid = ? and clan.clanname = ?""",
+            (member_name, clan_name))
+        self.assertTrue(cursor.fetchone())
+
     def test_no_files(self):
-        self.assertConverts([], 0)
+        with self.assertWarns(UserWarning):
+            self.assertConverts([], 0)
 
     def test_one_empty_file(self):
-        self.assertConverts(['person.empty'], 0)
+        with self.assertWarns(UserWarning):
+            self.assertConverts(['person.empty'], 0)
 
     def test_missing_userid(self):
-        self.assertConverts(['person-nouserid'], 0)
+        with self.assertWarns(UserWarning):
+            self.assertConverts(['person-nouserid'], 0)
 
     def test_single_good_person(self):
         self.assertConverts(['person.sgpone'])
@@ -74,6 +98,21 @@ class test_conversion(unittest.TestCase):
     def test_two_good_persons(self):
         self.assertConverts(['person.second', 'person.sgpone'])
         self.assertUserIds(['second', 'sgpone'])
+
+    def test_clan_created(self):
+        db = suck_database(reldir("empty_tables.db"))
+        self.__mem = db.cursor()
+        self.assertNoClan('clan1')
+        # Debug during development
+        self.__mem.execute("""insert into clan (clanname)
+            values ('Clan2'), ('Clan3')""")
+        converter = convert("")
+        converter.reset_db(db)
+        files = relfile_list(['person.clanmember1'])
+        converter.run(files)
+        self.assertClanExists('Clan1')
+        self.assertClanMember('Clan1', 'clanmember1')
+
 
 
 

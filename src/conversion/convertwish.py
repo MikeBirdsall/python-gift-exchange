@@ -192,7 +192,7 @@ class convert:
                 thiswish.emit(self.conn)
 
             for thisgift in self.giftlist:
-                print(thisgift)
+                #TODO: Remove print(thisgift)
                 thisgift.emit(self.conn)
 
             self.conn.commit()
@@ -203,7 +203,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Load database from wishfile")
     parser.add_argument("database", help="Database created or updated")
-    parser.add_argument("infile", nargs='?', type=argparse.FileType('r'),
+    parser.add_argument("infile", nargs='+', type=argparse.FileType('r'),
         default=sys.stdin, help="Input file (stdin used if left blank)")
 
     args = parser.parse_args()

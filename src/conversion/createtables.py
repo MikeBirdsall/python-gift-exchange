@@ -53,7 +53,7 @@ def create_tables(db):
 
     cursor.execute('''CREATE TABLE clan(
         id integer primary key autoincrement not null,
-        clanname text,
+        clanname text unique not null,
         description text,
         admin integer references person(id)
     )''')
