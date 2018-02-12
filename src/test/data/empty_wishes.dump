@@ -1,0 +1,97 @@
+-- Testing wishlist and giftlist conversions
+-- Needs:
+--    tables defined: person, wish, gift
+--    tables populated: person
+
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE person(
+        id integer primary key autoincrement not null,
+        userid text unique not null check (length(userid) <= 30),
+        fullname text unique not null,
+        nickname text,
+        birthday date,
+        email text,
+        status text check(status in ( 'active', 'hold', 'left' ))
+            default 'active'
+    );
+CREATE TABLE wish(
+        id integer primary key autoincrement not null,
+        when_suggested text,
+        by integer references person(id),
+        giftee integer references person(id),
+        description text,
+        numberwanted integer,
+        expires date
+    );
+CREATE TABLE gift(
+        id integer primary key autoincrement not null,
+        when_bought text,
+        wishid integer references wish(id),
+        giver integer references person(id),
+        giftee integer references person(id),
+        note text,
+        numberbought integer,
+        givedate text,
+        status text check(
+            status in ('reserved', 'bought', 'given', 'removed'))
+    );
+CREATE TABLE clan(
+        id integer primary key autoincrement not null,
+        clanname text unique not null,
+        description text,
+        admin integer references person(id)
+    );
+CREATE TABLE clanmember(
+        clanid integer references clan(id),
+        userid integer references person(id)
+    );
+CREATE TABLE santalist(
+        id integer primary key autoincrement not null,
+        listname text,
+        clan integer references clan(id)
+    );
+CREATE TABLE santalistmember(
+        listid integer references santalist(id),
+        userid integer references person(id)
+    );
+CREATE TABLE santalistdrawing(
+        id integer primary key autoincrement not null,
+        listid integer references santalist,
+        title text not null,
+        comment text,
+        drawdate text,
+        giftdate text,
+        status text check(
+            status in ('active', 'over'))
+    );
+CREATE TABLE drawingresult(
+        id integer primary key autoincrement not null,
+        drawing integer references santalistdrawing(id),
+        giver integer references person(id),
+        giftee integer references person(id)
+    );
+COMMIT;
+
+
+-- Insert tables back in up to this point
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+INSERT INTO "person" VALUES(1,'amy','Amy Kovas',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(2,'benjamin','Benjamin Charles Gabriel Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(3,'bob','Robert Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(4,'bryan','Bryan Kovas',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(5,'derek','Derek Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(6,'ed','Edward Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(7,'erin','Erin Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(8,'greg','Greg Kovas',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(9,'jim','James Kovas',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(10,'mike','Michael Birdsall',NULL,NULL,'mgbirdsall@gmail.com','active');
+INSERT INTO "person" VALUES(11,'mike2','Michael James Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(12,'pat','Patrick Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(13,'peg','Peg Kovas',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(14,'sandy','Sandy Walker-Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(15,'steve','Steven Birdsall',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(16,'sue','Susan Kirkup',NULL,NULL,NULL,'active');
+INSERT INTO "person" VALUES(17,'teresa','Teresa Vandenberg',NULL,NULL,NULL,'active');
+COMMIT;

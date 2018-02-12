@@ -2,22 +2,22 @@
 
 from ..conversion.createtables import create_tables
 
-import sqlite3
 import os.path
 import shutil
 from tempfile import NamedTemporaryFile, gettempdir
 
 import unittest
 
+HERE = os.path.dirname(__file__)
+
 # Database for each test is set up in TEMPDIR, most overwriting TEMPFILE
 TEMPDIR = None
 TEMPFILE = None
 
-HERE = os.path.dirname(__file__)
 
 # Names of tables which should be created
 TABLE_NAMES = """person santalist santalistmember clan clanmember wish
-                 gift""".split()
+                 gift santalistdrawing drawingresult""".split()
 TABLE_QUERY = """select name from sqlite_master where
                      type='table' and not name like 'sqlite__%' escape '_'"""
 
@@ -31,8 +31,10 @@ def setUpModule():
 
 class test_table_creation(unittest.TestCase):
 
-    def assertModifiedDatabase(self, cursor, tables=[]):
+    def assertModifiedDatabase(self, cursor, tables=None):
         """ Method called when database should differ from standard """
+        if tables is None:
+            tables = []
         table_names = [x[0] for x in cursor.execute(TABLE_QUERY).fetchall()]
         tables.extend(TABLE_NAMES)
         self.assertCountEqual(tables, table_names)

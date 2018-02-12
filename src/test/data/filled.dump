@@ -1,0 +1,56 @@
+-- Testing table creation when older database description still there
+-- Needs:
+--    tables defined: some same as new tables, but different columns
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE person(
+        id integer primary key autoincrement not null,
+        userid text unique not null check (length(userid) <= 30),
+        fullname text unique not null,
+        nickname text,
+        birthday date,
+        email text,
+        status text check(status in ( 'active', 'hold', 'left' ))
+            default 'active'
+    );
+CREATE TABLE wish(
+        id integer primary key autoincrement not null,
+        when_suggested text,
+        by integer references person(id),
+        giftee integer references person(id),
+        description text,
+        numberwanted integer,
+        expires date
+    );
+CREATE TABLE gift(
+        id integer primary key autoincrement not null,
+        when_bought text,
+        wishid integer references wish(id),
+        giver integer references person(id),
+        giftee integer references person(id),
+        note text,
+        numberbought integer,
+        givedate text,
+        status text check(
+            status in ('reserved', 'bought', 'given', 'removed'))
+    );
+CREATE TABLE clan(
+        id integer primary key autoincrement not null,
+        clanname text,
+        description text,
+        admin integer references person(id)
+    );
+CREATE TABLE clanmember(
+        clanid integer references clan(id),
+        userid integer references person(id)
+    );
+CREATE TABLE santalist(
+        id integer primary key autoincrement not null,
+        listname text,
+        clan integer references clan(id)
+    );
+CREATE TABLE santalistmember(
+        listid integer references santalist(id),
+        userid integer references person(id)
+    );
+COMMIT;

@@ -1,32 +1,13 @@
 """ Unit tests for converting wishlist.<person> files """
 
+from test import suck_database, reldir, relfile_list
 import os
-import sqlite3
 
 from ..conversion.convertwish import convert
 
 import unittest
 
 HERE = os.path.dirname(__file__)
-
-def suck_database(path):
-    " Create memory database from database on disk "
-
-    dsk = sqlite3.connect(path)
-    mem = sqlite3.connect(":memory:")
-    cursor = mem.cursor()
-
-    lines = '\n'.join(dsk.iterdump())
-    cursor.executescript(lines)
-    mem.commit()
-
-    return mem
-
-def reldir(file):
-    return os.path.join(HERE, "data", file)
-
-def relfile_list(files):
-    return [open(reldir(file_name), 'r') for file_name in files]
 
 class test_conversion(unittest.TestCase):
 
@@ -45,7 +26,7 @@ class test_conversion(unittest.TestCase):
         self.assertEqual(gifts, numgifts)
 
     def test_single_person_no_data(self):
-        self.assertConverts(['wishlist.oneempty'],0,0 )
+        self.assertConverts(['wishlist.oneempty'], 0, 0)
 
     def test_single_person_wishes(self):
         self.assertConverts(['wishlist.fivewishes'], 5, 0)

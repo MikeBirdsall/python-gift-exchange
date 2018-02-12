@@ -1,0 +1,19 @@
+-- Testing table creation on database with some extra tables
+-- Needs:
+--    tables defined: person, extra1, extra2
+--    tables populated: none
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE person(
+        id integer primary key autoincrement not null,
+        userid text unique not null check (length(userid) <= 30),
+        fullname text unique not null,
+        nickname text,
+        birthday date,
+        email text,
+        status text check(status in ( 'active', 'hold', 'left' ))
+            default 'active'
+    );
+CREATE TABLE extra1(id integer, firstcol text, secondcol text);
+CREATE TABLE extra2(id integer, a text, b text);
+COMMIT;
