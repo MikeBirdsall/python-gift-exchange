@@ -8,15 +8,15 @@ import unittest
 class test_conversion(unittest.TestCase):
 
     def assertConvertFilled(self, list_, results, dbfile="empty_draws.db"):
-        dummy, clan, ltitle, title = list_.split('.')
+        dummy, clan, title = list_.split('.',2)
         db = suck_database(reldir(dbfile))
         converter = convert()
         converter.reset_db(db)
         list_ = relfile_list([list_])[0]
         converter.run(list_)
-        #for line in db.iterdump():
-        #    if "INSERT" in line:
-        #        print(line)
+        for line in db.iterdump():
+            if "INSERT" in line:
+                print(line)
         cursor = self.cursor = db.cursor()
 
         sql = """select p1.userid, p2.userid
@@ -29,8 +29,8 @@ class test_conversion(unittest.TestCase):
             where clan.clanname = ? and sl.listname = ? and sld.title = ?
             """
         #print(sql)
-        #print(cursor.execute(sql,(clan, ltitle, title)).fetchall())
-        dbresults = cursor.execute(sql, (clan, ltitle, title)).fetchall()
+        #print(cursor.execute(sql,(clan, clan, title)).fetchall())
+        dbresults = cursor.execute(sql, (clan, clan, title)).fetchall()
 
         self.assertEqual(dbresults, results)
 
@@ -40,6 +40,5 @@ class test_conversion(unittest.TestCase):
 
     def test_new_list(self):
         result = [('pat', 'bob'), ('bob', 'mike'), ('mike', 'pat')]
-        with self.assertWarns(UserWarning):
-            self.assertConvertFilled("list.Clan1.list2.title", result)
+        self.assertConvertFilled("list.Clan1.list2.title", result)
 

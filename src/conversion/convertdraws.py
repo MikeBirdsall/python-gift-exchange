@@ -35,7 +35,7 @@ class convert:
 
         with file_ as infile:
             filename = file_.name
-            prefix, clan, list_, title = os.path.basename(filename).split('.')
+            prefix, clan, title = os.path.basename(filename).split('.', 2)
             if prefix != 'list':
                 warn("Drawing file {} does not start with 'list'".format(filename))
 
@@ -55,13 +55,13 @@ class convert:
             # Get santalist id
             listid = self.cursor.execute(
                 "select id from santalist where listname = ? and clan = ?",
-                (list_, clanid)).fetchone()
+                (clan, clanid)).fetchone()
             if listid:
                 listid = listid[0]
             else:
                 self.cursor.execute(
                     "insert into santalist (listname, clan) values (?,?)",
-                    (list_, clanid))
+                    (clan, clanid))
                 listid = self.cursor.lastrowid
                 warn("Creating secret santa list, listid:{}".format(listid))
 
@@ -69,13 +69,14 @@ class convert:
             self.cursor.execute(
                 """insert into santalistdrawing (listid, title, status)
                     values (?, ?, ?)""", (listid, title, "over"))
+            drawing = self.cursor.lastrowid
             # Add all the results
             lines = infile.read().splitlines()
             stripped = [x.strip() for x in lines]
             pairs = [x.split() for x in stripped]
             pairs = [(getglobalid(x.strip()), getglobalid(y.strip()))
                 for x,y in pairs]
-            pairs = [(listid, e[0], e[1]) for e in pairs]
+            pairs = [(drawing, e[0], e[1]) for e in pairs]
             self.cursor.executemany(
                 """insert into drawingresult (drawing, giver, giftee) values
                    (?, ?, ?)""", pairs)

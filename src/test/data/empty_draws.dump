@@ -64,7 +64,7 @@ CREATE TABLE santalist(
         listname text,
         clan integer references clan(id)
     );
-insert into "santalist" values(1, "list1", 1);
+insert into "santalist" values(1, "Clan1", 1);
 CREATE TABLE santalistmember(
         listid integer references santalist(id),
         userid integer references person(id)
