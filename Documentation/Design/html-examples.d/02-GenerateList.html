@@ -1,0 +1,108 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Secret Santa List Generation Page</title>
+<link rel="stylesheet" type="text/css" href="/css/wls_default.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+<form method="get" action="/family/wishlist.pl" enctype="multipart/form-data">
+<h1>Secret Santa List Generation Page for Clan Birdsall Christmas 2018</h1>
+<h2>Stating Exclusion Set</h2>
+<input type="button"  value="Start with current draw and exclusion list" onclick="window.location=&#39;index.html&#39;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button"  value="Start with new draw and exclusion list" onclick="window.location=&#39;index.html&#39;" />
+<br /><br /><br /><hr /><hr />
+<h2>Rules for Use</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="kids">Children not included in the draw<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How old to be included in the draw?
+     <select name=rules_age size=1 multiple>
+          <option>18
+          <option>19
+          <option>20
+          <option>21
+          <option>22
+          <option>23
+          <option>24
+          <option>25
+     </select><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="self">A person can not draw themself<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="spouse">A person can not draw their spouse<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="children">A person can not draw their children<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="draw">A person can not draw people who are not part of the draw<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=rules checked value="past_draws">A person can not draw the same person in recent history<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How many previous draws should be included in recent history
+     <select name=rules_history size=1 multiple>
+          <option>1
+          <option>2
+          <option>3
+          <option>4
+          <option>5
+     </select><br />
+<br /><br /><br />
+<input type="button"  value="Accept rules and Update Exclusions" onclick="window.location=&#39;index.html&#39;" />
+<br /><br /><br /><hr /><hr />
+<h2>Current Secret Santa Group Information</h2>
+<table border=1>
+<tr><td>Name</td><td>   Include?   </td><td>May Not Draw</td><td>Actions</td><td>&nbsp;&nbsp;</td><td>Name</td><td>   Include?   </td><td>May Not Draw</td><td>Actions</td><td></td></tr>
+<tr>
+<td>Alexa Hodgins</td><td><input type=radio name=ahodgins_ss checked value="True"> Yes &nbsp;<br /><input type=radio name=ahodgins_ss value="False"> No</td><td>Alexa Hodgins, Gregory Hodgins, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Gregory Hodgins</td><td><input type=radio name=ghodgins_ss checked value="True"> Yes &nbsp;<br /><input type=radio name=ghodgins_ss value="False"> No</td><td>Alexa Hodgins, Gregory Hodgins, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr><tr>
+<td>Helen Birdsall</td><td><input type=radio name=hbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=hbirdsall checked value="False"> No</td><td>&nbsp;</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Edward Birdsall</td><td><input type=radio name=ebirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=ebirdsall value="False"> No</td><td>Edward Birdsall, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Michael Birdsall</td><td><input type=radio name=mgbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=mgbirdsall value="False"> No</td><td>Susan Kirkup, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Susan Kirkup</td><td><input type=radio name=skbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=skbirdsall value="False"> No</td><td>Michael Birdsall, Susan Kirkup, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Benjamin Birdsall</td><td><input type=radio name=bbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=bbirdsall checked value="False"> No</td><td>&nbsp;</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Steven Birdsall</td><td><input type=radio name=sbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=sbirdsall value="False"> No</td><td>Steven Birdsall, Lora Birdsall,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Lora Birdsall</td><td><input type=radio name=lbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=lbirdsall checked value="False"> No</td><td>Lora Birdsall, Steven Birdsall,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>James Kovas</td><td><input type=radio name=jkbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=jkbirdsall value="False"> No</td><td>James Kovas, Margaret Kovas, Bryan Kovas, Amy Kovas, Gregory Kovas,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Margaret Kovas</td><td><input type=radio name=mkbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=mkbirdsall value="False"> No</td><td>James Kovas, Margaret Kovas, Bryan Kovas, Amy Kovas, Gregory Kovas,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Bryan Kovas</td><td><input type=radio name=bkbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=bkbirdsall value="False"> No</td><td>Bryan Kovas, Teresa Kovas, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Teresa Kovas</td><td><input type=radio name=tkbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=tkbirdsall value="False"> No</td><td>Bryan Kovas, Teresa Kovas, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Erilyn Kovas</td><td><input type=radio name=ekbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=ekbirdsall checked value="False"> No</td><td>&nbsp;</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Wesley Kovas</td><td><input type=radio name=wkbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=wkbirdsall checked value="False"> No</td><td>&nbsp;</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Patrick Birdsall</td><td><input type=radio name=pbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=pbirdsall value="False"> No</td><td>Patrick Birdsall, Erin Birdsall, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Amy Kovas</td><td><input type=radio name=akbirdsall value="True"> Yes &nbsp;<br /><input type=radio name=akbirdsall checked value="False"> No</td><td>Amy Kovas, Junior Palma,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Junior Palma</td><td><input type=radio name=jpbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=jpbirdsall value="False"> No</td><td>Junior Palma, Amy Kovas, Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Michael J Birdsall</td><td><input type=radio name=mjbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=mjbirdsall value="False"> No</td><td>Michael J Birdsall,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Derek Birdsall</td><td><input type=radio name=dbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=dbirdsall value="False"> No</td><td>Derek Birdsall,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Gregory Kovas</td><td><input type=radio name=gkbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=gkbirdsall value="False"> No</td><td>Gregory Kovas,  Helen Birdsall, <br />Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Sandy-Walker Birdsall</td><td><input type=radio name=swbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=swbirdsall value="False"> No</td><td>Sandy-Walker Birdsall, Robert Birdsall, Michael J Birdsall, Derek Birdsall, <br /> Helen Birdsall, Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+<tr>
+<td>Robert Birdsall</td><td><input type=radio name=rbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=rbirdsall value="False"> No</td><td>Sandy-Walker Birdsall, Robert Birdsall, Michael J Birdsall, Derek Birdsall, <br /> Helen Birdsall, Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+<td>Erin Birdsall</td><td><input type=radio name=erbirdsall checked value="True"> Yes &nbsp;<br /><input type=radio name=erbirdsall value="False"> No</td><td>Erin Buirdsall, Helen Birdsall, Benjamin Birdsall, Erilyn Kovas, Wesley Kovas</td><td>&nbsp;<input type="button"  value="Edit" onclick="window.location=&#39;index.html&#39;" /></td><td></td>
+</tr>
+
+</table>
+<br /><br /><br />
+<input type="button"  value="Update Exclusions" onclick="window.location=&#39;index.html&#39;" />
+<br /><br /><br /><hr /><hr />
+<br />
+<input type="button"  value="Accept all and Generate List" onclick="window.location=&#39;index.html&#39;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button"  value="Save all and return without generating list" onclick="window.location=&#39;index.html&#39;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button"  value="Cancel" onclick="window.location=&#39;index.html&#39;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</body>
+</html>
