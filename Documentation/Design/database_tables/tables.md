@@ -3,22 +3,21 @@
 ## List of Tables
 
 
-[here](#person-table)
-
 |Table|Phase|Description|
 |-----|-----|-----------|
 |[person](#person-table)|conversion|Information defining a person| 
 |[clan](#clan-table)|1|Clan name|
-|clanmember|1|Membership for each clan|
-|message|3|messages between users|
-|santalist|conversion|group who draw for gift exchange|
-|santalistmember|conversion|membership for santalists|
-|santalistexclude|conversion|excluded links for santalist|
-|santalistdraw|conversion|full results of a drawing|
-|wish|conversion|gift suggestions for users|
-|gift|conversion|gifts purchaged for users|
-|relationship|3|Spouses, children, parents|
-|proxy|3|People who can act for other people|
+|[clanmember](#clanmember-table)|1|Membership for each clan|
+|[message](#message-table)|3|messages between users|
+|[santalist](#santalist-table)|conversion|group who draw for gift exchange|
+|[santalistmember](#santalistmember-table)|conversion|membership for santalists|
+|[santalistexclude](#santalistexclude-table)|conversion|excluded links for santalist|
+|[santalistdrawing](#santalistdrawing-table)|conversion|instance a drawing|
+|[drawingresult](#wish-table)|conversion||
+|[wish](#wish-table)|conversion|gift suggestions for users|
+|[gift](#gift-table)|conversion|gifts purchaged for users|
+|[relationship](#relationship-table)|3|Spouses, children, parents|
+|[proxy](#proxy-table)|3|People who can act for other people|
 
 ## Table Definitions and Examples
 
@@ -147,14 +146,15 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 |Column|Type|Description|
 |------|----|-----------|
 |santalist|santalist key|Which list excludes|
-|membera|person key|
-|memberb|person key|
+|membera|person key|member who cannot draw|
+|memberb|person key|member who cannot be drawn|
 
 #### Examples
 
 |santalist|membera|memberb|
 |---------|-------|-------|
 |4|12|18
+|4|18|12
 
 ### santalistdrawing Table
 
@@ -162,20 +162,38 @@ In general, I'm leaving the id (rowid) off of the table description, with the un
 
 |Column|Type|Description|
 |------|----|-----------|
-|santalist|key||
-|drawingtitle|text||
-|drawingdate|datetime||
-|results|text||
+|listid|key||
+|title|text||
+|comment|text|Comment about drawing|
+|drawdate|datetime||
+|giftdate|date|
+|status|enum|active, over|
 
-|status|enum|(?)|
+#### Examples
+
+|listid|title|comment|drawdate|giftdate|status|
+|---------|------------|-------|-----------|--------|------|
+|3|BirdsallChristmas2000|Limit $25|2000-11-13:00:00:00|2000-12-25|over|
+|||||||
+
+### drawingresult table
+
+#### Definition
+
+|Column|Type|Description|
+|------|----|-----------|
+|drawing|santalistdrawing key|which drawing instance|
+|giver|person key|giver|
+|giftee|person key|receiver|
 ||||
 
 #### Examples
 
-|santalist|drawingtitle|drawingdate|giftdate|status|
-|---------|------------|-----------|--------|------|
-|3|BirdsallChristmas2000|2000-11-13:00:00:00|2000-12-25|over|
-||||||
+|drawing|giver|giftee|
+|-------|-----|------|
+|27|8|14|
+|27|14|12|
+|27|12|8|
 
 ### wish Table
 
