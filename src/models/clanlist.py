@@ -15,15 +15,23 @@ class XmasNoClan(XmasListException):
 class clanlist:
 
     def __init__(self, clanname=None, clanid=None):
-        self.__clanname = None
-        self.__clanid = None
         self.cursor = None
-        if clanname and clanid:
+
+        if (clanname and clanid) or not(clanname or clanid):
             raise ValueError
+
+        self.connect_database()
         if clanname:
-            self.clanname = clanname
-        if clanid:
-            self.clanid = clanid
+            clanid = self.from_database(
+                "select id from clan where clanname = ?",
+                clanname)
+        else:
+            clanname = self.from_database(
+                "select clanname from clan where id = ?",
+                clanid)
+        self.clanname = clanname
+        self.clanid = clanid
+        self.members = self.get_members()
 
     def connect_database(self):
         conn = sqlite3.connect(DATABASE)
@@ -33,34 +41,13 @@ class clanlist:
         self.connect_database()
         return self.cursor.execute(sql, (parm,)).fetchone()[0]
 
-    @property
-    def clanname(self):
-        if not self.__clanname and not self.__clanid:
-            raise XmasNoClan
-        elif not self.__clanname:
-            sql = "select clanname from clan where id = ?"
-            self.__clanname = self.from_database(sql, self.__clanid)
-        return self.__clanname
-
-    @clanname.setter
-    def clanname(self, name_):
-        if not self.__clanid:
-            self.__clanname = name_
-
-    @property
-    def clanid(self):
-        if not self.__clanname and not self.__clanid:
-            raise XmasNoClan
-        elif not self.__clanid:
-            sql = "select id from clan where clanname = ?"
-            self.__clanid = self.from_database(sql, self.__clanname)
-        return self.__clanid
-
-    @clanid.setter
-    def clanid(self, id_):
-        if not self.__clanname:
-            self.__clanid = id_
-
+    def get_members(self):
+        sql = """select fullname from person join clanmember
+            on (person.id = clanmember.userid)
+            where clanid = ?"""
+        answer = self.cursor.execute(sql, (self.clanid,))
+        answer = [x[0] for x in answer]
+        return answer
 
 if __name__ == "__main__":
     for y in [1, 2]:

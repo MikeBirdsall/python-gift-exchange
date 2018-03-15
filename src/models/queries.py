@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import argparse
+import sys
 from clanlist import clanlist
 from clans import clans
 
@@ -33,12 +34,11 @@ class Driver():
         print(clans().namelist())
 
     def members(self, args):
-        print(args)
-        print("Group:{} GroupId:{} Groupname:{}".format(
-            args.table, args.id, args.name))
         if args.table == 'clan':
-            print(clanlist(clanname=args.name, clanid=args.id).clanname)
-
+            clanmembers = clanlist(clanname=args.name, clanid=args.id).members
+            print(*clanmembers, sep=",\n")
+        else:
+            print("Not yet implemented members %s" %args.table)
 
 def main():
     d = Driver()                       # pylint: disable=invalid-name
@@ -82,7 +82,10 @@ def main():
     cmdlist[cmd] = "list the members of clan or sslist given the name or id"
 
     options = parser.parse_args()
-    options.func(options)
+    if len(sys.argv) < 2:
+        d.naked_help()
+    else:
+        options.func(options)
 
 
 if __name__ == "__main__":
