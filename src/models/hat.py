@@ -21,8 +21,10 @@ How To Use This Module
 
 
 """
+from typing import Iterable, Mapping
 from random import choice
 from collections import defaultdict
+from collections import Counter
 
 
 class NoValidDraw(Exception):
@@ -46,10 +48,15 @@ class Hat:
     - `from`: participant who last drew from the hat
     - `to`: participant last drawn from the hat
     - `result`: A dict of who drew whom
+    - `events`: A count of events which happened throughout draws
 
     """
 
-    def __init__(self, participants, excluded, parent=None):
+    def __init__(
+        self,
+        participants: Iterable,
+        excluded: Mapping,
+        parent=None) -> None:
         """
         Initialize a `Hat` object either de novo or from a previous partial
         drawing.
@@ -64,12 +71,14 @@ class Hat:
         if parent:
             self.parent = parent
             self.participants = parent.participants
+            self.events = parent.events
             self.candidates = parent.candidates.difference((parent.from_,))
             self.targets = parent.targets.difference((parent.to_,))
             self.excluded = parent.excluded
             self.result = parent.result
         else:
             self.parent = None
+            self.events = Counter()
             self.participants = set(participants)
             self.candidates = set(participants)
             self.targets = set(participants)
@@ -99,7 +108,6 @@ class Hat:
             if self.parent:
                 return self.parent
             else:
-                print("raising exception")
                 raise NoValidDraw
 
         # Candidate with fewest choices drawing first minimizes backtrack
@@ -112,6 +120,7 @@ class Hat:
 
         if not self.allowed[self.from_]:
             # Retry previous draw without
+            self.events['backtracks'] += 1
             if self.parent:
                 return self.parent._backtrack()
             else:
@@ -125,7 +134,6 @@ class Hat:
 
     def _backtrack(self):
         """ Retry draw without allowing the same choice """
-        print("Taking back %s drawing %s" % (self.from_, self.to_))
         self.excluded[self.from_].add(self.to_)
         self.allowed[self.from_].remove(self.to_)
         self.from_ = self.to_ = None
@@ -139,46 +147,58 @@ class Hat:
 
     def min_choices(self, candidates):
         allowed = self.allowed
-        #print("Allowed draws: %s" % allowed)
         level = min(len(allowed[x]) for x in candidates)
         answer = [x for x in candidates if len(allowed[x]) == level]
         return answer
 
 import sqlite3
 import argparse
-from collections import Counter
 import pprint
 
 class ExerciseHat:
     def __init__(self):
         self.get_parms()
         self.db = sqlite3.connect(self.args.database)
+        self.stats = Counter()
+        self.events = Counter()
 
     def get_parms(self):
         parser = argparse.ArgumentParser()
         parser.add_argument('--howmany', '-n', type=int, default=1,
             help="How many trials")
         parser.add_argument('--exchange', '-e', required=True,
-            help="Which people")
+            help="Which people - name of group in gift_exchange table")
         parser.add_argument("--database", "--db", "-d", required=True,
             help="Database file")
 
         self.args = parser.parse_args()
 
     def run(self):
-        stat = Counter()
+        self.stats.clear()
+        self.events.clear()
         for dummy in range(self.args.howmany):
-            #print("Running run %s" % (dummy))
             result = self.runone()
-            #print("Result is %s" % (result))
             if result:
-                stat.update(Counter(result.result.items()))
+                self.stats.update(Counter(result.result.items()))
+                self.events.update(result.events)
+            else:
+                self.events['failed'] += 1
 
-        for row in stat.most_common():
-            #print(F"{row[0][0]} => {row[0][1]} : {row[1]} times")
+        self.report()
+
+    def report(self):
+        print("Printing statistics")
+        print("Backtracked {} total steps".format(self.events['backtracks']))
+
+        if 'failed' in self.events:
+            print("Failed {} time(s) to make a valid draw".format(
+                self.events['failed'])
+            )
+        for row in self.stats.most_common(5):
             print("{0[0][0]:>8} => {0[0][1]:>8} : {0[1]} times".format(row))
-            #print("{from_} => {to_} : {count} times".format(
-            #    from_=row[0][0], to_=row[0][1], count=row[1]))
+        print("...")
+        for row in self.stats.most_common()[:-6:-1]:
+            print("{0[0][0]:>8} => {0[0][1]:>8} : {0[1]} times".format(row))
 
     def runone(self):
         "Create a random list"
