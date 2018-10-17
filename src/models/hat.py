@@ -159,6 +159,17 @@ class ExerciseHat:
     def __init__(self):
         self.get_parms()
         self.db = sqlite3.connect(self.args.database)
+        if not self.args.exchange:
+            print("Must select exchange")
+            self.args.listexchanges = True
+        if self.args.listexchanges:
+            print("Possible exchanges:")
+            cursor = self.db.cursor()
+            query = "select distinct name from gift_exchange"
+            rows = cursor.execute(query)
+            for row in rows:
+                print("{}".format(row[0]))
+            quit()
         self.stats = Counter()
         self.events = Counter()
 
@@ -166,12 +177,17 @@ class ExerciseHat:
         parser = argparse.ArgumentParser()
         parser.add_argument('--howmany', '-n', type=int, default=1,
             help="How many trials")
-        parser.add_argument('--exchange', '-e', required=True,
+        exchgroup = parser.add_mutually_exclusive_group()
+        exchgroup.add_argument("--listexchanges", "-l", action='store_true',
+            help="List exchanges")
+        exchgroup.add_argument('--exchange', '-e',
             help="Which people - name of group in gift_exchange table")
+
         parser.add_argument("--database", "--db", "-d", required=True,
             help="Database file")
 
         self.args = parser.parse_args()
+
 
     def run(self):
         self.stats.clear()
