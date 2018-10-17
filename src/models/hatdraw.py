@@ -12,10 +12,10 @@ from hat import Hat, NoValidDraw
 
 class Draw:
     def __init__(self):
-        self.get_parms()
+        self._get_parms()
         self.db = sqlite3.connect(self.args.database)
 
-    def get_parms(self):
+    def _get_parms(self):
         self.parser = parser = argparse.ArgumentParser()
         parser.add_argument('--exchange', '-e', required=True,
             help="Which people - name of group in gift_exchange table")
@@ -51,6 +51,9 @@ class Draw:
         print("Valid exchanges:",
             ','.join("{0}".format(*row) for row in rows),
             file=sys.stderr)
+        print(file=sys.stderr)
+
+        self.parser.print_help(file=sys.stderr)
 
     def set_exclusions(self, people):
         """ Determine excluded set for each person
