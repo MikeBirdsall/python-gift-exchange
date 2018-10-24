@@ -1,0 +1,37 @@
+Web Design Thoughts for model
+
+cases: 1) at home on computer === at home on mobile
+       2) in public on mobile
+
+Home Page
+     Banner - (1,2)- display name (from user login) date (date, time, day (from system)
+               if mobile ask for case 1-show all 2-show abbreviated
+     
+     Top - (1) -(from user login - userid, groups)
+               Full name, Birthday, e-mail address, group(s), messages(new#, total#)
+               calendar events for today to today+60
+               [goto messages] [change password] [change e-mail]
+
+     Mid - (1,2) - (from user login - userid, groups)
+          [Wish List] [Secret Santa List] [Multiple Wish Lists] [Shopping List] [Gifts Purchased]
+     
+     Lower - (1,?2) - (from user login - userid)
+          Personal Wish List - Delete - Desired# - Edit - Description - Expires
+               [Add Suggestion] [Redraw] [Print{!2}] [Purge] [?page style]
+
+Profile Information
+     E-mail - (1?2) - userid
+               table showing primary e-mail address, [edit] [add] 
+                              other e-mail addresses [set to primary] [edit] [delete]
+               [refresh]
+
+     Change password - (1?2) - userid, current password
+
+     Messages - to from new? subject text
+
+Choices
+     Wish List - (1,2) - userid, group(s)
+                    selection of target userid page
+
+
+               
