@@ -17,6 +17,12 @@ from os.path import splitext
 from collections import defaultdict
 import os
 
+import warnings
+
+def custom_formatwarning(msg, *args, **kwargs):
+    return str(msg) + '\n'
+
+warnings.formatwarning = custom_formatwarning
 
 class person:
     """ Class for each person """
@@ -26,6 +32,7 @@ class person:
         self.nickname = None
         self.birthday = None
         self.email = None
+        self.inclan = False
 
     def params(self):
         return [
@@ -90,11 +97,15 @@ class convert():
                 elif field == 'group':
                     for clan in value.strip().split():
                         self.clanmembers[clan].add(userid)
+                        this_person.inclan = True
                 elif field in ('exclude', 'spouse', 'admin'):
                     pass
                 else:
                     warn("Unknown field %s in %s" % (field, personfile.name))
+            if not this_person.inclan:
+                warn("No clan for {}".format(this_person.userid))
             people.append(this_person.params())
+            personfile.close()
 
         if not people:
             warn("No people defined")
