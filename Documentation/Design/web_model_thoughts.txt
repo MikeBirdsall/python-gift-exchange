@@ -3,8 +3,12 @@ Web Design Thoughts for model
 cases: 1) at home on computer === at home on mobile
        2) in public on mobile
 
+Login - (1,2) userid and password - entered by user
+                    if mobile ask which case to use
+               userid, 
+
 Home Page
-     Banner - (1,2)- display name (from user login) date (date, time, day (from system)
+     Banner - (1,2)- display name (from user login) date (date, time, day (from system))
                if mobile ask for case 1-show all 2-show abbreviated
      
      Top - (1) -(from user login - userid, groups)
@@ -12,9 +16,11 @@ Home Page
                calendar events for today to today+60
                [goto messages] [change password] [change e-mail]
 
-     Mid - (1,2) - (from user login - userid, groups)
+     Mid - (1,2) - (from user login - userid, groups, Level<User,Group Administrator, ...>)
           [Wish List] [Secret Santa List] [Multiple Wish Lists] [Shopping List] [Gifts Purchased]
-     
+          - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          Administrator buttons
+
      Lower - (1,?2) - (from user login - userid)
           Personal Wish List - Delete - Desired# - Edit - Description - Expires
                [Add Suggestion] [Redraw] [Print{!2}] [Purge] [?page style]
@@ -32,6 +38,38 @@ Profile Information
 Choices
      Wish List - (1,2) - userid, group(s)
                     selection of target userid page
+     Display single wish list for someone else (input target userid and that user's wishlist
+          Banner "Viewing the Wish List for ________"
+          " last modified by ____________ on date"
+          columns - Buy, Needed, Description, Purchased, Expires, Notes, Submitter, Anonymous Email
+               Buy - [Modify] if bought, [Reserve] if not bought, [Buy] if not bought, 
+                    [Release] if reserved and no longer reserving it, Gone note if bought by another
+               Needed - integer or any
+               Description - text description
+               Purchased - integer for number bought or R or nR for Reserved
+               Expires - date
+               Notes - text with additional notes concerning item
+               Submitter - person who submitted 
+               Anonymous Email - [Purchaser] [Group] [Submitter]
+               [Add Suggestion] [Pick Another List] [Redraw Screen] [Home Page] ((1)[Print Page])
 
+     Multiple Wish List (1,2) - userid, groups(s)
+               selection of target users page
+     Display multiple wish lists
+          Banner "user viewing multiple wish lists"
+          date
+          columns - User, Buy, Needed, Description, Purchased, Expires, Notes, Submitter, Anonymous Email
+               User - person who the wish list is for
+               Buy - [Modify] if bought, [Reserve] if not bought, [Buy] if not bought, 
+                    [Release] if reserved and no longer reserving it, Gone note if bought by another
+               Needed - integer or any
+               Description - text description
+               Purchased - integer for number bought or R or nR for Reserved
+               Expires - date
+               Notes - text with additional notes concerning item
+               Submitter - person who submitted 
+               Anonymous Email - [Purchaser] [Group] [Submitter]
+          Blank lines between people's wish lists
+               [Add Suggestion] [Pick Another Multiple List] [Pick Another List]  [Redraw Screen] 
+                    [Home Page] ((1)[Print Page])
 
-               
