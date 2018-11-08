@@ -5,11 +5,11 @@ cases: 1) at home on computer === at home on mobile
 
 Login - (1,2) userid and password - entered by user
                     if mobile ask which case to use
-               userid, 
+               userid,case,SIGNED_IN=TRUE passed to Home Page 
 
 Home Page
      Banner - (1,2)- display name (from user login) date (date, time, day (from system))
-               if mobile ask for case 1-show all 2-show abbreviated
+               if mobile case 1-show all 2-show abbreviated
      
      Top - (1) -(from user login - userid, groups)
                Full name, Birthday, e-mail address, group(s), messages(new#, total#)
@@ -36,7 +36,7 @@ Profile Information
      Messages - to from new? subject text
 
 Choices
-     Wish List - (1,2) - userid, group(s)
+[]     Wish List - (1,2) - userid, group(s)
                     selection of target userid page
      Display single wish list for someone else (input target userid and that user's wishlist
           Banner "Viewing the Wish List for ________"
@@ -53,7 +53,7 @@ Choices
                Anonymous Email - [Purchaser] [Group] [Submitter]
                [Add Suggestion] [Pick Another List] [Redraw Screen] [Home Page] ((1)[Print Page])
 
-     Multiple Wish List (1,2) - userid, groups(s)
+[]    Multiple Wish List (1,2) - userid, groups(s)
                selection of target users page
      Display multiple wish lists
           Banner "user viewing multiple wish lists"
@@ -73,3 +73,17 @@ Choices
                [Add Suggestion] [Pick Another Multiple List] [Pick Another List]  [Redraw Screen] 
                     [Home Page] ((1)[Print Page])
 
+[]   Secret Santa List
+     Banner "Viewing Secret Santa List"
+          Shows current secret santa year and pick
+          for prior years shows years and when selected shows listing of Users and their Secret Santa picks
+
+[]   Shopping List
+     Banner Current shopping list for" user display name
+          table
+               person - [Buy] - number remaining - description
+          if [Buy] asks for number bought and Notes
+[]   Gifts Purchased
+     Banner - user display name "Gifts Purchased _year_"
+          table person - Description
+          [Prior years?]
