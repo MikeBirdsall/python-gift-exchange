@@ -1,6 +1,7 @@
 """ convert person files into database records
 
-    Creates entries into person, clan, clanmember, and relationship tables
+    Creates entries into person, clan, clanmember, relationship and
+    santalistexclude tables
 
     The person files don't have all the information that I'd like to put in,
     but it can start it and create palceholders. The plan is to add extra
@@ -53,6 +54,7 @@ class convert():
             self.connection = sqlite3.connect(db)
         else:
             self.connection = None
+        self.BBexcludes = defaultdict(set)
 
     def reset_db(self, connection):
         self.connection = connection
@@ -98,7 +100,11 @@ class convert():
                     for clan in value.strip().split():
                         self.clanmembers[clan].add(userid)
                         this_person.inclan = True
-                elif field in ('exclude', 'spouse', 'admin'):
+                elif field == 'exclude':
+                    # Using only clan Birdsall, listname Birdsall for conversion
+                    for excluded in value.strip().split():
+                        self.BBexcludes[userid].add(excluded)
+                elif field in ('spouse', 'admin'):
                     pass
                 else:
                     warn("Unknown field %s in %s" % (field, personfile.name))
@@ -152,6 +158,24 @@ class convert():
 
         sql = """insert into clanmember ('clanid', 'userid') values (?,?)"""
         cursor.executemany(sql, updates)
+
+        # Deal with the excludes
+        # listid for clan Birdsall listname Birdsall is going to be 1
+        # since it's the only 1
+        listid = 1
+
+        # Create list of tuples
+        exclusions = [(listid, ids[member], ids[excluded])
+            for member in self.BBexcludes
+                for excluded in self.BBexcludes[member]
+                    if member in self.clanmembers["Birdsall"] and
+                        excluded in self.clanmembers["Birdsall"]
+        ]
+
+        sql = """insert into santalistexclude ('listid', 'notfrom', 'notto')
+            values (?,?,?)"""
+
+        cursor.executemany(sql, exclusions)
 
         self.connection.commit()
 

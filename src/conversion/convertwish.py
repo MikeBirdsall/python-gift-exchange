@@ -136,7 +136,11 @@ class convert:
         self.giftlist = []
 
         with file_ as infile:
-            sentinel = infile.readline()
+            try:
+                sentinel = infile.readline()
+            except UnicodeDecodeError:
+                print(infile.name)
+                raise
             try:
                 username = re.search('Defining a wishlist for (.+)',
                     sentinel).group(1)

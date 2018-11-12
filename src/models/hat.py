@@ -91,7 +91,7 @@ class Hat:
 
         for each in self.candidates:
             self.allowed[each] = set(self.targets).difference(
-                self.excluded[each])
+                self.excluded.get(each, set()))
 
     def draw(self):
         """ if possible,

@@ -12,6 +12,7 @@ def create_tables(db):
     cursor.execute('''DROP TABLE IF EXISTS santalist''')
     cursor.execute('''DROP TABLE IF EXISTS santalistmember''')
     cursor.execute('''DROP TABLE IF EXISTS santalistdrawing''')
+    cursor.execute('''DROP TABLE IF EXISTS santalistexclude''')
     cursor.execute('''DROP TABLE IF EXISTS drawingresult''')
     cursor.execute('''DROP TABLE IF EXISTS clan''')
     cursor.execute('''DROP TABLE IF EXISTS clanmember''')
@@ -85,6 +86,12 @@ def create_tables(db):
         giftdate text,
         status text check(
             status in ('active', 'over'))
+    )''')
+
+    cursor.execute('''CREATE TABLE santalistexclude(
+        listid integer references santalist(id),
+        notfrom integer references person(id),
+        notto integer references person(id)
     )''')
 
     cursor.execute('''CREATE TABLE drawingresult(
