@@ -8,6 +8,7 @@ import sys
 import sqlite3
 import argparse
 from collections import defaultdict
+from datetime import date
 from hat import Hat, NoValidDraw
 
 class Draw:
@@ -30,6 +31,7 @@ class Draw:
             help="Comment to those in drawing")
 
         parser.add_argument('--drawingdate', '-d',
+            default=date.today().strftime("%Y-%m-%d"),
             help="Date drawing was held, defaults to today")
 
         parser.add_argument('--giftdate', '--when', '-w', required=True,
@@ -39,6 +41,7 @@ class Draw:
             help="Database file")
 
         self.args = parser.parse_args()
+
 
     def get_clan(self, clanname):
 
@@ -96,13 +99,6 @@ class Draw:
             ','.join("{0}".format(*row) for row in rows)
         )
 
-        print(message, file=sys.stderr)
-        print("Valid listnames:",
-            ','.join("{0}".format(*row) for row in rows),
-            file=sys.stderr)
-        print(file=sys.stderr)
-
-
     def set_exclusions(self, people):
         """ Determine excluded set for each person
 
@@ -128,7 +124,7 @@ class Draw:
 
         return dict(excludes)
 
-    def output(self, listname, people):
+    def output(self, drawing, people, santalist_id):
         """ Output results in requested manner
 
             Currently always writes to stdout, but eventualy will update
@@ -141,8 +137,47 @@ class Draw:
             where id in (%s)""" % ','.join('?' * len(people))
         names = {x[0]:x[1] for x in cursor.execute(query, people).fetchall()}
 
-        for from_, to_ in listname.result.items():
+        for from_, to_ in drawing.result.items():
             print("{} -> {}".format(names[from_], names[to_]))
+
+        # add a record to the santalist drawing
+        sql = """insert into santalistdrawing
+            (listid, title, comment, drawdate, giftdate, status)
+            values(?,?,?,?,?,?)"""
+        data = (
+            santalist_id,
+            self.args.title,
+            self.args.comment,
+            self.args.drawingdate,
+            self.args.giftdate,
+            'active')
+
+        cursor.execute(sql, data)
+        drawing_id = cursor.lastrowid
+
+
+        # Add the entries to the drawing result
+        sql = """insert into drawingresult
+            (drawing, giver, giftee) values (?,?,?)"""
+        data = [(drawing_id, from_, to_)
+            for from_, to_ in drawing.result.items()]
+
+        cursor.executemany(sql, data)
+        self.db.commit()
+
+    def check_duplicate_drawing(self, listid):
+        """ Exit if this drawing has already occured """
+        cursor = self.db.cursor()
+        query = """select 1 from santalistdrawing
+            where listid = ? and title = ?"""
+        cursor.execute(query, (listid, self.args.title))
+        existing = cursor.fetchone()
+        if existing:
+            self.parser.error(
+                'Duplicate drawing listname: "{}" title: "{}"'.format(
+                    self.args.listname, self.args.title)
+            )
+
 
     def run(self):
         """ Make random draw honoring exclusions
@@ -157,6 +192,8 @@ class Draw:
         self.db = sqlite3.connect(self.args.database)
         clanid = self.get_clan(self.args.clanname)
         santalist_id = self.get_list_id(self.args.listname, clanid)
+        self.check_duplicate_drawing(santalist_id)
+
 
         people = self.get_people(santalist_id)
 
@@ -168,7 +205,7 @@ class Draw:
         excludes = self.set_exclusions(people)
 
         try:
-            listname = Hat(people, excludes).draw()
+            drawing = Hat(people, excludes).draw()
         except NoValidDraw:
             print("Could not make a draw for", file=sys.stderr)
             print("people: %s" % (people), file=sys.stderr)
@@ -176,7 +213,8 @@ class Draw:
             for person, exclude in excludes.items():
                 print("    %s: %s" % (person, exclude), file=sys.stderr)
         else:
-            self.output(listname, people)
+            self.output(drawing, people, santalist_id)
+
 
 if __name__ == '__main__':
     Draw().run()
