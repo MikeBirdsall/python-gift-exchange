@@ -1,7 +1,7 @@
 #!/bin/bash
 
-python3 -Wa createtables.py data/database # Printing all warnings
-python3 convertperson.py data/database data/person.*
-python3 convertwish.py data/database data/wishlist.*
-python3 -Wa convertssgroup.py -d data/database -c "Birdsall" data/group.*
-python3 convertdraws.py -d data/database data/list.Birdsall.* 
+python3 -Wa createtables.py converted/family 
+python3 convertperson.py converted/family  wishlistdata/family/person.*
+python3 convertwish.py converted/family wishlistdata/family/wishlist.*
+python3 -Wa convertssgroup.py -d converted/family -c "Birdsall" wishlistdata/family/group.*
+python3 convertdraws.py -d converted/family wishlistdata/family/list.Birdsall.* 
