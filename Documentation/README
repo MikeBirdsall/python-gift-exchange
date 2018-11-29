@@ -6,11 +6,9 @@ Master Administrator - (Site Adminstrator/Owner) The person with access who over
 
 Backup Administrator - A user who has some rights to run some central functions on the site without being the owner.
 
-Group - A set of users who have general visibility to each others wish lists. A user can be in multiple groups
+Clan - A set of users who have general visibility to each others wish lists. A user can be in multiple groups
 
-Group Administrator - A user who runs administrative functions for a group.
-
-Clan - ?
+Clan Administrator - A user who runs administrative functions for a group.
 
 user - Any person who can log on to the site and/or who is represented in the wishlists and/or Secret Santa groups
 
