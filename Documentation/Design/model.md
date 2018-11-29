@@ -4,10 +4,10 @@
 getPersonalWishlist(userid)
 
 addWish(userid,item description, number desired, expiration)
-     add an item to user wish list
+:    add an item to user wish list
      
 suggestWish(userid,target UserId, item description, number desired, expiration)
-     add an item to anothers wish list
+>     add an item to anothers wish list
      
 editWish(userid,itemid,iteminfo...)
      change wish info to new values
