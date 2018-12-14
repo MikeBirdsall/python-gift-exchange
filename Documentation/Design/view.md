@@ -1,8 +1,8 @@
 # Views/reports thoughts
 
-## Wishlist
-* displayPersonalWishlist
-* displayAnotherWhishlist
-* displayMultipleWishlist
-* displayShoppingList
-* displayPurchasedList
+## lists
+* SingleWishlist  
+* MultipleWishlists  
+* WishEdit
+* ShoppingList  
+* PurchasedList  
