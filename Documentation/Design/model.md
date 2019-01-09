@@ -74,6 +74,15 @@ getPurchasedList(userid)
 
 ## PersonalInformation
 ### Attributes
+* userID
+* DisplayName
+* FullName
+* EmailAddresses
+* birthday
+* spouse
+* wedding day
+* children
+
 ### Methods
 updatePassword
 
@@ -81,21 +90,48 @@ addEmail(userid,email)
 
 removeEmail(userid,email)
 
-SetPrimaryEmail(userid,email)
+setPrimaryEmail(userid,email)
 
 getBirthday(userid)
 
 updateBirthday(userid,birthday)
 
+AddSpouse()
+
+AddChildren()
+
 getMessageIds(userid)
 
 getMessage(userid,messageid)
+
+messageReply()
+
 
 sendMessage
 
 editMessage
 
+## Group Information
+### Attributes
+* GroupID
+* GroupName
+* GroupAdministrator(s)
+* GroupMembers
+* SecretSanta
 
+### Methods
+generateSecretSanta
+
+getSecretSantaPerson
+
+## Site Information
+### Attributes
+* Site Owner
+* Site Administrators
+
+
+### Methods
+setupGroup
 
 ## other
-getSecretSantaPerson
+
