@@ -1,0 +1,29 @@
+calendar1 notes
+
+Colors 
+     previous Month,  current month before today, today, current month after today, next month, site maint
+     calendar a, calendar b, ...
+
+5 rows displayed,  First day of week set by user
+
+Process
+          for month to be displayed determine first day of month and location in row 0
+          determine previous month days in row 0
+          determine next month days in row 4
+
+          for calday(row 0-4, column 1 to 6)
+                 calday[row,column].hdr_bk_color
+                calday[row,column].hdr_num
+               for user.calendars in use determine
+                    calday[row,column].event_title
+                    calday[row,column].event_color
+     Display calendar
+     
+ 
+?? add
+     add event
+     delete event
+     click on event - goto event display page
+     click on day - goes to day calendar
+     edit calendars in use
+

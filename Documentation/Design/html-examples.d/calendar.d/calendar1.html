@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="author" content="Edward Birdsall"> 
+     <link rel= "stylesheet" type = "text/css" href="../css/normalize.css" />
+     <link rel= "stylesheet" type = "text/css" href="../css/main1.css" />
+<!--     <base href="https://birdsalle.com/" target="index.html">    -->
+     <title>Calendar Page</title>
+</head>
+
+<body>
+<div id="header">
+     <!-- <figure id="header-left">
+          <img src="gfx/ed.jpg" alt="ed" height="100" width="100">
+     </figure> -->
+     <div id=header-center>
+          <h1>{{ User Display Name }} Calendar Page</h1>
+          <h3>Today's Date: {{ month dd, yyyy }}</h3>
+     </div>
+     <!-- <figure id="header-right">
+          <img src="gfx/lilypond-pic.jpg" alt="ed" height="100" width="140">
+     </figure> -->
+</div> 
+
+<!-- <form method="get" action="/family/wishlist.pl" enctype="multipart/form-data"> -->
+<!-- Inputs for page
+     User display name   today's date and time
+     User's preference for first day of week (Sunday or Monday)
+     background color for previous month, days past in current month, today, future days in month, future month
+     calendar month and centering on 5 line display
+     events for display area, color coding for calendar?category events
+Need to handle
+     when a user clicks on an event goto event page ?popup?newpage?
+     calls for previous month, next month, print calendar, ?return to Home page?
+-->
+<div id="main">
+     <table border="" height="75%" width="90%" align=center>
+          <caption align=top><b> {{month year}} </b></caption>
+          <tr><th>Week</th><th width="13%">{{ day1}}</th> <th width="13%">{{ day2}}</th> <th width="13%">{{ day3}}</th> <th width="13%">{{ day4}}</th> <th width="13%">{{ day5}}</th> <th width="13%">{{ day6}}</th> <th width="13%">{{ day7}}</th> </tr>
+          <tr><td align=center>{{yr wk no nn}}</td><td align=center bgcolor={{ color row 1 item n }}>{{ date row1 item1 }}</td><td align=center bgcolor={{ color row 1 item n }}>30</td><td align=center bgcolor={{ color row 1 item n }}>31</td><td align=center bgcolor={{ color row 1 item 4 }}><b>01</b></td><td align=center bgcolor={{ color row 1 item 5 }}><b>02</b></td><td align=center><b>03</b></td><td align=center><b>04</b></td></tr>
+          <tr><td bgcolor=silver>&nbsp;</br>&nbsp;<br />&nbsp;</td><td></td><td></td><td></td><td></td><td bgcolor={{ color row 1 item 5 }}></td><td></td><td></td></tr>
+          <tr><td align=center>{{yr wk no nn}}</td><td align=center><b>{{ date row2 item1 }}</b></td><td align=center><b>06</b></td><td align=center><b>07</b></td><td align=center><b>08</b></td><td align=center><b>09</b></td><td align=center><b>10</b><td align=center><b>11</b></td></td></tr>
+          <tr><td bgcolor=silver>&nbsp;</br>&nbsp;<br />&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td align=center>{{yr wk no nn}}</td><td align=center><b>{{ date row3 item1 }}</b></td><td align=center><b>13</b></td><td align=center><b>14</b></td><td align=center><b>15</b></td><td align=center><b>16</b></td><td align=center><b>17</b></td><td align=center><b>18</b></td></tr>
+          <tr><td bgcolor=silver>&nbsp;</br>&nbsp;<br />&nbsp;</td><td></td><td></td><td></td><td valign=top><font color={{ calendar a color }}><b>{{ calendar-a event title}}</b></font><br /><font color={{ calendar b color }}><b>{{calendar-b event title}}</b></font></td><td></td><td></td><td></td></tr>
+          <tr><td align=center>{{yr wk no nn}}</td><td align=center><b>{{ date row4 item1 }}</b></td><td align=center><b>20</b></td><td align=center><b>21</b></td><td align=center><b>22</b></td><td align=center><b>23</b></td><td align=center><b>24</b></td><td align=center><b>25</b></td></tr>
+          <tr><td bgcolor=silver>&nbsp;</br>&nbsp;<br />&nbsp;</td><td valign=top><font color={{ color calendar b }}><b>{{calendar-b event title}}</b></font></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td align=center>{{yr wk no nn}}</td><td align=center><b>26</b></td><td align=center><b>{{ date row5 item1 }}</b></td><td align=center><b>28</b></td><td align=center bgcolor={{ color row 5 item n1 }}>01</td><td align=center bgcolor={{ color row 5 item n }}>02</td><td align=center bgcolor={{ color row 5 item n }}>03</td><td align=center bgcolor={{ color row 5 item n1 }}>04</td></tr>
+          <tr><td bgcolor=silver>&nbsp;</br>&nbsp;<br />&nbsp;</td><td></td><td></td><td></td><td valign=top><b>{{ site calendar event title }}</b></td><td><b>{{ site calendar event title }}</b></td><td><b>{{ site calendar event title }}</b></td><td></td></tr>
+     </table>
+     <!-- <br /> -->
+     <table border ="" align=center>
+          <caption align=top><b>Legend</b></caption>
+          <tr><td align=center width="13%" bgcolor={{ color row 1 item n }}>Previous Month</td><td align=center width="13%" bgcolor={{ color row 1 item 4 }}>This month before today</td><td align=center width="13%" bgcolor={{ color row 1 item 5 }}>Today</td><td align=center width="13%">This month after today</td><td align=center width="13%" bgcolor={{ color row 5 item n }}>Site Down</td><td align=center width="13%" bgcolor={{ color row 5 item n1 }}>Next Month</td></tr>
+     </table>
+     <!-- <br /> -->
+     <table border ="" align=center>
+          <caption align=top><b>Calendars In Use</b></caption>
+          <tr><td align=center width="13%"  >Calendar A title</td><td align=center width="13%" >Calendar B title </td><td align=center width="13%" >Calendar C title</td><td align=center width="13%">Calendar D title</td><td align=center width="13%" >Calendar E title</td><td align=center width="13%" >Site Calendar</td></tr>
+     </table>
+     <br />
+     <center>
+          <input type="submit" name="action" value="Previous Month" />&nbsp;<input type="button"  value="Print Page" onclick="window.print()" />&nbsp;<input type="submit" name="action" value="Next Month" />
+     </center>
+     <br />
+     <hr/>
+     <center><input type="submit" name="action" value="Return to Home page" /></center> <hr /> <br />
+     <br /><br /><br />
+</div>
+
+<div id="footer">
+     <!-- <figure id="footer-left">
+          <img src="gfx/REACTOR.JPG" alt="research reactor" height="100" width=100">
+     </figure> -->
+     <div id="footer-center">
+          <img src="../gfx/webfoot.jpg" alt="webmaster  @  birdsalle.com" height="100" width="300">
+     </div>
+     <!-- <figure id="footer-right">
+          <img src="gfx/drum-clef.jpg" alt="drum clef" height="100" width="100">
+     </figure> -->
+</div> 
+</body>
+</html>

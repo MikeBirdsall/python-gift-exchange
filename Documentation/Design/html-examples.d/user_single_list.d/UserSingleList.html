@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+     {% block head %}
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="author" content="Edward Birdsall"> 
+     <link rel= "stylesheet" type = "text/css" href="../css/normalize.css" />
+     <link rel= "stylesheet" type = "text/css" href="../css/website.css" />
+
+     <title>{% block title %}Viewing a Wish List{{ user_Display_name }} {% endblock %} </title>
+      {% endblock head %}
+</head>
+<body>
+     <div id="header">
+          <div id=header-center>
+               <h2>Viewing a Wish List for{{ User Display Name }}</h2>
+               <b>Today's Date: {{ month dd, yyyy }}</b> <br />
+               <b>Last Modified by {{ Display_Name }} on {{ day, date time }}</b>
+          </div>
+     </div>
+    <div id="main">{% block content1 %}
+ <input type="submit" name="action" value="Add Suggestion" />  <input type="submit" name="action" value="Pick Another List" /> 
+{% endblock content1 %}
+{% block content2 %}<br />
+<table border=""><caption><strong>Wish List for Amy Kovas</strong></caption> 
+<tr><th>Buy</th> <th>Needed</th> <th>Description</th> <th>Purchased</th> <th>Expires</th> <th>Notes</th><th>Submitter</th><th>Anonymous E-mail</th></tr>
+ <tr><td class="obsolete"><input type="submit" name="action" value="Modify Purchase 1" /></td> <td class="obsolete">0</td> <td class="obsolete">Psych: Season 4 (TV Series)</td> <td class="obsolete">1</td> <td class="obsolete">Dec 26 2010</td> <td class="obsolete"></td><td>Amy Kovas</td><td></td></tr>
+ <tr><td><input type="submit" name="action" value="Reserve Item 4" /><input type="submit" name="action" value="Buy Item 4" /></td> <td>1</td> <td>Umbrella: A travel size and/or a larger one.  Any color except blue or orange</td> <td>1</td> <td>Nov 30 2011</td> <td><p style="margin-top: -0em">travel umbrella</p></td><td>Amy Kovas</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+<td><input type="submit" name="action" value="Reserve Item 5" /><input type="submit" name="action" value="Buy Item 5" /></td> <td>any</td> <td>Craft Supplies </td> <td>0</td> <td>Nov 30 2011</td> <td></td><td>Peg Kovas</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+<td>Gone</td> <td>0</td> <td>Tool Science Nano Silver Lightweight Hair Dryer</td> <td>1</td> <td>Dec 1 2011</td> <td></td><td>Amy Kovas</td><td><input type="submit" name="action" value="Purchaser"></td></tr>
+<td><input type="submit" name="action" value="Reserve Item 9" /><input type="submit" name="action" value="Buy Item 9" /></td> <td>1</td> <td>LG 60" 4K TV </td> <td>R</td> <td>Nov 30 2011</td> <td></td><td>Amy Kovas</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+ <tr><td class="obsolete"><input type="submit" name="action" value="Modify Purchase" /></td> <td class="obsolete">{{ wish.needed }}</td> <td class="obsolete">{{ wish.description }}</td> <td class="obsolete">{{ wish.purchased }}</td> <td class="obsolete">{{ wish.expires }}</td> <td class="obsolete"></td><td>{{ wish.submitter }}</td><td></td></tr>
+ <tr><td><input type="submit" name="action" value="Reserve Item" /><input type="submit" name="action" value="Buy Item" /></td> <td>{{ wish.needed }}</td> <td>{{ wish.description }}</td> <td>{{ wish.purchased }}</td> <td>Nov 30 2011</td> <td><p style="margin-top: -0em">{{ wish.notes  }}</p></td><td>{{ wish.submitter }}</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+<td><input type="submit" name="action" value="Reserve Item" /><input type="submit" name="action" value="Buy Item" /></td> <td>{{ wish.needed }}</td> <td>{{ wish.description }}</td> <td>{{ wish.purchased }}</td> <td>Nov 30 2011</td> <td></td><td>{{ wish.submitter }}</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+<td>Gone</td> <td>{{ wish.needed }}</td> <td>{{ wish.description }}</td> <td>{{ wish.purchased }}</td> <td>Dec 1 2011</td> <td></td><td>{{ wish.submitter }}</td><td><input type="submit" name="action" value="Purchaser"></td></tr>
+<td><input type="submit" name="action" value="Reserve Item" /><input type="submit" name="action" value="Buy Item" /></td> <td>{{ wish.needed }}</td> <td>{{ wish.description }} </td> <td>{{ wish.purchased }}</td> <td>Nov 30 2011</td> <td></td><td>{{ wish.submitter }}</td><td><input type="submit" name="action" value="Purchaser"><input type="submit" name="action" value="Group"><input type="submit" name="action" value="Submitter"></td></tr> <tr>
+</table><br />
+<hr />
+{% endblock content2 %}<br />
+{% block content3 %}
+<input type="submit" name="action" value="Add Suggestion" /><input type="submit" name="action" value="Pick Another List" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Home Page" onclick="window.location=&#39;index.html&#39;" /><input type="button"  value="Print Page" onclick="window.print()" /><br />
+
+{% endblock content3 %}
+
+
+
+</div>
+ <div id="footer">
+     <!-- <figure id="footer-left">
+          <img src="gfx/REACTOR.JPG" alt="research reactor" height="100" width=100">
+     </figure> -->
+     <div id="footer-center">
+          <img src="../gfx/webfoot.jpg" alt="webmaster  @  birdsalle.com" height="100" width="300">
+     </div>
+     <!-- <figure id="footer-right">
+          <img src="gfx/drum-clef.jpg" alt="drum clef" height="100" width="100">
+     </figure> -->
+</div> 
+</body>
+</html>

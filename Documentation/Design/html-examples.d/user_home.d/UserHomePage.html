@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+     {% block head %}
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="author" content="Edward Birdsall"> 
+     <link rel= "stylesheet" type = "text/css" href="../css/normalize.css" />
+     <link rel= "stylesheet" type = "text/css" href="../css/website.css" />
+
+     <title>{% block title %}{{ user_Display_name }} {% endblock %}  Home Page</title>
+      {% endblock head %}
+</head>
+<body>
+     <div id="header">
+          <div id=header-center>
+               <h1>{{ User Display Name }} Home Page</h1>
+               <h3>Today's Date: {{ month dd, yyyy }}</h3>
+          </div>
+     </div>
+    <div id="main">{% block content1 %}
+          <b>Information</b><br />
+          <b>Personal</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Full Name:</b> {{ user.first_name user.last_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Birthday:</b> {{user.birthday}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>e-mail:</b> {{ user.emails primary first}} <br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Groups:</b> {{ user.groups }} &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Messages:  New:</b> {{user.messages_new_total}}   <b>Total:</b> {{user.messages_total}}  <br />
+          <b>Clans</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ clan }}:</b> Secret Santa Christmas {{ secret Santa current year }} : {{Secret Santa current year pick for user}} <br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ clan }}:</b> Secret Santa Christmas {{ secret Santa current year }} : {{Secret Santa current year pick for user}} <br />
+
+     <b>Upcoming Events:</b> <br />
+      &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Site</b> Christmas: December 25 &nbsp;&nbsp; <br />
+      &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{Clan 1}}</b> Birthdays:  January 23 Jim Kovas<br />
+      &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{Clan 2}}</b> Birthdays: January 9 - Sue Kirkup &nbsp;&nbsp;&nbsp; <br />
+<hr>
+{% endblock content1 %}
+{% block content2 %}<br />
+<input type="submit" name="action" value="Go to Messages" /> 
+<input type="submit" name="action" value="Change Password" />  <input type="submit" name="action" value="Change e-mail" />
+<input type="submit" name="action" value="Go to Calendar" /> 
+ <input type="submit" name="action" value="Act as Proxy Selection" /> 
+<hr />
+<input type="submit" name="action" value="Wish Lists" /> <input type="submit" name="action" value="Group Wish Lists" /> 
+<input type="submit" name="action" value="Multiple Wish Lists" /> <input type="submit" name="action" value="Group Multiple Wish List" /> 
+ <input type="submit" name="action" value="Gifts Purchased" />
+ <input type="submit" name="action" value="Shopping List" /> 
+<hr />
+{% endblock content2 %}<br />
+{% block content3 %}
+<b>My Wish List</b><br />
+ &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Last modified by {{ Edward Birdsall }} on {{ Sun Dec 19 13:44:11 2010}} </b>
+<table border=""><tr><th>Delete</th> <th>Desired</th> <th>Edit</th> <th>Description</th> <th>Expires</th></tr> <tr>
+
+<td><input type="submit" name="action" value="Delete" /></td> <td>any</td> <td><input type="submit" name="action" value="Edit" /></td> <td>Frangelico, B&amp;B, Irish Mist</td> <td>never</td></tr> <tr>
+<td><input type="submit" name="action" value="Delete" /></td> <td>any</td> <td><input type="submit" name="action" value="Edit" /></td> <td>Fudge - chocolate, peanut butter are favorites</td> <td>never</td></tr> <tr>
+
+<td><input type="submit" name="action" value="Delete" /></td> <td>{{ wish.desired_number }}</td> <td><input type="submit" name="action" value="Edit" /></td> <td>{{ wish.description }}</td> <td>{{ wish.expiration }}</td></tr> <tr>
+<td><input type="submit" name="action" value="Delete" /></td> <td>{{ wish.desired_number }}</td> <td><input type="submit" name="action" value="Edit" /></td> <td>{{ wish.description }}</td> <td>{{ wish.expiration }}</td></tr> <tr>
+
+<td class="obsolete"><input type="submit" name="action" value="Delete" /></td> <td class="obsolete">1</td> <td class="obsolete"><input type="submit" name="action" value="Edit" /></td> <td class="obsolete">Bulletin Board - 2&#39;x3&#39; </td> <td class="obsolete">Dec 26 2010</td></tr> <tr>
+<td class="obsolete"><input type="submit" name="action" value="Delete" /></td> <td class="obsolete">1</td> <td class="obsolete"><input type="submit" name="action" value="Edit" /></td> <td class="obsolete">Google Sketch up for Dummies book</td> <td class="obsolete">Dec 26 2010</td></tr></table><br />
+
+<input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> <br />
+<hr/> <input type="submit" name="action" value="Purge My List" />  <input type="submit" name="action" value="Clear My List" /> <hr /> <br />
+
+{% endblock content3 %}
+
+
+
+</div>
+ <div id="footer">
+     <!-- <figure id="footer-left">
+          <img src="gfx/REACTOR.JPG" alt="research reactor" height="100" width=100">
+     </figure> -->
+     <div id="footer-center">
+          <img src="../gfx/webfoot.jpg" alt="webmaster  @  birdsalle.com" height="100" width="300">
+     </div>
+     <!-- <figure id="footer-right">
+          <img src="gfx/drum-clef.jpg" alt="drum clef" height="100" width="100">
+     </figure> -->
+</div> 
+</body>
+</html>
