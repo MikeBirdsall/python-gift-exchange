@@ -1,4 +1,9 @@
-calendar1 notes
+calendar notes
+
+Need to work on styles for the various elements in the table due to HTML5 and CSS3 moving a lot out of td.
+Also need to think of yes/no for links on days/events on monthly calendar
+How to make a number of styules depending on what it is
+     make the main rows for date events be a set of rows 1/calendar in use?
 
 Colors 
      previous Month,  current month before today, today, current month after today, next month, site maint

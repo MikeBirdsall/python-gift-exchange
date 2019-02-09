@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+          <b>Information</b><br />
+          <b>Personal</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Full Name:</b> {{ user.firstn }} {{ user.lastn }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Birthday:</b> {{user.bmn}} {{user.bday}}, {{user.byr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>e-mail:</b> {{ user.pemail}}  {{ user.semail}} <br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Clans:</b> {{ user.clan }} &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Messages:  New:</b> {{msgs.new}}   <b>Total:</b> {{msgs.tot}}  <br />
+          <b>Clans</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ user.clan }}:</b> Secret Santa Christmas {{ ss.cyr }} : {{ ss.cypk}} <br />
+
+{% endblock content1 %}
+{% block content2 %}<br />
+<hr />
+<input type="submit" name="action" value="Go to Messages" /> 
+<input type="submit" name="action" value="Change Password" />  <input type="submit" name="action" value="Change e-mail" />
+<input type="submit" name="action" value="Go to Calendar" /> 
+ <input type="submit" name="action" value="Act as Proxy Selection" /> 
+<hr />
+<input type="submit" name="action" value="Wish Lists" /> <input type="submit" name="action" value="Group Wish Lists" /> 
+<input type="submit" name="action" value="Multiple Wish Lists" /> <input type="submit" name="action" value="Group Multiple Wish List" /> 
+ <input type="submit" name="action" value="Gifts Purchased" />
+ <input type="submit" name="action" value="Shopping List" /> 
+<hr />
+{% endblock content2 %}<br />
+
+</div>
+{% endblock content %}
