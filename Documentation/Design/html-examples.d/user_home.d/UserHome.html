@@ -2,27 +2,46 @@
 
 {% block content %}
    <div id="main">{% block content1 %}
-          <b>Information</b><br />
-          <b>Personal</b><br />
+          &nbsp;&nbsp;<b>Information</b><br />
+          &nbsp;&nbsp;<b>Personal</b><br />
            &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Full Name:</b> {{ user.firstn }} {{ user.lastn }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Birthday:</b> {{user.bmn}} {{user.bday}}, {{user.byr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>e-mail:</b> {{ user.pemail}}  {{ user.semail}} <br />
            &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Clans:</b> {{ user.clan }} &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Messages:  New:</b> {{msgs.new}}   <b>Total:</b> {{msgs.tot}}  <br />
-          <b>Clans</b><br />
-           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ user.clan }}:</b> Secret Santa Christmas {{ ss.cyr }} : {{ ss.cypk}} <br />
-
+          &nbsp;&nbsp;<b>Clans</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ user.clan }}:</b> Secret Santa Christmas {{ ss.cyr }} : {{ ss.cypk}}
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b> Upcoming Events:</b> {{ evt.event1 }}                      
+          &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; <b>Birthdays: </b> {{ evt.bday1 }}   &nbsp;&nbsp; {{evt.bday2 }}
 {% endblock content1 %}
+
 {% block content2 %}<br />
-<hr />
+<hr /><center>
 <input type="submit" name="action" value="Go to Messages" /> 
 <input type="submit" name="action" value="Change Password" />  <input type="submit" name="action" value="Change e-mail" />
 <input type="submit" name="action" value="Go to Calendar" /> 
- <input type="submit" name="action" value="Act as Proxy Selection" /> 
-<hr />
-<input type="submit" name="action" value="Wish Lists" /> <input type="submit" name="action" value="Group Wish Lists" /> 
-<input type="submit" name="action" value="Multiple Wish Lists" /> <input type="submit" name="action" value="Group Multiple Wish List" /> 
+ <input type="submit" name="action" value="Act as Proxy Selection" /> </center>
+<hr /><center>
+<input type="submit" name="action" value="Wish Lists" /> <input type="submit" name="action" value="Clan Wish Lists" /> 
+<input type="submit" name="action" value="Multiple Wish Lists" /> <input type="submit" name="action" value="Clan Multiple Wish List" /> 
  <input type="submit" name="action" value="Gifts Purchased" />
- <input type="submit" name="action" value="Shopping List" /> 
+ <input type="submit" name="action" value="Shopping List" /> </center>
 <hr />
-{% endblock content2 %}<br />
+{% endblock content2 %}
+{% block content3 %}
+ &nbsp;&nbsp;<b>My Wish List</b><br />
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:5%">Wish</th><th style="text-align:center; width:5%">Delete</th> <th style="width:5%">Desired</th> <th style="text-align:center; width:5%">Edit</th> <th style="width:70%">Description</th> <th style="text-align:center; width:10%">Expires</th></tr>
 
+{%- for i in range(1,16,1) -%}
+<tr><td  style="text-align:center">{{ wsh[i].num }}</td><td  style="text-align:center"><input type="submit" name="action" value="Delete {{ wsh[i].num }} " /></td> <td  style="text-align:center">{{ wsh[i].ndes }}</td> <td><input type="submit" name="action" value="Edit {{ wsh[i].num }}" /></td> <td>{{ wsh[i].des }}</td> <td  style="text-align:center">{{ wsh[i].exp }}</td></tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="submit" name="action" value="Purge My List" />  <input type="submit" name="action" value="Clear My List" /> </center><br />
+<hr />
+{% endblock content3 %}
 </div>
 {% endblock content %}

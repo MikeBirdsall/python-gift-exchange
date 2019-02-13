@@ -1,44 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-print pref.startDay
      <div id="main">
           <table border="" height="75%" width="90%" align=center>
           <caption align=top><b> {{cal.month}}  {{cal.year}} </b></caption>
 <!-- top line -->
           <tr><th>Week</th>{%- for i in range(7) -%} <th style="width:13%">{{ days[pref.startDay + i] }}</th> {% endfor %} </tr>
 <!-- row 1 -->
-          <tr><td style="text-align:center">{{ pref.startwk }}</td>{%- for i in range(7) -%}<td  style="text-align:center; background-color:{{ bgtclr[i] }}"><b>{{ dnum[i] }}</b></td> {% endfor %}</tr>
-          <tr><td style="text-align:center; background-color:silver">&nbsp;</br>&nbsp;<br />&nbsp;</td><td style="text-align:center; background-color:{{ bgeclr[0] }}"></td><td style="text-align:center; background-color:{{ bgeclr[1] }}"></td><td style="text-align:center; background-color:{{ bgeclr[2] }}"></td><td style="text-align:center; background-color:{{ bgeclr[3] }}"></td><td style="text-align:center; background-color:{{ bgeclr[4] }}"></td><td style="text-align:center; background-color:{{ bgeclr[5] }}"></td><td style="text-align:center; background-color:{{ bgeclr[6] }}"></td></tr>
+          <tr><td style="text-align:center">{{ cal.startwk }}</td>{%- for i in range(7) -%}<td  style="text-align:center; background-color:{{ tdy[i]["bgtclr"]}}"><b>{{ tdy[i].dnum }}</b></td> {% endfor %}</tr>
+          <tr><td style="text-align:center; background-color:{{ colorsm.neutral }}">&nbsp;</br>&nbsp;<br />&nbsp;</td>{%- for i in range(7) -%}<td style="text-align:center; vertical-align:top; background-color:{{ tdy[i]["bgeclr"] }}">
+         <font color="{{ tdy[i]["dev1c"]  }}"><b>{{ tdy[i]["dev1t"]}}</b></font> </td> {% endfor %}</tr>
+
 <!-- row 2 -->
-         <tr><td style="text-align:center">{{ pref.startwk+1 }}</td>{%- for i in range(7, 14, 1) -%}<td  style="text-align:center; background-color:{{ bgtclr[i] }}"><b>{{ dnum[i] }}</b></td> {% endfor %}</tr>
-         <tr><td style="text-align:center; background-color:silver">&nbsp;</br>&nbsp;<br />&nbsp;</td><td style="text-align:center; background-color:{{ bgeclr[7] }}"></td><td style="text-align:center; background-color:{{ bgeclr[8] }}"></td><td style="text-align:center; vertical-align:top; align:center;  bgcolor:{{ bgeclr[9] }};"><font color="{{ colorsc.calAclr }}"><b>{{ calat[9] }}</b></font></br><font color="{{ colorsc.calBclr }}"><b>{{ calat[9] }}</b></font></br><font color="{{ colorsc.calCclr }}"><b>{{ calat[9] }}</b></font></td><td bgcolor={{ bgeclr[10] }}></td><td bgcolor={{ bgeclr[11] }}></td><td bgcolor={{ bgeclr[12] }}></td><td style="color:{{ colorsc.calBclr }}; text-align:center; vertical-align:top; align:center;  bgcolor:{{ bgeclr[13] }};"><b>{{ calbt[13] }}</td></tr>
+         <tr><td style="text-align:center">{{ cal.startwk+1 }}</td>{%- for i in range(7, 14, 1) -%}<td  style="text-align:center; background-color:{{ tdy[i]["bgtclr"]}}"><b>{{ tdy[i].dnum }}</b></td> {% endfor %}</tr>
+          <tr><td style="text-align:center; background-color:{{ colorsm.neutral }}">&nbsp;</br>&nbsp;<br />&nbsp;</td>{%- for i in range(7, 14, 1) -%}<td style="text-align:center; vertical-align:top; background-color:{{ tdy[i]["bgeclr"] }}"> <font color="{{ tdy[i]["dev1c"]  }}"><b>{{ tdy[i]["dev1t"]}}</b></font></td> {% endfor %}</tr>
 
 <!-- row 3 -->
-         <tr><td style="text-align:center">{{ pref.startwk+2 }}</td>{%- for i in range(14, 21, 1) -%}<td  style="text-align:center; background-color:{{ bgtclr[i] }}"><b>{{ dnum[i] }}</b></td> {% endfor %}</tr>
-         <tr><td style="text-align:center; background-color:silver">&nbsp;</br>&nbsp;<br />&nbsp;</td><td bgcolor={{ bgeclr[14] }}></td><td bgcolor={{ bgeclr[15] }}></td><td bgcolor={{ bgeclr[16] }}></td><td bgcolor={{ bgeclr[17] }}></td><td bgcolor={{ bgeclr[18] }}></td><td bgcolor={{ bgeclr[19] }}></td><td bgcolor={{ bgeclr[20] }}></td></tr>
+         <tr><td style="text-align:center">{{ cal.startwk+2 }}</td>{%- for i in range(14, 21, 1) -%}<td  style="text-align:center;  background-color:{{ tdy[i]["bgtclr"]}}"><b>{{ tdy[i].dnum }}</b></td> {% endfor %}</tr>
+          <tr><td style="text-align:center; background-color:{{ colorsm.neutral }}">&nbsp;</br>&nbsp;<br />&nbsp;</td>{%- for i in range(14, 21, 1) -%}<td style="text-align:center; vertical-align:top; background-color:{{  tdy[i]["bgeclr"] }}">
+          <font color={{ tdy[i]["dev1c"]}}><b>{{ tdy[i]["dev1t"]}}</b></font></td> {% endfor %}</tr>
 
 <!-- row 4 -->
-          <tr><td style="text-align:center">{{ pref.startwk +3 }}</td>{%- for i in range(21, 28, 1) -%}<td  style="text-align:center; background-color:{{ bgtclr[i] }}"><b>{{ dnum[i] }}</b></td> {% endfor %}</tr>
-         <tr><td style="text-align:center; background-color:silver">&nbsp;</br>&nbsp;<br />&nbsp;</td><td  style="color:{{ colorsc.calBclr }}; text-align:center; vertical-align:top; align:center;  bgcolor:{{ bgeclr[21] }};" ><b>{{ calbt[21] }}</b></td><td bgcolor={{ bgeclr[22] }}></td><td bgcolor={{ bgeclr[23] }}></td><td bgcolor={{ bgeclr[24] }}></td><td bgcolor={{ bgeclr[25] }}></td><td bgcolor={{ bgeclr[26] }}></td><td bgcolor={{ bgeclr[27] }}></td></tr>
+          <tr><td style="text-align:center">{{ cal.startwk +3 }}</td>{%- for i in range(21, 28, 1) -%}<td  style="text-align:center;  background-color:{{ tdy[i]["bgtclr"]}}"><b>{{ tdy[i].dnum }}</b></td> {% endfor %}</tr>
+          <tr><td style="text-align:center; background-color:{{ colorsm.neutral }}">&nbsp;</br>&nbsp;<br />&nbsp;</td>{%- for i in range(21, 28, 1) -%}<td style="text-align:center; vertical-align:top;background-color:{{  tdy[i]["bgeclr"] }}">
+           <font color={{ tdy[i]["dev1c"]}}><b>{{ tdy[i]["dev1t"]}}</b></font></td> {% endfor %}</tr>
+
+
 <!-- row 5 -->
-          <tr><td style="text-align:center">{{ pref.startwk+4 }}</td>{%- for i in range(28, 35, 1) -%}<td  style="text-align:center; background-color:{{ bgtclr[i] }}"><b>{{ dnum[i] }}</b></td> {% endfor %}</tr>
-        <tr><td style="text-align:center; background-color:silver"&nbsp;</br>&nbsp;<br />&nbsp;</td><td bgcolor={{ bgeclr[28] }}></td><td bgcolor={{ bgeclr[29] }}></td><td bgcolor={{ bgeclr[30] }}></td><td bgcolor={{ bgeclr[31] }}></td><td bgcolor={{ bgeclr[32] }}></td><td bgcolor={{ bgeclr[33] }}></td><td bgcolor={{ bgeclr[34] }}></td></tr>
+          <tr><td style="text-align:center">{{ cal.startwk+4 }}</td>{%- for i in range(28, 35, 1) -%}<td  style="text-align:center;  background-color:{{ tdy[i]["bgtclr"]}}"><b>{{ tdy[i].dnum }}</b></td> {% endfor %}</tr>
+          <tr><td style="text-align:center; background-color:{{ colorsm.neutral }}">&nbsp;</br>&nbsp;<br />&nbsp;</td>{%- for i in range(28, 35, 1) -%}<td style="text-align:center; vertical-align:top;background-color:{{  tdy[i]["bgeclr"] }}">
+           <font color={{ tdy[i]["dev1c"]}}><b>{{ tdy[i]["dev1t"]}}</b></font></td> {% endfor %}</tr>
+
           </table>
 
      <table border ="" align=center>
           <caption align=top><b>Legend</b></caption>
-          <tr><td style="text-align:center; width=13%;background-color:{{ colorsm.previousmonth }}">Previous Month</td><td style="text-align:center; width=13%;background-color:{{ colorsm.thisbefore }}">This month before today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.today }}">Today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.thismonth}}">This month after today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.nextmonth }}">Next Month</td><td style="text-align:center; width=13%;background-color:{{ colorsm.site }}">Site Down</td></tr>
+          <tr><td style="text-align:center; width=13%;background-color:{{ colorsm.priormonth }}">Prior Month</td><td style="text-align:center; width=13%;background-color:{{ colorsm.thisbefore }}">This month before today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.today }}">Today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.thismonth}}">This month after today</td><td style="text-align:center; width=13%;background-color:{{ colorsm.nextmonth }}">Next Month</td><td style="text-align:center; width=13%;background-color:{{ colorsm.site }}">Site Down</td></tr>
      </table>
 
      <table border ="" align=center>
           <caption align=top><b>Calendars In Use</b></caption>
-          <tr><td style="text-align:center; width=13%;background-color:{{ colorsc.calAclr }}" >Liturgical</td><td style="text-align:center; width=13%;background-color:{{ colorsc.calBclr }}" >US Holidays</td><td style="text-align:center; width=13%;background-color:{{ colorsc.calCclr }}" >Calendar C title</td><td align=center width="13%"  bgcolor={{ colorsc.calDclr }}>Calendar D title</td><td align=center width="13%"   bgcolor={{ colorsc.calEclr }}>Calendar E title</td><td style="text-align:center; width=13%;background-color:{{ colorsc.calSclr }}">Site Calendar</td></tr>
+          <tr><td style="text-align:center; width=13%;background-color:{{ pref.calAclr }}" >{{ cal.calAt }}</td><td style="text-align:center; width=13%;background-color:{{ pref.calBclr }}" >{{ cal.calBt }}</td><td style="text-align:center; width=13%;background-color:{{ pref.calCclr }}" >{{ cal.calCt }}</td><td align=center width="13%"  bgcolor={{ pref.calDclr }}>{{ cal.calDt }}</td><td align=center width="13%"   bgcolor={{ pref.calEclr }}>{{ cal.calEt }}</td><td style="text-align:center; width=13%;background-color:{{ colorsm.calSclr }}">Site Calendar</td></tr>
      </table>
 
      <br />
           <center>
-          <input type="submit" name="action" value="Previous Month" />&nbsp;<input type="button"  value="Print Page" onclick="window.print()" />&nbsp;<input type="submit" name="action" value="Next Month" />
+          <input type="submit" name="action" value="prior Month" />&nbsp;<input type="button"  value="Print Page" onclick="window.print()" />&nbsp;<input type="submit" name="action" value="Next Month" />
      </center>
      <br />
      <hr/>
