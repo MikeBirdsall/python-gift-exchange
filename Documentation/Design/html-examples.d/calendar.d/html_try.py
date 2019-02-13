@@ -6,9 +6,10 @@ hd = {"loc": "Month Calendar"}
 hdr = { "name": "Ed",  "page":"March 2019 Calendar", "today":"Saturday  March  2, 2019" }
 pref = {  "startDay":1,  "startwk":5}
 days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
-colorsm = {"previousmonth": "fuschia", "thisbefore": "aqua",  "today": "yellow",  "thismonth": "white",  "nextmonth": "lime", "site":"red" }
+colorsm = {"previousmonth": "DarkOrchid", "thisbefore": "Aqua",  "today": "Yellow",  "thismonth": "White",  "nextmonth": "Lime", "site":"Red" }
 colorsc = { "neutral": "silver",  "calAclr": "green",  "calBclr": "blue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple",  "calSclr": "red" }
 cal = {"month":"March", "year":"2019"}
+
 
 bgtclr = [colorsm["thismonth"]]
 bgeclr = ["white"]
@@ -20,7 +21,7 @@ caldt = [""]
 calet = [""]
 calst = [""]
 
-for i in range (1, 34):
+for i in range (1, 34,1):
      bgtclr.append( colorsm["thismonth"])
      bgeclr.append("white")
      dnum.append(0)
@@ -36,6 +37,7 @@ for i in range (0, 4):
           bgtclr[i] = colorsm["previousmonth"]
           bgeclr[i] = colorsm["previousmonth"]
 
+bgtclr[0] = colorsm["previousmonth"]
 bgtclr[4] = colorsm["thisbefore"]
 bgtclr[5] = colorsm["today"]
 bgeclr[4] = colorsm["thisbefore"]
