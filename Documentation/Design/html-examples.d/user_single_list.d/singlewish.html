@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+{% endblock content1 %}
+
+{% block content2 %}<br />
+{% endblock content2 %}
+{% block content3 %}
+ &nbsp;&nbsp;<b>{{ person.name }} Wish List</b><br />
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:15%">Buy</th><th style="text-align:center; width:5%">Desired</th> <th style="width:40%">Description</th> <th style="text-align:center; width:5%">Purchased</th> <th style="width:10%">Expires</th> <th style="text-align:center; width:10%">Notes</th> <th style="width:10%">Submitter</th> <th style="width:15%">Anonymous E-Mail</th> </tr>
+
+{%- for i in range(1,16,1) -%}
+<tr><td  style="text-align:center">{#Buy buttons or note #}</td> <td  style="text-align:center">{{ wsh[i].ndes }}</td><td  style="text-align:center"><input type="submit" name="action" value="Delete {{ wsh[i].num }} " /></td> <td  style="text-align:center">{{ wsh[i].ndes }}</td> <td><input type="submit" name="action" value="Edit {{ wsh[i].num }}" /></td> <td>{{ wsh[i].des }}</td> <td  style="text-align:center">{{ wsh[i].exp }}</td></tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </center><br />
+<hr />
+{% endblock content3 %}
+</div>
+{% endblock content %}
