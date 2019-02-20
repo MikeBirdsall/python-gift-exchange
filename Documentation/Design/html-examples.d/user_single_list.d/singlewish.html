@@ -2,27 +2,57 @@
 
 {% block content %}
    <div id="main">{% block content1 %}
+ &nbsp;&nbsp;<b>{{ hdr.name  }}'s Wish List</b><br />
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
 {% endblock content1 %}
 
-{% block content2 %}<br />
-{% endblock content2 %}
-{% block content3 %}
- &nbsp;&nbsp;<b>{{ person.name }} Wish List</b><br />
-&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+{% block content2 %}
 <table border="5" height="30%" width="90%" align=center>
-<tr><th style="text-align:center; width:15%">Buy</th><th style="text-align:center; width:5%">Desired</th> <th style="width:40%">Description</th> <th style="text-align:center; width:5%">Purchased</th> <th style="width:10%">Expires</th> <th style="text-align:center; width:10%">Notes</th> <th style="width:10%">Submitter</th> <th style="width:15%">Anonymous E-Mail</th> </tr>
+<tr><th style="text-align:center; width:15%">Action</th><th style="text-align:center; width:5%">Available</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th></tr>
 
-{%- for i in range(1,16,1) -%}
-<tr><td  style="text-align:center">{#Buy buttons or note #}</td> <td  style="text-align:center">{{ wsh[i].ndes }}</td><td  style="text-align:center"><input type="submit" name="action" value="Delete {{ wsh[i].num }} " /></td> <td  style="text-align:center">{{ wsh[i].ndes }}</td> <td><input type="submit" name="action" value="Edit {{ wsh[i].num }}" /></td> <td>{{ wsh[i].des }}</td> <td  style="text-align:center">{{ wsh[i].exp }}</td></tr>
+{%- for row in wsh -%}
+<tr><td  style="text-align:center">{% if row.ndes == "-1" %}  <input type="button" name="action" value="Modify Purchase" onclick="Modfy() "  /> {% elif row.ndes == "0" %}   {% else %} 
+     <input type="button" name="action" value="Buy" onclick="Buy() "  />
+     <input type="button" name="action" value="Reserve" onclick="Reserve() "  />
+     {% endif %}
+      <input type="button" name="action" value="View Details" onclick="View() "  />
+</td> <td  style="text-align:center">{% if row.ndes == "0" or row.ndes == "-1" %} **Gone** {% else %}{{ row.ndes }}{% endif %}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
 {% endfor %}
 
 </table>
 <hr />
 <center><input type="hidden" name="owner" value="ed"  />
-<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- </center><br />
+<input type="button" name="action" value="Add Suggestion" onclick="Edit() "  />
+<input type="submit" name="dummy" value="Redraw the screen" />
+<input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="submit" name="action" value="Pick Another List" /> 
+ <input type="submit" name="action" value="Home Page" /> </center><br />
 <hr />
+
+{% endblock content2 %}
+
+{% block content3 %}
+<h3> Wish Item Detail </h3>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> {{ item.avail }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> {{ item.notes }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> {{ item.submitted }}<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
+     {% if item.purch %}  <input type="button" name="action" value="Submitter" onclick="Edit() "  /> {% endif %}
+     {% if item.group %}  <input type="button" name="action" value="Group" onclick="Edit() "  /> {% endif %}
+     {% if item.purch %}  <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> {% endif %}
+ <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
+     {% if item.buy %}  <input type="button" name="action" value="Buy" onclick="Edit() "  /> {% endif %}
+     {% if item.reserve %}  <input type="button" name="action" value="Reserve" onclick="Edit() "  /> {% endif %}
+<br />
+
 {% endblock content3 %}
 </div>
 {% endblock content %}

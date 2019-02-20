@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+ &nbsp;&nbsp;<b>{{ hdr.name  }}'s MultipleWish List</b><br />
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+{% endblock content1 %}
+
+{% block content2 %}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:10%">For</th><th style="text-align:center; width:20%">Action</th><th style="text-align:center; width:5%">Needed</th> <th style="width:50%">Description</th> <th style="width:10%">Expires</th></tr>
+
+{%- for row in wsh -%}
+<tr>
+{% if row.pfor == "" %} <td colspan="5"> &nbsp;</td> {% else %}
+<td  style="text-align:center">{{ row.pfor}}</td><td  style="text-align:center">{% if row.ndes == "-1" %}  <input type="button" name="action" value="Modify Purchase" onclick="Modfy() "  /> {% elif row.ndes == "0" %}   {% else %} 
+     <input type="button" name="action" value="Buy" onclick="Buy() "  />
+     <input type="button" name="action" value="Reserve" onclick="Reserve() "  />
+     {% endif %}
+      <input type="button" name="action" value="View Details" onclick="View() "  />
+</td> <td  style="text-align:center">{% if row.ndes == "0" or row.ndes == "-1" %} **Gone** {% else %}{{ row.ndes }}{% endif %}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
+{% endif %}</tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="dummy" value="Redraw the screen" />
+<input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="submit" name="action" value="Pick Another Multiple List" />
+ <input type="submit" name="action" value="Pick A Single List" /> 
+ <input type="submit" name="action" value="Home Page" /> </center><br />
+<hr />
+
+{% endblock content2 %}
+
+{% block content3 %}
+
+{% endblock content3 %}
+</div>
+{% endblock content %}

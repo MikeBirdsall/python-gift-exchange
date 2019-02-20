@@ -3,49 +3,57 @@
 from jinja2 import Environment, FileSystemLoader
 
 hd = {"loc":"Wish List"}
-hdr = { "name":"Ed",  "page":"Michael's Wish List", "today":"Saturday  March  2, 2019" }
+hdr = { "name":"Edward",  "page":" Wish List", "today":"Saturday  March  2, 2019" }
 
-days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
-colorsm = {"priormonth": "DarkOrchid", "thisbefore": "Aqua",  "today": "Yellow",  "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", "calSclr": "red" }
 
 # devt is intended to hold the number of events for the day to be used in the template with an if or for but can't get to work right now
-tdy = []
-for i in range(0, 35,1):
-     tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", "devt3c":"",  "devt4t":"", "devt4c":"", })
- 
 
-cal = {"month":"March", "year":"2019", "startwk":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
-pref = {  "startDay":1,  "calAclr": "green",  "calBclr": "blue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
-dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+mod = {"who":"owner Edward Birdsall", "date":"Sunday Fed 24, 2019  13:15:12"}
 
-for i in range(0, 4):
-          tdy[i]["bgtclr"] = colorsm["priormonth"]
-          tdy[i]["bgeclr"] = colorsm["priormonth"]
+wsh = [
+    dict(num=1, ndes="any", exp="never",
+         des="Frangelico, B&B, Irish Mist"),
+    dict(num=2, ndes="any", exp="never",
+         des="Fudge - chocolate, peanut butter are favorites"),
+    dict(num=3, ndes="any", exp="never",
+         des="Wine - Favorites yellowtail-*, wallaby creek-*, and others"),
+    dict(num=4, ndes="any", exp="never",
+         des="Gift Certificate - Home Depot or Lowes"),
+    dict(num=5, ndes="any", exp="never",
+         des="Gift Certificate - Barnes and Noble"),
+    dict(num=6, ndes="any", exp="never",
+         des=("Gift Certificate - Right Stuf (www.rightstuf.com) Where I get "
+              "most of my anime and shaw dvds")),
+    dict(num=7, ndes="-1",
+         des="Rasberry Pi Starter/learning kit", exp="Dec 26, 2019"),
+    dict(num=8, ndes="any", exp="never",
+         des=("Candle molds especially for the larger candles (larger than "
+             "votive)")),
+    dict(num=9, ndes="any", exp="Dec 26, 2019",
+         des=("washable long ties for church (not dryclean) looking for ties "
+             "with primary color rose, white.")),
+    dict(num=10, ndes="0", exp="Dec 26, 2019",
+         des="CD by The Fire - Inspired (found at store.cdbaby.com)"),
+    dict(num=11, ndes="any", exp="Dec 26, 2020",
+         des=("Short sleeve Shirts 16 neck in red, rose, green, violet - "
+              "liturgical colors to wear to church (same as ties)")),
+    dict(num=12, ndes="any", exp="Dec 26, 2020",
+         des=("Washable Ties in red, rose, green, violet - liturgical colors to wear to church")),
+    dict(num=13, ndes="1", exp="Sep 01, 2019",
+         des="Wishlist in final test mode"),
+    dict(num=14, ndes="1",
+         des="2450 Canyon Sold", exp="Aug 1, 2019"),
+    dict(num=15, ndes="1", exp="Dec 31, 2020",
+         des="New House in 'Georgia"),
+]
+
+item = dict(description="Washable Ties in red, rose, green, violet - liturgical colors to wear to church", 
+     desired="any", avail="any", exp="Dec 26, 2020", notes="green and red bought", submitted="Edward Birdsall",
+      purch="e-mail", group="e-mail", submitter="e-mail", buy="yes",reserve="yes"  )
 
 
-for i in range(0,35,1):
-     tdy[i]["dnum"] = dts[i]
 
-wsh = []
-for i in range(0, 16, 1):
-     wsh.append({"num":i, "ndes":"1","des":"","exp":""})
-
-tdy[4]["bgtclr"] = colorsm["thisbefore"]
-tdy[4]["beeclr"] = colorsm["thisbefore"]
-tdy[5]["bgtclr"] = colorsm["today"]
-tdy[5]["beeclr"] = colorsm["today"]
-tdy[9]["devt"] = 1
-tdy[9]["dev1t"] =  "Ash Wednesday"
-tdy[9]["dev1c"] =pref["calAclr"]
-tdy[13]["devt"] = 1
-tdy[13]["dev1t"] =  "DST begins"
-tdy[13]["dev1c"] = pref["calBclr"]
-tdy[21]["devt"] = 1
-tdy[21]["dev1t"] =  "President's Day"
-tdy[21]["dev1c"] = pref["calBclr"]
-
-
-input_ = {"hd":hd, "hdr":hdr, "cal":cal, "days":days, "colorsm":colorsm, "pref":pref, "tdy":tdy }
+input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item }
 env = Environment(loader = FileSystemLoader("."))
 template=env.get_template("singlewish.html")
 

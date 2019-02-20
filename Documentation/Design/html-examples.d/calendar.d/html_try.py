@@ -31,6 +31,21 @@ tdy[4]["bgtclr"] = colorsm["thisbefore"]
 tdy[4]["beeclr"] = colorsm["thisbefore"]
 tdy[5]["bgtclr"] = colorsm["today"]
 tdy[5]["beeclr"] = colorsm["today"]
+
+tdy[4]["devt"] = 1
+tdy[4]["dev1t"] =  "Bryan Kovas B'day"
+tdy[4]["dev1c"] =pref["calCclr"]
+tdy[6]["devt"] = 1
+tdy[6]["dev1t"] =  "Helen Birdsall B'day"
+tdy[6]["dev1c"] =pref["calCclr"]
+tdy[6]["devt"] = 3
+tdy[6]["dev1t"] =  "Greg Kovas B'day"
+tdy[6]["dev1c"] =pref["calCclr"]
+tdy[6]["dev2t"] =  "Brielle Balmer B'day"
+tdy[6]["dev2c"] =pref["calCclr"]
+tdy[6]["dev3t"] =  "Andrew Noyes B'day"
+tdy[6]["dev3c"] =pref["calCclr"]
+
 tdy[9]["devt"] = 1
 tdy[9]["dev1t"] =  "Ash Wednesday"
 tdy[9]["dev1c"] =pref["calAclr"]
@@ -38,8 +53,6 @@ tdy[13]["devt"] = 1
 tdy[13]["dev1t"] =  "DST begins"
 tdy[13]["dev1c"] = pref["calBclr"]
 tdy[21]["devt"] = 1
-tdy[21]["dev1t"] =  "President's Day"
-tdy[21]["dev1c"] = pref["calBclr"]
 
 
 input_ = {"hd":hd, "hdr":hdr, "cal":cal, "days":days, "colorsm":colorsm, "pref":pref, "tdy":tdy }
