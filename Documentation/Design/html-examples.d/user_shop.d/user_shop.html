@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+<center><b>{{ hdr.name  }}'s Shopping List for {{ pers.event}} {{pers.yr }}</b><br />
+
+&nbsp;&nbsp;<b>Clan: {{pers.clan }} &nbsp;&nbsp;&nbsp;&nbsp;{{ pers.yr}} Secret Santa Pick: {{pers.sspk}}</b></center>
+{% endblock content1 %}
+
+{% block content2 %}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:10%">For</th><th style="text-align:center; width:40%">Description</th> <th style="width:5%">Desired</th>  <th style="width:5%">Purchased</th><th style="width:15%">Notes</th><th style="text-align:center; width:25%">List Actions</th> </tr>
+
+{%- for row in wsh -%}
+<tr><td  style="text-align:left"> {{ row.pfor }}</td> <td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.ndes }} </td> <td  style="text-align:center">{{ row.npur }} </td> <td  style="text-align:left">{{ row.notes }}</td><td  style="text-align:center">
+{% if row.npur > 0 %}<b>Purchased</b> {% else %}
+<input type="button"  value="Purchase" onclick="pur" />
+<input type="button"  value="Discard" onclick="dis" />
+<input type="button"  value="Item Detail" onclick="item detail" />
+<input type="button"  value="Show Wish List" onclick="swl" />
+{% endif %}
+</td></tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="button"  value="Print Page" onclick="window.print()" />
+<input type="submit" name="dummy" value="Redraw the screen" />
+ <input type="submit" name="action" value="Home Page" /> </center><br />
+<hr />
+
+{% endblock content2 %}
+
+{% block content3 %}
+
+{% endblock content3 %}
+</div>
+{% endblock content %}
