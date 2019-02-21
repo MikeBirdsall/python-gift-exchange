@@ -56,7 +56,7 @@ wsh = [
 input_ = {"hd":hd, "hdr":hdr, "user":user, "msgs":msgs , "ss":ss, "evt":evt, "mod":mod, "wsh":wsh }
 
 env = Environment(loader = FileSystemLoader("."))
-template=env.get_template("UserHome.html")
+template=env.get_template("UserHome.jhtml")
 
 
 output = template.render(input_)

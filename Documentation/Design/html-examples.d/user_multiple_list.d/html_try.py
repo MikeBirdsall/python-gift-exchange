@@ -53,7 +53,7 @@ wsh = [
 
 input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh  }
 env = Environment(loader = FileSystemLoader("."))
-template=env.get_template("multiplewish.html")
+template=env.get_template("multiplewish.jhtml")
 
 output = template.render(input_ )
 

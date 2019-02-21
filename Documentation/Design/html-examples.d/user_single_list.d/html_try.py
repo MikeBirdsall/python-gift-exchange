@@ -55,7 +55,7 @@ item = dict(description="Washable Ties in red, rose, green, violet - liturgical 
 
 input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item }
 env = Environment(loader = FileSystemLoader("."))
-template=env.get_template("singlewish.html")
+template=env.get_template("singlewish.jhtml")
 
 output = template.render(input_ )
 

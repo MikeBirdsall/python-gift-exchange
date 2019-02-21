@@ -1,3 +1,9 @@
+{#
+     base.jhtml  -  basic structure file for web pages
+     includes - header.jhtml, footer.jhtml
+     hd.loc is the name in the tab for the page
+#}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 <head>
@@ -12,8 +18,8 @@
       {% endblock head %}
 </head>
 <body>
-     {% include "header.html" ignore missing %}
+     {% include "header.jhtml" ignore missing %}
     <div id="content">{% block content %}{% endblock content %}</div>
-    {% include 'footer.html' ignore missing %}
+    {% include 'footer.jhtml' ignore missing %}
 </body>
 </html>

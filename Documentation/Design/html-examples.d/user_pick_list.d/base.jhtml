@@ -12,8 +12,8 @@
       {% endblock head %}
 </head>
 <body>
-     {% include "header.html" ignore missing %}
+     {% include "header.jhtml" ignore missing %}
     <div id="content">{% block content %}{% endblock content %}</div>
-    {% include 'footer.html' ignore missing %}
+    {% include 'footer.jhtml' ignore missing %}
 </body>
 </html>

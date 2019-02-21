@@ -1,5 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.jhtml" %}
+{#
+     mcalendar - prints a 5 week calendar centered on a desired month
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     Variables
+          hd is passed through to base.jhtml - loc
+          hdr is passed through to header.jhtml - name, page, today
+          cal is for calendar information - startwk,
+          pref is user preferences - 
+          tdy is for information on that day in the calendar
+          colorsm is for the color scheme for things
 
+#}
 {% block content %}
      <div id="main">
           <table border="" height="75%" width="90%" align=center>
