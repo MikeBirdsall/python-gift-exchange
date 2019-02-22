@@ -2,8 +2,8 @@
 
 {% block content %}
    <div id="main">{% block content1 %}
- &nbsp;&nbsp;<b>{{ hdr.name  }}'s Wish List</b><br />
-&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;{{ altwsh.syte }}
 {% endblock content1 %}
 
 {% block content2 %}

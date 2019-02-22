@@ -26,8 +26,10 @@
 <hr />
 {% endblock content2 %}
 {% block content3 %}
- &nbsp;&nbsp;<b>My Wish List</b><br />
-&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+<center><b>My Wish List</b></center>
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish List Site(s):<b> {{ user.altwsh1 }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add another alternate wish site" onclick=""><input type="url" name="altwsh" />
 <table border="5" height="30%" width="90%" align=center>
 <tr><th style="text-align:center; width:5%">Edit</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
 

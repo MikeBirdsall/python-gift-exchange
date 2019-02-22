@@ -50,10 +50,10 @@ wsh = [
 item = dict(description="Washable Ties in red, rose, green, violet - liturgical colors to wear to church", 
      desired="any", avail="any", exp="Dec 26, 2020", notes="green and red bought", submitted="Edward Birdsall",
       purch="e-mail", group="e-mail", submitter="e-mail", buy="yes",reserve="yes"  )
+altwsh = dict(syte="http://Amazon_site_url")
 
 
-
-input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item }
+input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item, "altwsh":altwsh }
 env = Environment(loader = FileSystemLoader("."))
 template=env.get_template("singlewish.jhtml")
 
