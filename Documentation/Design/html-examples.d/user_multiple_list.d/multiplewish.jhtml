@@ -2,8 +2,7 @@
 
 {% block content %}
    <div id="main">{% block content1 %}
- &nbsp;&nbsp;<b>{{ hdr.name  }}'s MultipleWish List</b><br />
-&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}
+<center><b>Last modified on {{ mod.date }}</center>
 {% endblock content1 %}
 
 {% block content2 %}

@@ -1,0 +1,45 @@
+{% extends "base.jhtml" %}
+{% block content %}
+   <div id="main">{% block content1 %}
+
+
+{# block1 #}
+
+<h2>Clan Birdsall</h2>
+Secret Santa Pick for 2010: Erin Birdsall <br /><br />
+
+<table> {#  Help in this looping is needed #}
+{% for users in users.clan = "Birdsall" %}
+{# number of rows is length of users in can / 4  #}
+{% for r in range(rows)
+<tr>
+     {% for i in range(4) %}
+     <td><label><input type="checkbox" name="owner" value={{ users[r+i].id }} />{{ users[r+i].dname</label></td>
+     {% endfor %}
+</tr>
+</table><br />
+<h2>Clan Kirkup</h2>
+Secret Santa Pick for 2010: Mike Kirkup <br /><br />
+<table>{% for users in users.clan = "Kirkup" %}
+<tr>
+     {% for i in range(4) %}
+     <td><label><input type="checkbox" name="owner" value={{ users[i].id }} />{{ users[i].dname</label></td>
+     {% endfor %}
+</tr>
+{#  Help in this looping is needed #}
+
+</table><br />
+
+<input type="hidden" name="owner" value="mike"  />
+<input type="hidden" name="lastaction" value="Pick Another List"  /><input type="submit" name="action" value="Choose List" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Home Page" onclick="window.location=&#39;index.html&#39;" /><input type="button"  value="Print Page" onclick="window.print()" /><br />
+<!--<p>Choose style for pages</p><select name="style" >
+<option selected="selected" value=""></option>
+<option value="dark">dark</option>
+<option value="default">default</option>
+<option value="light">light</option>
+<option value="medium">medium</option>
+<option value="white">white</option>
+</select><div><input type="hidden" name=".cgifields" value="owner"  /> -->
+</div></form>
+</body>
+</html>

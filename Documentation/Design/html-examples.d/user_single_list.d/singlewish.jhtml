@@ -3,7 +3,7 @@
 {% block content %}
    <div id="main">{% block content1 %}
 &nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;{{ altwsh.syte }}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;{{ altwsh.syte }}
 {% endblock content1 %}
 
 {% block content2 %}

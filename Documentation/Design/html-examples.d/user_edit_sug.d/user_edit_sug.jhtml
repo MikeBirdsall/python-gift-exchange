@@ -1,0 +1,54 @@
+{% extends "base.jhtml" %}
+{#  Add Edit.jhtml extends base.jhtml
+          base.jttml includes header.jhtml and footer.jhtml
+     This page is used to add or edit a suggestion
+#}
+
+
+{% block content %}
+   <div id="main">{% block content1 %}
+{#
+Here is the area for adding / editing / deleting a suggestion
+#}
+<center><b>{{ hdr.name  }}'s {{ action }} Suggestion for {{ pers.who}} </b><br />
+
+<b>Description:</b><input type="text" name="desc" value={{ awish.des }} size="90" /><br />
+<b>Number Desired:</b><select name="ndes" size="5" >
+<option value="any">any</option>
+<option selected="selected" value="1">1</option>
+{% for i in range (2,10) %}
+<option value="i">i</option>
+{% endfor %}
+</select><br />
+<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+
+
+
+
+
+{% endblock content1 %}
+
+{% block content2 %}
+{%- for row in wsh -%}
+<tr><td  style="text-align:center">{% if row.ndes == "-1" %}  <input type="button" name="action" value="Modify Purchase" onclick="Modfy() "  /> {% elif row.ndes == "0" %}   {% else %} 
+     <input type="button" name="action" value="Buy" onclick="Buy() "  />
+     <input type="button" name="action" value="Reserve" onclick="Reserve() "  />
+     {% endif %}
+      <input type="button" name="action" value="View Details" onclick="View() "  />
+</td> <td  style="text-align:center">{% if row.ndes == "0" or row.ndes == "-1" %} **Gone** {% else %}{{ row.ndes }}{% endif %}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
+{% endfor %}
+
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="button"  value="Print Page" onclick="window.print()" />
+<input type="submit" name="dummy" value="Redraw the screen" />
+ <input type="submit" name="action" value="Home Page" /> </center><br />
+<hr />
+
+{% endblock content2 %}
+
+{% block content3 %}
+
+{% endblock content3 %}
+</div>
+{% endblock content %}

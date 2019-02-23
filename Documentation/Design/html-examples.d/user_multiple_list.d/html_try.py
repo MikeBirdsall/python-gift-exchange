@@ -6,7 +6,7 @@ hd = {"loc":"Wish List"}
 hdr = { "name":"Edward",  "page":" Multiple Wish List", "today":"Saturday  March  2, 2019" }
 
 
-mod = {"who":"owner Edward Birdsall", "date":"Sunday Fed 24, 2019  13:15:12"}
+mod = {"who":"Edward Birdsall", "date":"Sunday Fed 24, 2019  13:15:12"}
 
 wsh = [
     dict(num=1, pfor="Amy", ndes="any", exp="never",
@@ -42,10 +42,12 @@ wsh = [
          des="Wishlist in final test mode"),
    dict(num=-1, pfor=""),
     dict(num=14, pfor="Wesley", ndes="1",
-         des="2450 Canyon Sold", exp="Aug 1, 2019"),
+         des="http://Amazon.com/....", exp="Aug 1, 2019"),
    dict(num=-1, pfor=""),
     dict(num=15, pfor="Erilyn", ndes="1", exp="Dec 31, 2020",
-         des="New House in 'Georgia")
+         des="http://Amazon.com/...."),
+    dict(num=16, pfor="Erilyn", ndes="1", exp="Dec 31, 2020",
+         des="Towel with Ariel")
 ]
 
 
