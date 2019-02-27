@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 
 {# page input #}
 payg = dict(action="Single", owner="Edward Birdsall", reason="display")
-
+     {#actions "Single" Multiple"  reason "display" "Shopping List"
 {# tab and header #}
 hd = {"loc": "Select{{ payg.action }} Wish Lists"}
 hdr = dict(name={{ payg.owner }}, page="Select {{ payg.action }} Wish Lists", today="Wednesday  March 06, 2019")

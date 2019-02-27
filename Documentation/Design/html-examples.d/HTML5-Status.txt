@@ -1,0 +1,28 @@
+Status for HTML setups
+
+Work In Progress
+     user_home----------------mostly ready
+     calendar-------------------mostly ready
+     user_edit_sug-------------WIP-cur
+     user_pick_list-------------WIP-cur
+     shop_list_gen-------------WIP---------------not gen really but edit after using user_pick_list to get shopping list
+     user_single_list-----------mostly ready
+     user_multiple_list--------mostly ready
+     user_shop-----------------mostly ready
+     user_purch----------------mostly ready
+
+
+Not Yet Started - User
+     user_edit_profile
+     user_edit_profile_password
+     user_edit_profile_e-mail_addresses
+     user_edit_profile_act_as_proxy____
+     user_email_messages_display
+     user_email_messages_view
+     user_email_messages_reply
+     user_email_messages_send
+
+Not Yeat Started till User done
+Site Initialization
+Various Admin Users
+

@@ -2,9 +2,14 @@
 {% block content %}
    <div id="main">{% block content1 %}
 
-
-{# block1 #}
-
+{# check for radio or checkbox being used - radio for single list, checkbox for multiple
+     for user in clans:
+          clan 1 block
+               users in 4 columns till all users listed
+          clan 2 block
+               users in 4 columns till all users listed
+          till all clans for user listed
+#}
 <h2>Clan Birdsall</h2>
 Secret Santa Pick for 2010: Erin Birdsall <br /><br />
 
@@ -30,16 +35,14 @@ Secret Santa Pick for 2010: Mike Kirkup <br /><br />
 
 </table><br />
 
-<input type="hidden" name="owner" value="mike"  />
-<input type="hidden" name="lastaction" value="Pick Another List"  /><input type="submit" name="action" value="Choose List" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Home Page" onclick="window.location=&#39;index.html&#39;" /><input type="button"  value="Print Page" onclick="window.print()" /><br />
-<!--<p>Choose style for pages</p><select name="style" >
-<option selected="selected" value=""></option>
-<option value="dark">dark</option>
-<option value="default">default</option>
-<option value="light">light</option>
-<option value="medium">medium</option>
-<option value="white">white</option>
-</select><div><input type="hidden" name=".cgifields" value="owner"  /> -->
-</div></form>
-</body>
-</html>
+{# end block 1 #}
+
+{# block 2 #}
+{# buttons as appropriate for pick lists for display or add to shopping list #}
+{# Buttons - Single list Display            Display List     Print page     Home Page
+                         Single List Shopping List     Create Shopping List     Print page     Home page
+                         Multiple Lists Display    Display Lists     Print Page     Home Page
+                         Multiple Lists Shopping List     Create Shopping List with selected lists     Print Page     Home Page
+#}
+{# end block 2 #}
+</div>
