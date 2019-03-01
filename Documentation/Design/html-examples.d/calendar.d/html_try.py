@@ -56,7 +56,7 @@ tdy[21]["devt"] = 1
 
 
 input_ = {"hd":hd, "hdr":hdr, "cal":cal, "days":days, "colorsm":colorsm, "pref":pref, "tdy":tdy }
-env = Environment(loader = FileSystemLoader("."))
+env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("mcalendar.jhtml")
 
 output = template.render(input_ )

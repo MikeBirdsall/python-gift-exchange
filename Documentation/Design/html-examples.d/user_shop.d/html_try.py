@@ -37,7 +37,7 @@ wsh = [
 
 
 input_ = {"hd":hd, "hdr":hdr,  "wsh":wsh, "pers":pers }
-env = Environment(loader = FileSystemLoader("."))
+env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("user_shop.jhtml")
 
 output = template.render(input_ )
