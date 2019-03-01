@@ -51,8 +51,8 @@ users = [
 
 input_ = {"hd":hd, "hdr":hdr, "users":users,  "payg":payg }
 
-env = Environment(loader = FileSystemLoader("."))
-template=env.get_template("UserHome.jhtml")
+env = Environment(loader = FileSystemLoader("../templates/"))
+template=env.get_template("user_pick_list.jhtml")
 
 
 output = template.render(input_)

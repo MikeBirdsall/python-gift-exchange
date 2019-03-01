@@ -54,7 +54,7 @@ altwsh = dict(syte="http://Amazon_site_url")
 
 
 input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item, "altwsh":altwsh }
-env = Environment(loader = FileSystemLoader("."))
+env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("singlewish.jhtml")
 
 output = template.render(input_ )

@@ -10,7 +10,7 @@
      {% block head %}
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="author" content="Edward Birdsall"> 
+     <meta name="author" content="Edward Birdsall, Michael Birdsall"> 
      <link rel= "stylesheet" type = "text/css" href="../css/normalize.css" />
      <link rel= "stylesheet" type = "text/css" href="../css/main.css" />
     <link rel= "stylesheet" type = "text/css" href="../css/website.css" />
