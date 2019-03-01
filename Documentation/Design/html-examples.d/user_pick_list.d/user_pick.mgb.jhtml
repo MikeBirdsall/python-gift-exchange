@@ -1,0 +1,90 @@
+{% extends "base.jhtml" %}
+{% block content %}
+   <div id="main">{% block content1 %}
+
+{# check for radio or checkbox being used - radio for single list, checkbox for multiple
+     for user in clans:
+          clan 1 block
+               users in 4 columns till all users listed
+          clan 2 block
+               users in 4 columns till all users listed
+          till all clans for user listed
+#}
+
+{# mgb suggestions
+  a) Pass in clans for this user
+  b) Filter with custom test to pick clans
+    {% for clan in clans|select("contains", user) %}
+     with python code like:
+     def contains(clan, user):
+         if user in clan:
+             return True
+         else
+             return False
+     environment.tests['contains'] = contains
+
+#}
+
+<h2>Clan {{clan|capitalize}}</h2>
+Secret Santa Pick for 2010: Erin Birdsall <br /><br />
+
+{# mgb suggestions
+  a) pass in rows from python (not best, view done in controller)
+  b) batch filter, keeps table but transposes rows and columns
+  c) slice filter, drop table and use css columns instead
+
+  a) pass list of lists of users, use nested loop over them.
+
+  b)
+      {% for row in clanusers|batch(4, '&nbsp;') %}
+      <tr>
+          {% for column in row %}
+          <td><label><input type="{{iptype}}" name="owner" value={{column.id}} />{{column.dname}}</label></td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+      <table>
+
+  c)  
+      <div class="column">
+        {% for column in clanusers|slice(4) %}
+          {% for row in column %}
+            <label><input type="{{iptype}}" name="owner" value={{row.id}} />{{row.dname}}</label><br>
+          {% endfor %}
+        {% endfor %}
+      </div>
+#}
+
+<table> {#  Help in this looping is needed #}
+{% for users in users.clan = "Birdsall" %}
+{# number of rows is length of users in can / 4  #}
+{% for r in range(rows)
+<tr>
+     {% for i in range(4) %}
+     <td><label><input type="checkbox" name="owner" value={{ users[r+i].id }} />{{ users[r+i].dname</label></td>
+     {% endfor %}
+</tr>
+</table><br />
+<h2>Clan Kirkup</h2>
+Secret Santa Pick for 2010: Mike Kirkup <br /><br />
+<table>{% for users in users.clan = "Kirkup" %}
+<tr>
+     {% for i in range(4) %}
+     <td><label><input type="checkbox" name="owner" value={{ users[i].id }} />{{ users[i].dname</label></td>
+     {% endfor %}
+</tr>
+{#  Help in this looping is needed #}
+
+</table><br />
+
+{# end block 1 #}
+
+{# block 2 #}
+{# buttons as appropriate for pick lists for display or add to shopping list #}
+{# Buttons - Single list Display            Display List     Print page     Home Page
+                         Single List Shopping List     Create Shopping List     Print page     Home page
+                         Multiple Lists Display    Display Lists     Print Page     Home Page
+                         Multiple Lists Shopping List     Create Shopping List with selected lists     Print Page     Home Page
+#}
+{# end block 2 #}
+</div>
