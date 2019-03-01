@@ -1,0 +1,75 @@
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ ./html_try.py 
+  File "./html_try.py", line 14
+    users = [ dict(clan="Birdsall", id="alexahodgins", dname="Alexa Hodgins"),
+          ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ ./fails2-is.py
+bash: ./fails2-is.py: Permission denied
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ chmod +x fails1-is.py 
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ chmod +x fails2-is.py 
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ ./fails2-is.py 
+  File "./fails2-is.py", line 14
+    users = list( dict(clan="Birdsall", id="alexahodgins", dname="Alexa Hodgins"),
+          ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ ./fails3-is.py 
+  File "./fails3-is.py", line 6
+    payg = {action="Single", owner="Edward Birdsall", reason="display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ chmod +x test1.py
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 test1.py
+{'Earth': 40075, 'Saturn': 378675, 'Jupiter': 439264}
+<class 'dict'>
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 test1.py
+['Earth', 'Mars', 'Saturn', 'Jupiter']
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ chmod +x fails4-is.py 
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 fails4-is.py
+  File "fails4-is.py", line 6
+    payg = {action="Single", owner="Edward Birdsall", reason="display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = dict("action"="Single", "owner"="Edward Birdsall", "reason"="display")
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ which python3
+/usr/bin/python3
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = dict("action"="Single", "owner"="Edward Birdsall", "reason"="display")
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = dict("action"="Single", "owner"="Edward Birdsall", "reason"="display")
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = {"action":"Single", "owner":"Edward Birdsall", "reason":"display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = {"action":"Single", "owner":"Edward Birdsall", "reason":"display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    p = {"action":"Single", "owner":"Edward Birdsall", "reason":"display"}
+      ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = {"action":"Single", "owner":"Edward Birdsall", "reason":"display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ python3 html_try.py 
+  File "html_try.py", line 6
+    payg = {"action": "Single", "owner": "Edward Birdsall", "reason": "display"}
+         ^
+SyntaxError: invalid syntax
+ntdgn@dragon-retired:~/GitX.d/python-gift-exchange/Documentation/Design/html-examples.d/ctesting.d$ 
