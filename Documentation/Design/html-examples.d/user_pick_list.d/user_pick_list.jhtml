@@ -1,0 +1,27 @@
+{% extends "base.jhtml" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+{# check for radio or checkbox being used - radio for single list, checkbox for multiple
+     for user in clans:
+          clan 1 block
+               users in 4 columns till all users listed
+          clan 2 block
+               users in 4 columns till all users listed
+          till all clans for user listed
+#}
+<h2>Clan Birdsall</h2>
+Secret Santa Pick for 2010: Erin Birdsall <br /><br />
+
+
+<br />
+<h2>Clan Kirkup</h2>
+Secret Santa Pick for 2010: Mike Kirkup <br /><br />
+
+<hr />
+{% endblock content1 %}
+
+{% block content2 %}
+{% endblock content2 %}
+</div>
+{% endblock content %}

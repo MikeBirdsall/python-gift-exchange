@@ -2,14 +2,14 @@
 
 from jinja2 import Environment, FileSystemLoader
 
-{# page input #}
+# page input
 payg = dict(action="Single", owner="Edward Birdsall", reason="display")
-     {#actions "Single" Multiple"  reason "display" "Shopping List"
-{# tab and header #}
-hd = {"loc": "Select{{ payg.action }} Wish Lists"}
-hdr = dict(name={{ payg.owner }}, page="Select {{ payg.action }} Wish Lists", today="Wednesday  March 06, 2019")
+     #actions "Single" Multiple"  reason "display" "Shopping List"
+# tab and header
+hd = {"loc": "Select "+payg['action']+" Wish Lists"}
+hdr = {"name":payg['owner'], "page":"Select "+ payg['action']+" Wish Lists", "today":"Wednesday  March 06, 2019"}
 
-{# block1 #}
+# block1
 users = [
     dict(clan="Birdsall", id="alexahodgins", dname="Alexa Hodgins"),
     dict(clan="Birdsall", id="amari", dname="Amari Reich"),
@@ -47,11 +47,9 @@ users = [
 ]
 
 
-
-
 input_ = {"hd":hd, "hdr":hdr, "users":users,  "payg":payg }
 
-env = Environment(loader = FileSystemLoader("../templates/"))
+env = Environment(loader = FileSystemLoader("."))
 template=env.get_template("user_pick_list.jhtml")
 
 

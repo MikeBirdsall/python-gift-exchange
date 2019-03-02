@@ -12,7 +12,7 @@
 #}
 <h2>Clan Birdsall</h2>
 Secret Santa Pick for 2010: Erin Birdsall <br /><br />
-
+{#
 <table> {#  Help in this looping is needed #}
 {% for users in users.clan = "Birdsall" %}
 {# number of rows is length of users in can / 4  #}
@@ -22,10 +22,10 @@ Secret Santa Pick for 2010: Erin Birdsall <br /><br />
      <td><label><input type="checkbox" name="owner" value={{ users[r+i].id }} />{{ users[r+i].dname</label></td>
      {% endfor %}
 </tr>
-</table><br />
+</table>#}<br />
 <h2>Clan Kirkup</h2>
 Secret Santa Pick for 2010: Mike Kirkup <br /><br />
-<table>{% for users in users.clan = "Kirkup" %}
+{# <table>{% for users in users.clan = "Kirkup" %}
 <tr>
      {% for i in range(4) %}
      <td><label><input type="checkbox" name="owner" value={{ users[i].id }} />{{ users[i].dname</label></td>
@@ -33,7 +33,7 @@ Secret Santa Pick for 2010: Mike Kirkup <br /><br />
 </tr>
 {#  Help in this looping is needed #}
 
-</table><br />
+</table> #} <br />
 
 {# end block 1 #}
 
