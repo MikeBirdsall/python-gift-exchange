@@ -8,7 +8,7 @@ users = [
      {"clan":"Birdsall", "id":"alexahodgins", "dname":"Alexa Hodgins"},
     {"clan":"Birdsall", "id":"amari", "dname":"Amari Reich"},
     {"clan":"Birdsall", "id":"amy", "dname":"Amy Palma"},
-    {"clan":"Birdsall, Kirkup", "id":"benjamin", "dname":"Benjamin Birdsall"},
+    {"clan":"Birdsall Kirkup", "id":"benjamin", "dname":"Benjamin Birdsall"},
     {"clan":"Birdsall", "id":"blaine", "dname":"Blaine Vernal"},
     {"clan":"Birdsall", "id":"brayden", "dname":"Brayden Reich"},
     {"clan":"Birdsall", "id":"bryan", "dname":"Bryan Kovas"},
@@ -25,7 +25,7 @@ users = [
     {"clan":"Birdsall", "id":"jim", "dname":"James Kovas"},
     {"clan":"Birdsall", "id":"junior", "dname":"Junior Palma"},
     {"clan":"Kirkup", "id":"sally", "dname":"Madeline Kirkup"},
-    {"clan":"Birdsall, Kirkup", "id":"mike", "dname":"Michael Gerald Birdsall"},
+    {"clan":"Birdsall Kirkup", "id":"mike", "dname":"Michael Gerald Birdsall"},
     {"clan":"Birdsall", "id":"mike2", "dname":"Michael James Birdsall"},
     {"clan":"Kirkup", "id":"mikek", "dname":"Mike Kirkup"},
     {"clan":"Kirkup", "id":"mikel", "dname":"Mike LaFever"},
@@ -34,10 +34,18 @@ users = [
     {"clan":"Birdsall", "id":"peg", "dname":"Peg Kovas"},
     {"clan":"Birdsall", "id":"bob", "dname":"Robert Birdsall"},
     {"clan":"Birdsall", "id":"sandy", "dname":"Sandy Walker-Birdsall"},
-    {"clan":"Birdsall, Kirkup", "id":"sue", "dname":"Susan Kirkup"},
+    {"clan":"Birdsall Kirkup", "id":"sue", "dname":"Susan Kirkup"},
     {"clan":"Birdsall", "id":"teresa", "dname":"Teresa Kovas"},
     {"clan":"Kirkup", "id":"wade", "dname":"Wade LaFever"},
     {"clan":"Birdsall", "id":"wesley", "dname":"Wesley Kovas"}
 ]
 
-print(len(users))
+family = []
+for i in range(len(users)):
+     cln = users[i]['clan'].split()
+     for x in range(len(cln)):
+          print(cln[x])
+          if cln[x] not in family:
+               family.append(cln[x])
+
+print(family)

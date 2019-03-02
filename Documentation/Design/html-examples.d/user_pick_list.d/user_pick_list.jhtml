@@ -10,18 +10,26 @@
                users in 4 columns till all users listed
           till all clans for user listed
 #}
-<h2>Clan Birdsall</h2>
-Secret Santa Pick for 2010: Erin Birdsall <br /><br />
+
+{% for clan in family %}
+<h2>Clan {{ clan }}</h2>
+Secret Santa Pick for {{ secretsanta.year }}: {{ secretsanta.pick }} <br /><br />
 
 
-<br />
-<h2>Clan Kirkup</h2>
-Secret Santa Pick for 2010: Mike Kirkup <br /><br />
-
+{% endfor %}
 <hr />
 {% endblock content1 %}
 
 {% block content2 %}
+<center>
+{% if payg.reason == "display" %}
+<input type="submit"  value="Display List"> 
+{% elif payg.reason == "Shopping List" %}
+     <input type="submit"  value="Create Shopping List"> 
+{% else %}
+{% endif %}
+ &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  value="Print Page">
+&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Go to Home page"></center> 
 {% endblock content2 %}
 </div>
 {% endblock content %}
