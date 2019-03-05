@@ -10,6 +10,18 @@
 {#
 Here is the area for adding / editing / deleting a suggestion
 #}
+
+{% if action = "adding" %}
+awish = dict(num=0, ndes="", exp="", des="", notes="", submitter="Edward Birdsall", date="March  2, 2019"
+          owner="Edward Birdsall"}
+{% elif action = "editing" %}
+awish = dict(num=0, ndes="", exp="", des="", notes="", submitter="Edward Birdsall", date="March  2, 2019"
+          owner="Edward Birdsall"}
+
+{% elif action = "deleting" %}
+{% else %}
+{% endif %}
+
 <center><b>{{ hdr.name  }}'s {{ action }} Suggestion for {{ pers.who}} </b><br />
 
 <b>Description:</b><input type="text" name="desc" value={{ awish.des }} size="90" /><br />

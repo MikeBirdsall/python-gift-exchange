@@ -1,13 +1,16 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 from jinja2 import Environment, FileSystemLoader
 
-hd = {"loc":"Wish List"}
-hdr = { "name":"Edward",  "page":" Multiple Wish List", "today":"Saturday  March  2, 2019" }
+# page input
+#page = dict(action="single", user="Edward Birdsall")
 
+# tab and header
+hd = {"loc": "Shopping List Generation"}
+hdr = dict(name="Ed", page="Shopping List Generation ", today="Wednesday  March 06, 2019")
 
-mod = {"who":"Edward Birdsall", "date":"Sunday Fed 24, 2019  13:15:12"}
-
+# block1 dicts
+# block 1 is the listing of all users and their shopping lists
 wsh = [
     dict(num=1, pfor="Amy", ndes="any", exp="never",
          des="Frangelico, B&B, Irish Mist"),
@@ -49,15 +52,22 @@ wsh = [
     dict(num=16, pfor="Erilyn", ndes="1", exp="Dec 31, 2020",
          des="Towel with Ariel")
 ]
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+# block2 dicts
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# block3 dicts
 
+# collect all the dicts and such
+input_ = {"hd":hd, "hdr":hdr, "wsh":wsh}
 
-input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh  }
+# now to go out and render
+
 env = Environment(loader = FileSystemLoader("../templates/"))
-template=env.get_template("multiplewish.jhtml")
+template=env.get_template("shop_list_gen.jhtml")
 
-output = template.render(input_ )
+
+output = template.render(input_)
 
 print(output)
-
