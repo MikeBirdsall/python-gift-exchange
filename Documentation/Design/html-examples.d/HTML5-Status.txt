@@ -3,9 +3,9 @@ Status for HTML setups
 Work In Progress
      user_home----------------mostly ready
      calendar-------------------mostly ready
-     user_edit_sug-------------WIP-cur
+     user_edit_sug-------------mostly ready
      user_pick_list-------------WIP-cur
-     shop_list_gen-------------WIP---------------not gen really but edit after using user_pick_list to get shopping list
+     shop_list_gen-------------mostly ready
      user_single_list-----------mostly ready
      user_multiple_list--------mostly ready
      user_shop-----------------mostly ready
