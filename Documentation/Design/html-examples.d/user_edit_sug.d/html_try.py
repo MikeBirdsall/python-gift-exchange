@@ -2,9 +2,9 @@
 
 from jinja2 import Environment, FileSystemLoader
 
-action = "editing" # alternates are editing and deleting
+action = "adding" # alternates are editing and deleting
 owner = dict(name="Edward Birdsall", moddate="Monday December 2, 2018 14:12:25")
-submitter = dict(name="Robert Birdsall",moddate="Monday December 2, 2018 14:12:25")
+submitter = dict(name="Edward Birdsall",moddate="Monday December 2, 2018 14:12:25")
 dayt = dict(today="2019-03-02", maxday="2025-12-31")
 
 
@@ -14,12 +14,19 @@ dayt = dict(today="2019-03-02", maxday="2025-12-31")
 if action == "adding":
      hd = {"loc":"Add Suggestion"}
      hdr = { "name":"Edward",  "page":" Add Suggestion", "today":"Saturday  March  2, 2019  13:29:15" }
+     twish = dict(num=16, submitn=submitter[name], submitd="2019-03-02", ndes="", exp="",
+         des="", notes="",owner=owner[name])
 elif action == "editing" :
      hd = {"loc":"Edit Suggestion"}
      hdr = { "name":"Edward",  "page":" Edit Suggestion", "today":"Saturday  March  2, 2019  13:29:15" }
+     twish = dict(num=7, submitn="Edward Birdsall", submitd="2019-01-05", ndes="1",
+         des="Rasberry Pi Starter/learning kit", exp="Dec 26, 2019", notes="t1")
 elif action == "deleting" :
      hd = {"loc":"Delete Suggestion"}
      hdr = { "name":"Edward",  "page":" Delete Suggestion", "today":"Saturday  March  2, 2019  13:29:15" }
+     twish = dict(num=7, submitn="Edward Birdsall", submitd="2019-01-05", ndes="1",
+         des="Rasberry Pi Starter/learning kit", exp="Dec 26, 2019", notes="t1")
+
 else:
       hd = {"loc":"Lost in webspace"}
 
@@ -67,7 +74,7 @@ wsh = [
 
 
 
-input_ = {"hd":hd, "hdr":hdr,  "wsh":wsh, "action":action, "owner":owner, "submitter":submitter, "dayt":dayt, "mod":mod }
+input_ = {"hd":hd, "hdr":hdr,  "wsh":wsh, "action":action, "owner":owner, "submitter":submitter, "dayt":dayt, "mod":mod, "twish":twish}
 env = Environment(loader = FileSystemLoader("."))
 template=env.get_template("user_addedit_sug.jhtml")
 

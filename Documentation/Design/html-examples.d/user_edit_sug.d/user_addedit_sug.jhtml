@@ -10,6 +10,18 @@
 {#
 Here is the area for adding / editing / deleting a suggestion
 #}
+<center><b>{{ submitter.name  }}'s {{ action }} Suggestion for {{ owner.name }} </b><br />
+
+<b>Description:</b><input type="text" name="desc" value={{ twish.des }} size="90" /><br />
+<b>Number Desired:</b><select name="ndes" size="5" >
+<option value="any">any</option>
+<option selected="selected" value="1">1</option>
+{% for i in range (2,10) %}
+<option value="i">i</option>
+{% endfor %}
+</select><br />
+<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+
 
 {% endblock content1 %}
 
