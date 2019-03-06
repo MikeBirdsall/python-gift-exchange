@@ -1,0 +1,170 @@
+{% extends "base.jhtml" %}
+{#  Add Edit.jhtml extends base.jhtml
+          base.jttml includes header.jhtml and footer.jhtml
+     This page is used to add or edit a suggestion
+#}
+
+
+{% block content %}
+   <div id="main">{% block content1 %}
+{#
+Here is the area for adding / verifying / editing / deleting a suggestion
+     anyone can add and verify the suggestion they just made
+     only the original submitter can edit the description, number,..  All others can append notes
+     only the list owner can delete their suggestions, administrators can delete others
+#}
+<center><b>{{ submitter.name  }} is {{ action }} suggestion for {{ owner.name }} </b><br /></center>
+{% if action == "adding"  and submitter.name == owner.name %}
+     <hr />
+     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
+     <b>Number Desired:</b>
+     <select name="ndes" size="1" >
+     <option value="any">any</option>
+     <option selected="selected" value="1">1</option>
+          {% for x in range (2,10) %}
+               <option value={{ x }}>{{ x }}</option>
+          {% endfor %}
+     </select> 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "adding"  and submitter.name != owner.name %}
+     <hr />
+     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
+     <b>Number Desired:</b>
+     <select name="ndes" size="1" >
+     <option value="any">any</option>
+     <option selected="selected" value="1">1</option>
+          {% for x in range (2,10) %}
+               <option value={{ x }}>{{ x }}</option>
+          {% endfor %}
+     </select> 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+     <b>Note:</b><input type="text" name="notes" value="{{ twish.notes }}" size="90" /><br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "verifying"  and submitter.name == owner.name %}
+     <hr />
+     <b>Description:</b>" {{ twish.des }} "<br />
+     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
+     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Return to Editing" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "verifying"  and submitter.name != owner.name %}
+     <hr />
+     <b>Description:</b>" {{ twish.des }} "<br />
+     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
+     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
+     <b>Note: </b>&nbsp;" {{ dayt.notes}} " <br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Return to Editing" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "editing" and submitter.name == owner.name %}
+     <hr />
+     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
+     <b>Number Desired:</b>
+     <select name="ndes" size="1" >
+     <option value="any">any</option>
+     <option selected="selected" value="1">1</option>
+          {% for x in range (2,10) %}
+               <option value={{ x }}>{{ x }}</option>
+          {% endfor %}
+     </select> 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b>dd/mm/yyyy<input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "editing" and submitter.name != owner.name %}
+     <hr />
+     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
+     <b>Number Desired:</b>
+     <select name="ndes" size="1" >
+     <option value="any">any</option>
+     <option selected="selected" value="1">1</option>
+          {% for x in range (2,10) %}
+               <option value={{ x }}>{{ x }}</option>
+          {% endfor %}
+     </select> 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b>format: dd/mm/yyyy<input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
+     <b>Current Note:</b> {{twish.notes}}  <b>Add Note:</b><input type="text" name="desc" size="90" /><br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+{% elif action == "deleting"  and submitter.name == owner.name %}
+     <hr />
+     <b>Description:</b>" {{ twish.des }} "<br />
+     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
+     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
+     <hr />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Goto Home page" onclick=""><br />
+     <hr />
+
+{% else %}
+     <h1> Operation not allowed </h1>
+{% endif %}
+{% endblock content1 %}
+
+{% block content2 %}
+{% if submitter.name == owner.name %}
+<table border="5" height="30%" width="90%" align=center>
+<caption><b>Current Wish List for {{ owner.name }}</b></caption>
+<tr><th style="text-align:center; width:5%">Desired</th> <th style="width:50%">Description</th> <th style="width:10%">Expires</th></tr>
+{%- for row in wsh -%}
+<tr>
+ <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
+</tr>
+{% endfor %}
+</table>
+<hr />
+{% else %}
+<table border="5" height="30%" width="90%" align=center>
+<caption><b>Current Wish List for {{ owner.name }}</b></caption>
+<tr><th style="text-align:center; width:5%">Available</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th>
+<th style="text-align:center; width:35%">Notes</th><th style="text-align:center; width:10%">Submitter</th</tr>
+{%- for row in wsh -%}
+<tr>
+ <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
+<td  style="text-align:left">{{ row.notes }} </td><td  style="text-align:left">{{ row.submitn }} </td>
+</tr>
+{% endfor %}
+</table>
+<hr />
+{% endif %}
+
+{% endblock content2 %}
+
+{% block content3 %}
+
+{% endblock content3 %}
+</div>
+{% endblock content %}
