@@ -26,18 +26,18 @@
 {# Present the list(s) and options #}
 <table border="5" height="30%" width="90%" align=center>
 <tr><th style="text-align:center; width:10%">Person</th><th style="text-align:center; width:10%">Pick</th><th style="text-align:center; width:5%">Available</th> <th style="width:60%">Description</th> <th style="width:10%">Expires</th></tr>
-
+<form>
 {%- for row in wsh -%}
 <tr>
 {% if row.pfor == "" %} <td colspan="6"> &nbsp;</td> {% else %}
 <td  style="text-align:center">{{ row.pfor}}</td><td  style="text-align:center">
-     <input type="radio" name=" {{ row.num }}" value="Reserve"   />Select &nbsp;
+     <input type="radio" name="{{ row.num }}" value="Reserve  {{ row.num }}"   />Select &nbsp;
       <input type="radio" name="{{ row.num }}" value="Select {{ row.num }} "  />Reserve</td>
  <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
 {% endif %}</tr>
 {% endfor %}
 
-
+</form>
 </table>
 
 

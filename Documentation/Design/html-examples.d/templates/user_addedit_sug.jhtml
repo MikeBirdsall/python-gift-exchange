@@ -25,7 +25,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
                <option value={{ x }}>{{ x }}</option>
           {% endfor %}
      </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value="{{ dayt.today }}"> <br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +44,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
                <option value={{ x }}>{{ x }}</option>
           {% endfor %}
      </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} > <br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}}  value="{{ dayt.today }}"> <br />
      <b>Note:</b><input type="text" name="notes" value="{{ twish.notes }}" size="90" /><br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -89,7 +89,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
                <option value={{ x }}>{{ x }}</option>
           {% endfor %}
      </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b>dd/mm/yyyy<input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -108,7 +108,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
                <option value={{ x }}>{{ x }}</option>
           {% endfor %}
      </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b>format: dd/mm/yyyy<input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
      <b>Current Note:</b> {{twish.notes}}  <b>Add Note:</b><input type="text" name="desc" size="90" /><br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

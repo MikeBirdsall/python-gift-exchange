@@ -4,8 +4,8 @@ from jinja2 import Environment, FileSystemLoader
 
 action = "adding" # alternates are editing and deleting
 owner = dict(name="Edward Birdsall", moddate="Monday December 2, 2018 14:12:25")
-submitter = dict(name="Robert Birdsall",moddate="Monday December 2, 2018 14:12:25")
-dayt = dict(today="2019-03-02", maxday="2025-12-31")
+submitter = dict(name="Edward Birdsall",moddate="Monday December 2, 2018 14:12:25")
+dayt = dict(today="March 2, 2019", maxday="2025-12-31")
 
 
 
@@ -79,7 +79,7 @@ wsh = [
 
 
 input_ = {"hd":hd, "hdr":hdr,  "wsh":wsh, "action":action, "owner":owner, "submitter":submitter, "dayt":dayt, "mod":mod, "twish":twish}
-env = Environment(loader = FileSystemLoader("."))
+env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("user_addedit_sug.jhtml")
 
 output = template.render(input_ )
