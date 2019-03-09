@@ -1,10 +1,11 @@
 #!/bin/python3
 
 from jinja2 import Environment, FileSystemLoader
+import sys
 
-action = "adding" # alternates are editing and deleting
+action = sys.argv[1]  # alternates are adding, verifying, editing and deleting
 owner = dict(name="Edward Birdsall", moddate="Monday December 2, 2018 14:12:25")
-submitter = dict(name="Edward Birdsall",moddate="Monday December 2, 2018 14:12:25")
+submitter = dict(name=sys.argv[2], moddate="Monday December 2, 2018 14:12:25")
 dayt = dict(today="March 2, 2019", maxday="2025-12-31")
 
 
