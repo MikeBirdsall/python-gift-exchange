@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
 from jinja2 import Environment, FileSystemLoader
+import sys
 
-# page input
-payg = dict(action="Multiple", owner="Michael Birdsall", reason="Shopping List")
-     #actions "Single" Multiple"  reason "display" "Shopping List"
+# page input .   From cmdlne  argv[1] = Either Multiple or Single  argv[2] = either Display or Shopping
+payg = dict(action=sys.argv[1], owner="Michael Birdsall", reason=sys.argv[2], numcol=4)
+     #actions "Single" "Multiple"  reason "Display" "Shopping"
 secretsanta = [ dict(clan="Birdsall", pick="Erin Birdsall", year="2018"),
                                dict(clan="Kirkup", pick="Mike Kirkup", year="2018") ]
 

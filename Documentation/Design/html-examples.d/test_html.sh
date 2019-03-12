@@ -25,9 +25,9 @@ python3 html_try.py editing "Edward Birdsall" > ../html_pages.d/user_edit_sug-ed
 python3 html_try.py editing "Michael Birdsall" > ../html_pages.d/user_edit_sug-edt_os.html
 python3 html_try.py deleting "Edward Birdsall" > ../html_pages.d/user_edit_sug-del_oo.html
 python3 html_try.py deleting "Michael Birdsall" > ../html_pages.d/user_edit_sug-del_os.html
+cd ../user_pick_list.d
+python3 html_try.py "Single" "Display"  > ../html_pages.d/user_pick_list-sd.html
+python3 html_try.py "Multiple" "Display"  > ../html_pages.d/user_pick_list-md.html
+python3 html_try.py "Single" "Shopping"  > ../html_pages.d/user_pick_list-ss.html
+python3 html_try.py "Multiple" "Shopping"  > ../html_pages.d/user_pick_list-ms.html
 cd ..
-#user pick list
-# single display
-#multiple display
-#single shopping list
-# multiple shopping list
