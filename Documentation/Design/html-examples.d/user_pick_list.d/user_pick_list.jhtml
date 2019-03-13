@@ -33,7 +33,7 @@
           <caption><b>I'm lost</b></caption>
      {% endif  %}
 
-<tr><th  style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th></tr>
+<tr><th  style="text-align:center; width:25%">Col 1</th><th style="text-align:center; width:25%">Col 2</th><th style="text-align:center; width:25%">Col 3</th><th style="text-align:center; width:25%">Col 4</th></tr>
 {% for clanusers in users if clanusers.clan == cln%}
           {% for row in clanusers|batch(4, 'nbsp') %}
           <tr>
