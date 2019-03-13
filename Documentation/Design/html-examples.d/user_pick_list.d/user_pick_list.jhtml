@@ -34,14 +34,13 @@
      {% endif  %}
 
 <tr><th  style="text-align:center; width:25%">Col 1</th><th style="text-align:center; width:25%">Col 2</th><th style="text-align:center; width:25%">Col 3</th><th style="text-align:center; width:25%">Col 4</th></tr>
-{% for clanusers in users if clanusers.clan == cln%}
-          {% for row in clanusers|batch(4, 'nbsp') %}
-          <tr>
-               {% for col in row %}
-                    <td>  {{ clanusers.dname }} rc</td>
-               {% endfor %}
-          </tr>
-          {% endfor %}
+
+{% for clanbatch in users|selectattr("clan", "equalto", cln)|batch(4, '&nbsp') %}
+     <tr>
+     {% for col in clanbatch %}
+          <td>  {{ col.dname }} rc</td>
+      {% endfor %}
+      </tr>
 {% endfor %}
 </table>
 {% endfor %}
