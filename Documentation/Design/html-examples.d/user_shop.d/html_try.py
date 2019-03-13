@@ -2,7 +2,7 @@
 
 from jinja2 import Environment, FileSystemLoader
 
-hd = {"loc":"Purchased List"}
+hd = {"loc":"Shopping List"}
 hdr = { "name":"Edward",  "page":" Shopping List", "today":"Saturday  March  2, 2019  13:29:15" }
 
 

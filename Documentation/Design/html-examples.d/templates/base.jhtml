@@ -1,7 +1,16 @@
-{#
-     base.jhtml  -  basic structure file for web pages
-     includes - header.jhtml, footer.jhtml
-     hd.loc is the name in the tab for the page
+{# template base
+     Function:   This is the base template which all the other web page temples extend
+   --------------------------------------------------------------------------------------------------------------------------- 
+     includes header.jhtml and footer.jhtml
+     base - hd.loc                      page location within website
+     header - hdr.name           who is accessing this page
+                      hdr.page            what page in the website
+                      hdr.today          today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+     --------------------------------------------------------------------------------------------------------------------------- 
+     CSS files in ../css/
+     Graphics Files in ../gfx/
+      --------------------------------------------------------------------------------------------------------------------------- 
 #}
 
 <!DOCTYPE html>

@@ -1,4 +1,27 @@
 {% extends "base.jhtml" %}
+{# template user_home
+     Function:  This is the user home page from where they start all activities and return to after some
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          user - user profile information
+          msgs - message information
+          ss - secret santa information
+          evt - calendar events coming up
+          mod - date of last miodification to information
+          wsh - lists of dicts with wishes
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
 
 {% block content %}
    <div id="main">{% block content1 %}

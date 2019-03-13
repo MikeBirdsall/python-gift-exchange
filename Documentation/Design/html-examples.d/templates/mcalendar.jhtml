@@ -1,15 +1,23 @@
 {% extends "base.jhtml" %}
-{#
-     mcalendar - prints a 5 week calendar centered on a desired month
+{# template mcalendar
+     Function:  prints a 5 week calendar centered on a desired month
+       --------------------------------------------------------------------------------------------------------------------------- 
      extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS from ../css/
+     --------------------------------------------------------------------------------------------------------------------------- 
      Variables
-          hd is passed through to base.jhtml - loc
-          hdr is passed through to header.jhtml - name, page, today
           cal is for calendar information - startwk,
           pref is user preferences - 
           tdy is for information on that day in the calendar
           colorsm is for the color scheme for things
-
+       --------------------------------------------------------------------------------------------------------------------------- 
 #}
 {% block content %}
      <div id="main">

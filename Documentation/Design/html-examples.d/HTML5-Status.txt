@@ -4,7 +4,7 @@ Work In Progress
      user_home----------------mostly ready
      calendar-------------------mostly ready
      user_edit_sug-------------mostly ready
-     user_pick_list-------------WIP-cur
+     user_pick_list-------------mostly ready
      shop_list_gen-------------mostly ready
      user_single_list-----------mostly ready
      user_multiple_list--------mostly ready

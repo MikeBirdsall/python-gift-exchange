@@ -1,4 +1,22 @@
 {% extends "base.jhtml" %}
+{# template user_purch
+     Function:  This shows a list of what the user has purshased
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          pers - current secret santa information
+          wsh - lists of dicts with peoples names and wishes
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
 
 {% block content %}
    <div id="main">{% block content1 %}

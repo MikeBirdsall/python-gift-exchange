@@ -1,6 +1,11 @@
-{#
-     footer.jhtml  -  footer for web pages
-     information is contained in graphic files
+{# template footer
+     Function: prints the web page footer information.  The information in the footer is static and most is in
+          graphic files for security
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Included in the body part of base.jhtml
+     includes graphics from ../gfx/ directory
+     CSS files are in ../css/
+     --------------------------------------------------------------------------------------------------------------------------- 
 #}
 
 

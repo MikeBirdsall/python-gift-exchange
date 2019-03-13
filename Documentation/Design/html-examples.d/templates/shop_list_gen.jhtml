@@ -10,6 +10,12 @@
                       hdr.page           what page in the website
                       hdr.today         today's date
      footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          wsh - lists of dicts with peoples names and wishes
      --------------------------------------------------------------------------------------------------------------------------- 
 #}
 

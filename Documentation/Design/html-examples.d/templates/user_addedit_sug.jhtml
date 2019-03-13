@@ -1,7 +1,26 @@
 {% extends "base.jhtml" %}
-{#  Add Edit.jhtml extends base.jhtml
-          base.jttml includes header.jhtml and footer.jhtml
-     This page is used to add or edit a suggestion
+{# template addedit_sugg
+     Function:  This page is used to add or edit a suggestion for a user.
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          wsh - lists of dicts with wishes for the owner of the wish list
+          action - add or edit
+          owner - who owns the page
+          submitter - person doing the adding or editing
+          dayt - date information for use
+          mod - modification information
+          twish - the wish being added or modified
+     --------------------------------------------------------------------------------------------------------------------------- 
 #}
 
 
