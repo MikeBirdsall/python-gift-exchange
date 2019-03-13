@@ -37,12 +37,5 @@ Secret Santa Pick for 2010: Mike Kirkup <br /><br />
 
 {# end block 1 #}
 
-{# block 2 #}
-{# buttons as appropriate for pick lists for display or add to shopping list #}
-{# Buttons - Single list Display            Display List     Print page     Home Page
-                         Single List Shopping List     Create Shopping List     Print page     Home page
-                         Multiple Lists Display    Display Lists     Print Page     Home Page
-                         Multiple Lists Shopping List     Create Shopping List with selected lists     Print Page     Home Page
-#}
-{# end block 2 #}
+
 </div>

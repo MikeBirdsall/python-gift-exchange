@@ -1,12 +1,12 @@
 Status
 
 Need to figure out how to:
-     loop for clan=?
+     loop for clan=? 
      detemine how many rows for the clan
      loop the rows
      next clan
 
 Appropriate code for check boxes versus radio
 
-NEED HELP in this
+
 WIP
