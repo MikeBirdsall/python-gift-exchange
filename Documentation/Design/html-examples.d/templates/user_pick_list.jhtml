@@ -1,0 +1,68 @@
+{% extends "base.jhtml" %}
+
+{% block content %}
+   <div id="main">{% block content1 %}
+{# check for radio or checkbox being used - radio for single list, checkbox for multiple
+     for user in clans:
+          clan 1 block
+               users in 4 columns till all users listed
+          clan 2 block
+               users in 4 columns till all users listed
+          till all clans for user listed
+#}
+
+{% for cln in family %}
+     <h2>Clan {{ cln }}</h2>
+     Secret Santa Pick for 
+          {% for fam in secretsanta %}
+ {#         fam = clan-{{ fam.clan }} pick-{{ fam.pick}} year-{{fam.year}} cln= {{cln}}  #}
+               {% if  fam.clan  ==  cln  %}
+                    {{ fam.year }} : {{ fam.pick }} <br /><br />
+               {% endif %}
+           {% endfor %}
+<table border="0" width="80%" align="center">
+     {% if payg.action == "Single" and payg.reason == "Display" %}
+         <caption><b>Single Display</b></caption>
+     {% elif payg.action == "Multiple" and payg.reason == "Display" %}
+          <caption><b>Multiple Display</b></caption>
+     {% elif payg.action == "Single" and payg.reason == "Shopping" %}
+          <caption><b>Single Shopping List</b></caption>
+     {% elif payg.action == "Multiple" and payg.reason == "Shopping" %}
+          <caption><b>Multiple Shopping List</b></caption>
+     {% else %}
+          <caption><b>I'm lost</b></caption>
+     {% endif  %}
+
+<tr><th  style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th></tr>
+
+{%- for clanbatch in users|selectattr("clan", "equalto", cln)|batch(4, '&nbsp') -%}
+     <tr>
+     {%- for col in clanbatch -%}
+          {% if payg.action =="Single" %}
+                         <td><label><input type="radio" name="mypick" id={{col.id}} value={{col.id}}  />  {{ col.dname }} </label></td>
+                    {% elif payg.action == "Multiple" %}
+                        <td><label><input type="checkbox"  id="mypicks" value={{col.id}}  />  {{ col.dname }} </label></td>
+                   {% else %}
+                         <td>  {{ col.dname }} lost</td>
+                    {% endif %}
+      {% endfor %}
+      </tr>
+{% endfor %}
+</table>
+{%- endfor -%}
+<hr />
+{% endblock content1 %}
+
+{% block content2 %}
+<center>
+{% if payg.reason == "Display" %}
+     <input type="submit"  value="Display List"> 
+{% elif payg.reason == "Shopping" %}
+     <input type="submit"  value="Create Shopping List"> 
+{% else %}
+{% endif %}
+ &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  value="Print Page">
+&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Go to Home page"></center> 
+{% endblock content2 %}
+</div>
+{% endblock content %}

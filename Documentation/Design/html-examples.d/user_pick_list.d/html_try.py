@@ -64,7 +64,7 @@ for i in range(len(users)):
 
 input_ = {"hd":hd, "hdr":hdr, "users":users,  "payg":payg, "secretsanta":secretsanta, "family":family }
 
-env = Environment(loader = FileSystemLoader("."))
+env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("user_pick_list.jhtml")
 
 

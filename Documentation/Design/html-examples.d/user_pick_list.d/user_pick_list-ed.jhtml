@@ -34,13 +34,20 @@
      {% endif  %}
 
 <tr><th  style="text-align:center; width:25%">Col 1</th><th style="text-align:center; width:25%">Col 2</th><th style="text-align:center; width:25%">Col 3</th><th style="text-align:center; width:25%">Col 4</th></tr>
-
-{% for clanbatch in users|selectattr("clan", "equalto", cln)|batch(4, '&nbsp') %}
-     <tr>
-     {% for col in clanbatch %}
-          <td>  {{ col.dname }} rc</td>
-      {% endfor %}
-      </tr>
+{% for clanusers in users if clanusers.clan == cln%}
+          {% for row in clanusers|batch(4, 'nbsp') %}
+          <tr>
+               {% for col in row %}
+                    {% if payg.reason =="Display" %}
+                         <td><label><input type="radio" name="mypick" id={{col.id}} value={{col.id}}  />  {{ clanusers.dname }}</label></td>
+                    {% elif payg.reason == "Shopping" %}
+                          <td>  {{ col.dname }} checkbox</td>
+                   {% else %}
+                         <td>  {{ clanusers.dname }} lost</td>
+                    {% endif %}
+               {% endfor %}
+          </tr>
+          {% endfor %}
 {% endfor %}
 </table>
 {% endfor %}
