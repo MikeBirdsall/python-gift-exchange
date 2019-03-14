@@ -27,6 +27,7 @@
       {% endblock head %}
 </head>
 <body>
+<input type="hidden" name="jinja2_template" value="base.jhtml">
      {% include "header.jhtml" ignore missing %}
     <div id="content">{% block content %}{% endblock content %}</div>
     {% include 'footer.jhtml' ignore missing %}

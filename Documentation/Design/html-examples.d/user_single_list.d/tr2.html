@@ -1,10 +1,12 @@
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 <head>
      
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="author" content="Edward Birdsall"> 
+     <meta name="author" content="Edward Birdsall, Michael Birdsall"> 
      <link rel= "stylesheet" type = "text/css" href="../css/normalize.css" />
      <link rel= "stylesheet" type = "text/css" href="../css/main.css" />
     <link rel= "stylesheet" type = "text/css" href="../css/website.css" />
@@ -12,7 +14,10 @@
       
 </head>
 <body>
-         <div id="header">
+<input type="hidden" name="jinja2_template" value="base.jhtml">
+     
+    <div id="header">
+<input type="hidden" name="jinja2_template" value="header.jhtml">
         
      <!-- <figure id="header-left">
           <img src="gfx/REACTOR.JPG" alt="research reactor" height="100" width=100">
@@ -27,9 +32,36 @@
         
      </div>
     <div id="content">
+<input type="hidden" name="jinja2_template" value="singlewish.jhtml">
    <div id="main">
 &nbsp;&nbsp;<b>Last modified by owner Edward Birdsall on Sunday Fed 24, 2019  13:15:12<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;http://Amazon_site_url
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;http://Amazon_site_url
+<br /><br />
+
+
+
+
+<h3> Wish Item Detail </h3>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> Washable Ties in red, rose, green, violet - liturgical colors to wear to church<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> any 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> any &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+     <b>Purchased:</b> &nbsp;3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> Dec 26, 2020<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> green and red bought<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> Edward Birdsall<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
+       <input type="button" name="action" value="Submitter" onclick="Edit() "  /> 
+       <input type="button" name="action" value="Group" onclick="Edit() "  /> 
+       <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> 
+ <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
+       <input type="button" name="action" value="Buy" onclick="Edit() "  /> 
+       <input type="button" name="action" value="Reserve" onclick="Edit() "  /> 
+
+<br /><br /><br />
+
 
 
 
@@ -135,40 +167,25 @@
 
 
 
-<h3> Wish Item Detail </h3>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> Washable Ties in red, rose, green, violet - liturgical colors to wear to church<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> any<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> any<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> Dec 26, 2020<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> green and red bought<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> Edward Birdsall<br />
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
-       <input type="button" name="action" value="Submitter" onclick="Edit() "  /> 
-       <input type="button" name="action" value="Group" onclick="Edit() "  /> 
-       <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> 
- <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
-       <input type="button" name="action" value="Buy" onclick="Edit() "  /> 
-       <input type="button" name="action" value="Reserve" onclick="Edit() "  /> 
-<br />
-
-
 </div>
 </div>
-        <div id="footer">
+    
+
+
+    <div id="footer">
+<input type="hidden" name="jinja2_template" value="footer.jhtml">
         
       <div id="footer-left">
        &copy; Copyright 2019 by <a href="https://www.mbirdsall.com/">MBirdsall</a>.
      </div>
-        
-       <div id="footer-center">
+     
+<div id="footer-center">
           <img src="../gfx/webfoot.jpg" alt="webmaster  @  birdsalle.com" height="100" width="300">
      </div>
      <!-- <figure id="footer-right">
           <img src="gfx/drum-clef.jpg" alt="drum clef" height="100" width="100">
      </figure> -->
-   </div>
+        
+     </div>
 </body>
 </html>

@@ -18,6 +18,7 @@
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="multiplewish.jhtml">
    <div id="main">{% block content1 %}
 <center><b>Last modified on {{ mod.date }}</center>
 {% endblock content1 %}

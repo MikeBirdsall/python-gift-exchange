@@ -18,6 +18,7 @@
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="webpage.jhtml">
    <div id="main">
 {% block content1 %}
 

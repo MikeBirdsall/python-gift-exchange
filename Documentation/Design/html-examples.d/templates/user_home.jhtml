@@ -24,6 +24,7 @@
 
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="user_home.jhtml">
    <div id="main">{% block content1 %}
           &nbsp;&nbsp;<b>Information</b><br />
           &nbsp;&nbsp;<b>Personal</b><br />

@@ -19,6 +19,7 @@
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="user_purch.jhtml">
    <div id="main">{% block content1 %}
 <center><b>{{ hdr.name  }}'s Purchased List for {{ pers.event}} {{pers.yr }}</b><br />
 

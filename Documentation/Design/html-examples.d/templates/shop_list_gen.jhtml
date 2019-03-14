@@ -20,6 +20,7 @@
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="shop_list_gen.jhtml">
    <div id="main">
 {% block content1 %}
 <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Instructions</h2>

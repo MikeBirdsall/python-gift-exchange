@@ -25,6 +25,7 @@
 
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="user_addedit_sug.jhtml">
    <div id="main">{% block content1 %}
 {#
 Here is the area for adding / verifying / editing / deleting a suggestion

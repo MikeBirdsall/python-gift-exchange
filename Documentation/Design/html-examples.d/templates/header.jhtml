@@ -12,6 +12,7 @@
      --------------------------------------------------------------------------------------------------------------------------- 
 #}
     <div id="header">
+<input type="hidden" name="jinja2_template" value="header.jhtml">
         {% block header %}
      <!-- <figure id="header-left">
           <img src="gfx/REACTOR.JPG" alt="research reactor" height="100" width=100">

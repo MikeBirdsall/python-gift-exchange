@@ -22,6 +22,7 @@
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="user_pick_list.jhtml">
    <div id="main">{% block content1 %}
 {# check for radio or checkbox being used - radio for single list, checkbox for multiple
      for user in clans:
@@ -42,7 +43,7 @@
                {% endif %}
            {% endfor %}
 <table border="0" width="80%" align="center">
-     {% if payg.action == "Single" and payg.reason == "Display" %}
+{#     {% if payg.action == "Single" and payg.reason == "Display" %}
          <caption><b>Single Display</b></caption>
      {% elif payg.action == "Multiple" and payg.reason == "Display" %}
           <caption><b>Multiple Display</b></caption>
@@ -53,18 +54,23 @@
      {% else %}
           <caption><b>I'm lost</b></caption>
      {% endif  %}
+#}
 
-<tr><th  style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th><th style="text-align:center; width:25%"></th></tr>
+<tr>
+     {% for i in range(payg.numcol) %}
+          <th  style="text-align:center "></th>
+     {% endfor %}
+ </tr>
 
-{%- for clanbatch in users|selectattr("clan", "equalto", cln)|batch(4, '&nbsp') -%}
+{%- for clanbatch in users|selectattr("clan", "equalto", cln)|batch(payg.numcol, '&nbsp') -%}
      <tr>
      {%- for col in clanbatch -%}
-          {% if payg.action =="Single" %}
+          {% if payg.action =="Single" and col != '&nbsp' %}
                          <td><label><input type="radio" name="mypick" id={{col.id}} value={{col.id}}  />  {{ col.dname }} </label></td>
-                    {% elif payg.action == "Multiple" %}
+                    {% elif payg.action == "Multiple"  and col != '&nbsp' %}
                         <td><label><input type="checkbox"  id="mypicks" value={{col.id}}  />  {{ col.dname }} </label></td>
                    {% else %}
-                         <td>  {{ col.dname }} lost</td>
+                         <td>  {{ col.dname }}</td>
                     {% endif %}
       {% endfor %}
       </tr>

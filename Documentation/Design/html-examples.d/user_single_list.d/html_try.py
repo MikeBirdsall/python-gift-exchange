@@ -1,12 +1,20 @@
 #!/bin/python3
 
 from jinja2 import Environment, FileSystemLoader
+import sys
 
 hd = {"loc":"Wish List"}
 hdr = { "name":"Edward",  "page":" Wish List", "today":"Saturday  March  2, 2019" }
 
 
 # devt is intended to hold the number of events for the day to be used in the template with an if or for but can't get to work right now
+# sys.argv[1] may equal the owner "Edward Birdsall" or someone else
+# sys.argv[2] may equal "Detail" to show item detail or anything else to show nothing
+if len(sys.argv) == 3 and sys.argv[2] == "Detail":
+     payg = dict(action="Detail",viewer=sys.argv[1], owner="Edward Birdsall")
+else:
+     payg = dict(action="No Detail",viewer=sys.argv[1], owner="Edward Birdsall")
+
 
 mod = {"who":"owner Edward Birdsall", "date":"Sunday Fed 24, 2019  13:15:12"}
 
@@ -48,12 +56,12 @@ wsh = [
 ]
 
 item = dict(description="Washable Ties in red, rose, green, violet - liturgical colors to wear to church", 
-     desired="any", avail="any", exp="Dec 26, 2020", notes="green and red bought", submitted="Edward Birdsall",
+     desired="any", avail="any",npurch=3, exp="Dec 26, 2020", notes="green and red bought", submitted="Edward Birdsall",
       purch="e-mail", group="e-mail", submitter="e-mail", buy="yes",reserve="yes"  )
 altwsh = dict(syte="http://Amazon_site_url")
 
 
-input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item, "altwsh":altwsh }
+input_ = {"hd":hd, "hdr":hdr, "mod":mod, "wsh":wsh, "item":item, "altwsh":altwsh, "payg":payg }
 env = Environment(loader = FileSystemLoader("../templates/"))
 template=env.get_template("singlewish.jhtml")
 

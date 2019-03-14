@@ -20,6 +20,7 @@
        --------------------------------------------------------------------------------------------------------------------------- 
 #}
 {% block content %}
+<input type="hidden" name="jinja2_template" value="mcalendar.jhtml">
      <div id="main">
           <table border="" height="75%" width="90%" align=center>
           <caption align=top><b> {{cal.month}}  {{cal.year}} </b></caption>

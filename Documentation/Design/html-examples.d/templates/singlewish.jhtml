@@ -14,16 +14,51 @@
      --------------------------------------------------------------------------------------------------------------------------- 
      Variables
           wsh - lists of dicts with peoples names and wishes
+          item - wish in detail
+          payg - payg diplay control
      --------------------------------------------------------------------------------------------------------------------------- 
 #}
 
 {% block content %}
+<input type="hidden" name="jinja2_template" value="singlewish.jhtml">
    <div id="main">{% block content1 %}
 &nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish Site:</b>&nbsp;&nbsp;&nbsp;{{ altwsh.syte }}
+<br /><br />
 {% endblock content1 %}
 
 {% block content2 %}
+{% if payg.action == "Detail" %}
+<h3> Wish Item Detail </h3>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }} 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> {{ item.avail }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+     <b>Purchased:</b> &nbsp;{{item.npurch}}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> {{ item.notes }}<br />
+     {% if payg.owner == payg.viewer %}
+          <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
+     <input type="button" name="action" value="Edit" onclick="Edit() "  /> {% endif %}
+     {% else %}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> {{ item.submitted }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
+     {% if item.purch %}  <input type="button" name="action" value="Submitter" onclick="Edit() "  /> {% endif %}
+     {% if item.group %}  <input type="button" name="action" value="Group" onclick="Edit() "  /> {% endif %}
+     {% if item.purch %}  <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> {% endif %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
+     {% if item.buy %}  <input type="button" name="action" value="Buy" onclick="Buy() "  /> {% endif %}
+     {% if item.reserve %}  <input type="button" name="action" value="Reserve" onclick="Reserve() "  /> {% endif %}
+
+     {%endif %}
+ <br />
+{% endif %}
+<br /><br /><br />
+
+{% endblock content2 %}
+
+{% block content3 %}
 <table border="5" height="30%" width="90%" align=center>
 <tr><th style="text-align:center; width:15%">Action</th><th style="text-align:center; width:5%">Available</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th></tr>
 
@@ -48,28 +83,8 @@
  <input type="submit" name="action" value="Home Page" /> </center><br />
 <hr />
 
-{% endblock content2 %}
-
-{% block content3 %}
-<h3> Wish Item Detail </h3>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> {{ item.avail }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> {{ item.notes }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> {{ item.submitted }}<br />
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
-     {% if item.purch %}  <input type="button" name="action" value="Submitter" onclick="Edit() "  /> {% endif %}
-     {% if item.group %}  <input type="button" name="action" value="Group" onclick="Edit() "  /> {% endif %}
-     {% if item.purch %}  <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> {% endif %}
- <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
-     {% if item.buy %}  <input type="button" name="action" value="Buy" onclick="Edit() "  /> {% endif %}
-     {% if item.reserve %}  <input type="button" name="action" value="Reserve" onclick="Edit() "  /> {% endif %}
-<br />
-
 {% endblock content3 %}
+
+
 </div>
 {% endblock content %}
