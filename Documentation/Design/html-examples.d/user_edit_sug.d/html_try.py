@@ -11,7 +11,6 @@ dayt = dict(today="March 2, 2019", maxday="2025-12-31")
 
 
 # block 1
-
 if action == "adding":
      hd = {"loc":"Add Suggestion"}
      hdr = { "name":"Edward",  "page":" Add Suggestion", "today":"Saturday  March  2, 2019  13:29:15" }
@@ -40,40 +39,45 @@ mod = {"owner":"Edward Birdsall","own-mod":"Monday December 2, 2018 14:12:25",
 # block 2
 wsh = [
     dict(num=1, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
-         des="Frangelico, B&B, Irish Mist", notes="t1"),
+         des="Frangelico, B&B, Irish Mist", notes="t1", bc="White"),
     dict(num=2, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
-         des="Fudge - chocolate, peanut butter are favorites", notes="t1"),
+         des="Fudge - chocolate, peanut butter are favorites", notes="t1", bc="White"),
     dict(num=3, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
-         des="Wine - Favorites yellowtail-*, wallaby creek-*, and others", notes="t1"),
+         des="Wine - Favorites yellowtail-*, wallaby creek-*, and others", notes="t1", bc="White"),
     dict(num=4, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
-         des="Gift Certificate - Home Depot or Lowes", notes="t1"),
+         des="Gift Certificate - Home Depot or Lowes", notes="t1", bc="White"),
     dict(num=5, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
-         des="Gift Certificate - Barnes and Noble", notes="t1"),
+         des="Gift Certificate - Barnes and Noble", notes="t1", bc="White"),
     dict(num=6, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
          des=("Gift Certificate - Right Stuf (www.rightstuf.com) Where I get "
-              "most of my anime and shaw dvds"), notes="t1"),
+              "most of my anime and shaw dvds"), notes="t1", bc="White"),
     dict(num=7, submitn="Edward Birdsall", submitd="2019-01-05", ndes="1",
-         des="Rasberry Pi Starter/learning kit", exp="Dec 26, 2019", notes="t1"),
+         des="Rasberry Pi Starter/learning kit", exp="Dec 26, 2019", notes="t1", bc="White"),
     dict(num=8, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="never",
          des=("Candle molds especially for the larger candles (larger than "
-             "votive)"), notes="t1"),
+             "votive)"), notes="t1", bc="White"),
     dict(num=9, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="Dec 26, 2019",
          des=("washable long ties for church (not dryclean) looking for ties "
-             "with primary color rose, white."), notes="t1"),
+             "with primary color rose, white."), notes="t1", bc="White"),
     dict(num=10, submitn="Robert Birdsall", submitd="2019-01-05", ndes="1", exp="Dec 26, 2019",
-         des="CD by The Fire - Inspired (found at store.cdbaby.com)", notes="t1"),
+         des="CD by The Fire - Inspired (found at store.cdbaby.com)", notes="t1", bc="White"),
     dict(num=11, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="Dec 26, 2020",
          des=("Short sleeve Shirts 16 neck in red, rose, green, violet - "
-              "liturgical colors to wear to church (same as ties)"), notes="t1"),
+              "liturgical colors to wear to church (same as ties)"), notes="t1", bc="White"),
     dict(num=12, submitn="Edward Birdsall", submitd="2019-01-05", ndes="any", exp="Dec 26, 2020",
-         des=("Washable Ties in red, rose, green, violet - liturgical colors to wear to church"), notes="t1"),
+         des=("Washable Ties in red, rose, green, violet - liturgical colors to wear to church"), notes="t1", bc="White"),
     dict(num=13, submitn="Michael Birdsall", submitd="2019-01-05", ndes="1", exp="Sep 01, 2019",
-         des="Wishlist in final test mode", notes="t1"),
+         des="Wishlist in final test mode", notes="t1", bc="White"),
     dict(num=14, submitn="Michael Birdsall", submitd="2019-01-05", ndes="1",
-         des="2450 Canyon Sold", exp="Aug 1, 2019", notes="t1"),
+         des="2450 Canyon Sold", exp="Aug 1, 2019", notes="t1", bc="White"),
     dict(num=15, submitn="Edward Birdsall", submitd="2019-01-05", ndes="1", exp="Dec 31, 2020",
-         des="New House in 'Georgia", notes="t1")
+         des="New House in 'Georgia", notes="t1", bc="White")
 ]
+
+for w in wsh:
+     if w["num"] == twish["num"]:
+          w["bc"]="Plum"
+
 
 # block 3
 

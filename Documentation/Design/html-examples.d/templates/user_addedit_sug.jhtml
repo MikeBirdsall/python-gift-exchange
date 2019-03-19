@@ -162,7 +162,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
 <tr><th style="text-align:center; width:5%">Desired</th> <th style="width:50%">Description</th> <th style="width:10%">Expires</th></tr>
 {%- for row in wsh -%}
 <tr>
- <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
+ <td  style="text-align:center; background-color:{{ row.bc }}">{{ row.ndes }}</td><td  style="text-align:left; background-color:{{ row.bc }}">{{ row.des }} </td>  <td  style="text-align:center; background-color:{{ row.bc }}">{{ row.exp }}</td>
 </tr>
 {% endfor %}
 </table>
@@ -174,8 +174,9 @@ Here is the area for adding / verifying / editing / deleting a suggestion
 <th style="text-align:center; width:35%">Notes</th><th style="text-align:center; width:10%">Submitter</th</tr>
 {%- for row in wsh -%}
 <tr>
- <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
-<td  style="text-align:left">{{ row.notes }} </td><td  style="text-align:left">{{ row.submitn }} </td>
+{# {% if row.num == twish.num %} ' bc="Plum" ' {% else %} ' bc="White" ' {% endif %} #}
+ <td  style="text-align:center; background-color:{{ row.bc }}">{{ row.ndes }}</td><td  style="text-align:left; background-color:{{ row.bc }}">{{ row.des }} </td>  <td  style="text-align:center; background-color:{{ row.bc }}">{{ row.exp }}</td>
+<td  style="text-align:left; background-color:{{ row.bc }}">{{ row.notes }} </td><td  style="text-align:left; background-color:{{ row.bc }}">{{ row.submitn }} </td>
 </tr>
 {% endfor %}
 </table>
