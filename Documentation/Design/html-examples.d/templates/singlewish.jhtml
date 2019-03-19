@@ -28,50 +28,73 @@
 {% endblock content1 %}
 
 {% block content2 %}
-{% if payg.action == "Detail" %}
-<h3> Wish Item Detail </h3>
+{% if payg.action == "Detail" and payg.owner == payg.viewer %}
+     <h3> Wish Item Detail </h3>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }} 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> {{ item.avail }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }} 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
+
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
+     <input type="button" name="action" value="Edit" onclick="Edit() "  />
+{#     ---------------------------------------------------------------------------------------------------------------------     #}
+{% elif payg.action == "Detail" and payg.owner != payg.viewer %}
+     <h3> Wish Item Detail </h3>
+
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Description:</b> {{ item.description }}<br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Desired:</b> {{ item.desired }} 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Available:</b> {{ item.avail }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
      <b>Purchased:</b> &nbsp;{{item.npurch}}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> {{ item.notes }}<br />
-     {% if payg.owner == payg.viewer %}
-          <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
-     <input type="button" name="action" value="Edit" onclick="Edit() "  /> {% endif %}
-     {% else %}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> {{ item.submitted }}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expires:</b> {{ item.exp }}<br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b> {{ item.notes }}<br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Submitter:</b> {{ item.submitter }}<br />
+     
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="action" value="Edit" onclick="Edit() "  />
+     {% if item.buy %}  <input type="button" name="action" value="Buy" onclick="Buy() "  /> {% endif %}
+     {% if item.reserve %}  <input type="button" name="action" value="Reserve" onclick="Reserve() "  /> {% endif %}
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Anonymous E-Mail:</b>
      {% if item.purch %}  <input type="button" name="action" value="Submitter" onclick="Edit() "  /> {% endif %}
      {% if item.group %}  <input type="button" name="action" value="Group" onclick="Edit() "  /> {% endif %}
      {% if item.purch %}  <input type="button" name="action" value="Purchaser" onclick="Edit() "  /> {% endif %}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Actions:</b>
-     {% if item.buy %}  <input type="button" name="action" value="Buy" onclick="Buy() "  /> {% endif %}
-     {% if item.reserve %}  <input type="button" name="action" value="Reserve" onclick="Reserve() "  /> {% endif %}
 
-     {%endif %}
- <br />
-{% endif %}
+{% else %}
+     <br />
+{%endif %}
+  
 <br /><br /><br />
 
 {% endblock content2 %}
 
 {% block content3 %}
-<table border="5" height="30%" width="90%" align=center>
-<tr><th style="text-align:center; width:15%">Action</th><th style="text-align:center; width:5%">Available</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th></tr>
+{% if payg.viewer == payg.owner %}
+     <table border="5" height="30%" width="90%" align=center>
+     <tr><th style="text-align:center; width:15%">Action</th><th style="text-align:center; width:5%">Desired</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th></tr>
 
-{%- for row in wsh -%}
-<tr><td  style="text-align:center">{% if row.ndes == "-1" %}  <input type="button" name="action" value="Modify Purchase" onclick="Modfy() "  /> {% elif row.ndes == "0" %}   {% else %} 
+     {%- for row in wsh -%}
+     <tr><td  style="text-align:center">
+     <input type="button" name="action" value="Edit" onclick="Edit() "  />
+      <input type="button" name="action" value="View Details" onclick="View() "  />
+     </td> <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
+     {% endfor %}
+
+</table>
+
+{% else %}
+     <table border="5" height="30%" width="90%" align=center>
+     <tr><th style="text-align:center; width:15%">Action</th><th style="text-align:center; width:5%">Available</th> <th style="width:40%">Description</th> <th style="width:10%">Expires</th></tr>
+
+     {%- for row in wsh -%}
+     <tr><td  style="text-align:center">{% if row.avail == "-1" %}  <input type="button" name="action" value="Modify Purchase" onclick="Modfy() "  /> {% elif row.avail == "0" %}   {% else %} 
      <input type="button" name="action" value="Buy" onclick="Buy() "  />
      <input type="button" name="action" value="Reserve" onclick="Reserve() "  />
      {% endif %}
       <input type="button" name="action" value="View Details" onclick="View() "  />
-</td> <td  style="text-align:center">{% if row.ndes == "0" or row.ndes == "-1" %} **Gone** {% else %}{{ row.ndes }}{% endif %}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
-{% endfor %}
+     </td> <td  style="text-align:center">{% if row.avail == "0" or row.avail == "-1" %} **Gone** {% else %}{{ row.avail }}{% endif %}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
+     {% endfor %}
 
 </table>
+{% endif %}
 <hr />
 <center><input type="hidden" name="owner" value="ed"  />
 <input type="button" name="action" value="Add Suggestion" onclick="Edit() "  />

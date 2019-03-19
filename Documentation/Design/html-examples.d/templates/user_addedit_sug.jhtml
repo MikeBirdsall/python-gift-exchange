@@ -113,6 +113,7 @@ Here is the area for adding / verifying / editing / deleting a suggestion
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Goto Home page" onclick=""><br />
@@ -139,9 +140,9 @@ Here is the area for adding / verifying / editing / deleting a suggestion
      <hr />
 {% elif action == "deleting"  and submitter.name == owner.name %}
      <hr />
-     <b>Description:</b>" {{ twish.des }} "<br />
-     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
-     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
+     <b>Description:</b> {{ twish.des }} <br />
+     <b>Number Desired:</b> {{ twish.ndes }} <br />
+     <b>Expiration Date:</b> {{ dayt.maxday}}  <br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

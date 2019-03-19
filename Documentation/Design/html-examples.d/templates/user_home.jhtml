@@ -55,7 +55,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish List Site(s):<b> {{ user.altwsh1 }}<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add another alternate wish site" onclick=""><input type="url" name="altwsh" />
 <table border="5" height="30%" width="90%" align=center>
-<tr><th style="text-align:center; width:5%">Edit</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
+<tr><th style="text-align:center; width:5%">Action</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
 
 {%- for row in wsh -%}
 <tr><td  style="text-align:center"><input type="button" value="Edit" onclick="Edit {{ row.num }} " /></td>  <td>{{ row.des }}</td><td  style="text-align:center">{{ row.ndes }}</td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
