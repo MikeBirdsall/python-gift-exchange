@@ -1,0 +1,71 @@
+{% extends "base.jhtml" %}
+{# template user_home
+     Function:  This is the user home page from where they start all activities and return to after some
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          user - user profile information
+          msgs - message information
+          ss - secret santa information
+          evt - calendar events coming up
+          mod - date of last miodification to information
+          wsh - lists of dicts with wishes
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+
+{% block content %}
+<input type="hidden" name="jinja2_template" value="user_home.jhtml">
+   <div id="main">{% block content1 %}
+          &nbsp;&nbsp;<b>Information</b><br />
+          &nbsp;&nbsp;<b>Personal</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Full Name:</b> {{ user.firstn }} {{ user.lastn }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Birthday:</b> {{user.bmn}} {{user.bday}}, {{user.byr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>e-mail:</b> {{ user.pemail}}  {{ user.semail}} <br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>Clans:</b> {{ user.clan }} &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Messages:  New:</b> {{msgs.new}}   <b>Total:</b> {{msgs.tot}}  <br />
+          &nbsp;&nbsp;<b>Secret Santa</b><br />
+           &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;<b>{{ user.clan }}:</b> Secret Santa Christmas {{ ss.cyr }} : {{ ss.cypk}}</br>
+ &nbsp;&nbsp;<b> Upcoming Events:</b></br>
+ &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;{{ evt.event1 }}      &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; <b>Birthdays: </b> {{ evt.bday1 }}   &nbsp;&nbsp; {{evt.bday2 }}
+{% endblock content1 %}
+
+{% block content2 %}<br />
+<hr /><center>
+<input type="submit" name="action" value="Go to Messages" /> <input type="submit" name="action" value="Go to Calendar" /> 
+<input type="submit" name="action" value="Edit Profile" />
+{% if user.proxy != "None" %} <input type="submit" name="action" value="Act as Proxy Selection" /> {% endif %} </center>
+<hr /><center>
+<input type="submit" name="action" value="Wish Lists" />
+ <input type="submit" name="action" value="Gifts Purchased" />
+ <input type="submit" name="action" value="Shopping List" /> </center>
+<hr />
+{% endblock content2 %}
+{% block content3 %}
+<center><b>My Wish List</b></center>
+&nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish List Site(s):<b> {{ user.altwsh1 }}<br />
+
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:5%">Action</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
+
+{%- for row in wsh -%}
+<tr><td  style="text-align:center"><input type="button" value="Edit" onclick="Edit {{ row.num }} " /></td>  <td>{{ row.des }}</td><td  style="text-align:center">{{ row.ndes }}</td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="submit" name="action" value="Purge My List" />  <input type="submit" name="action" value="Clear My List" /> </center><br />
+<hr />
+{% endblock content3 %}
+</div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "base.jhtml" %}
+{# template webpage
+     Function: templates for creating web pages
+    --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          var - user
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+{% block content %}
+<input type="hidden" name="jinja2_template" value="user_edit_profile.jhtml">
+   <div id="main">
+{% block content1 %}
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <h1>Current User Information</h1>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; User Name: {{ user.fname }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Display name: {{ user.dname }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Birthday: {{ user.bday }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Clan:  {{user.clan }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Spouse: {{ user.spouse }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Children: {{ user.children }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Primary E-mail Address: {{ user.pemail }} {% if  user.semail is defined %} 
+     &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  Seconardy E-Mail:  {{ user.semail }} {% endif  %}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Alternate Wish Site: {{ user.altwishsite }}</br>
+</br></br>
+<hr />
+
+{% endblock content1 %}
+
+{% block content2 %}
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="action" value="Change password" />
+<hr>
+{% endblock content2 %}
+{% block content3 %}
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="action" value="Edit E-mail Address" />
+<hr />
+{% endblock content3 %}
+
+{% block content4 %}
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="action" value="Edit Alternate Wish Site" />
+<hr />
+{% endblock content4 %}
+
+
+</div>
+{% endblock content %}

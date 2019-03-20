@@ -10,6 +10,7 @@ python3 html_try.py > ../html_pages.d/shop_list_gen.html
 echo "shop_list_gen generated"
 cd ../user_home.d
 python3 html_try.py > ../html_pages.d/user_home.html
+python3 html_try_a.py > ../html_pages.d/user_home_a.html
 echo "user_home generated"
 cd ../user_multiple_list.d
 python3 html_try.py > ../html_pages.d/user_multiple_list.html
@@ -40,6 +41,7 @@ python3 html_try.py "Single" "Display"  > ../html_pages.d/user_pick_list-sd.html
 python3 html_try.py "Multiple" "Display"  > ../html_pages.d/user_pick_list-md.html
 python3 html_try.py "Single" "Shopping"  > ../html_pages.d/user_pick_list-ss.html
 python3 html_try.py "Multiple" "Shopping"  > ../html_pages.d/user_pick_list-ms.html
+python3 html_try.py "Multiple" "Test"  > ../html_pages.d/user_pick_list-mt.html
 echo "Various User pick list"
 cd ..
 echo "Done!"

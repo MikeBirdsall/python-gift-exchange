@@ -87,6 +87,7 @@
 {% elif payg.reason == "Shopping" %}
      <input type="submit"  value="Create Shopping List"> 
 {% else %}
+     <input type="submit"  value="Display List"> &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Create Shopping List"> 
 {% endif %}
  &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  value="Print Page">
 &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Go to Home page"></center> 
