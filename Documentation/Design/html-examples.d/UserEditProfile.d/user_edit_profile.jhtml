@@ -1,6 +1,7 @@
 {% extends "base.jhtml" %}
-{# template webpage
-     Function: templates for creating web pages
+{# template user_edit_profile
+     Function: template for the user Edit Profile page.  it is extended by user_edit_password, user_edit_email,
+                         user_edit_altwish
     --------------------------------------------------------------------------------------------------------------------------- 
      extends base.jhtml which includes header.jhtml and footer.jhtml
      base - hd.loc   page location within website
@@ -28,12 +29,14 @@
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Clan:  {{user.clan }}</br>
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Spouse: {{ user.spouse }}</br>
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Children: {{ user.children }}</br>
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Proxy For: {{ user.proxy }}</br>
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Primary E-mail Address: {{ user.pemail }} {% if  user.semail is defined %} 
-     &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  Seconardy E-Mail:  {{ user.semail }} {% endif  %}</br>
+     &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  Secondary E-Mail:  {{ user.semail }} {% endif  %}</br>
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Alternate Wish Site: {{ user.altwishsite }}</br>
 </br></br>
 <hr />
-
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="action" value="Return to Home Page" />
+<hr />
 {% endblock content1 %}
 
 {% block content2 %}

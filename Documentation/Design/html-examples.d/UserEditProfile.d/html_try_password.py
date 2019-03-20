@@ -23,7 +23,7 @@ input_ = {"hd":hd, "hdr":hdr, "user":user }
 # now to go out and render
 
 env = Environment(loader = FileSystemLoader("."))
-template=env.get_template("user_edit_profile.jhtml")
+template=env.get_template("user_edit_password.jhtml")
 
 
 output = template.render(input_)

@@ -1,0 +1,55 @@
+{% extends "user_edit_profile.jhtml" %}
+{# template user_edit_password
+     Function: template for the user change password section of edit Profile page user_edit_password
+    --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          var - user
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+{% block content %}
+<input type="hidden" name="jinja2_template" value="user_edit_password.jhtml">
+     {% block content1 %}
+     {{ super() }}
+     {% endblock content1 %}
+     
+     {% block content2 %}
+    {{ super() }}
+     {% endblock content2 %}
+
+{% block content3 %}
+<b>Instructions</b>
+<p> First check to see if the e-mail addresses are correct and if not update them</br>
+</p>
+<form action="">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Email Addresses</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>E-Mail 1:</b> <input type="e-mail" name=pemail size=40 value= {{ user.pemail }} >&nbsp;<input type="submit" name="action" value="Update this E-mail address" /><br /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>E-mail 2:</b><input type="e-mail" name=semail size=40 value= {{ user.semail }} >&nbsp;<input type="submit" name="action" value="Update this E-mail address" /><br /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>E-mail 3:</b>&nbsp;<input type="e-mail" name=temail size=40  >&nbsp;<input type="submit" name="action" value="Add new E-mail address" /><br /><br />
+</form>
+<form>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Please select the primary E-mail Address to use</b></br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primary E-mail:<select name="pemail" size="1" >
+     <option value="{{ user.pemail}}">{{ user.pemail}}</option>
+     <option value="{{ user.semail}}">{{ user.semail}}</option>
+     </select></br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+<hr />
+{% endblock content3 %}
+
+{% block content4 %}
+     {{ super() }}
+{% endblock content4 %}
+
+{% endblock content %}
