@@ -7,7 +7,7 @@ hdr = dict(name="Ed", page="Home", today="Wednesday  March 06, 2019")
 
 user = {"firstn":"Edward", "lastn":"Birdsall", "bday":"23", "byr":"1952", "bmn":"April", 
      "pemail":"birdsall_99@comcast.net", "semail":"ntdgn@umich.edu", "clan":"Birdsall",
-     "altwsh1":"http://Amazon_list_url", "proxy":"None" }
+     "altwsh1":"http://Amazon_list_url" }
 msgs = {"new":0, "tot":10}
 ss = {"cyr":2018, "cypk":"Peggy Kovas" }
 evt = {"event1": "None", "bday1":"Mar 17 - Terri McIntosh", "bday2":"Mar 29 - Alexa Hodgins"}
@@ -57,7 +57,7 @@ wsh = [
 input_ = {"hd":hd, "hdr":hdr, "user":user, "msgs":msgs , "ss":ss, "evt":evt, "mod":mod, "wsh":wsh }
 
 env = Environment(loader = FileSystemLoader("../templates/"))
-template=env.get_template("user_home_a.jhtml")
+template=env.get_template("user_home_o.jhtml")
 
 
 output = template.render(input_)

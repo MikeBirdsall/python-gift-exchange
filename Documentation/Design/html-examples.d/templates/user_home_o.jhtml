@@ -38,11 +38,13 @@
 
 {% block content2 %}<br />
 <hr /><center>
-<input type="submit" name="action" value="Go to Messages" /> <input type="submit" name="action" value="Go to Calendar" /> 
-<input type="submit" name="action" value="Edit Profile" />
-{% if user.proxy != "None" %} <input type="submit" name="action" value="Act as Proxy Selection" /> {% endif %} </center>
+<input type="submit" name="action" value="Go to Messages" /> 
+<input type="submit" name="action" value="Change Password" />  <input type="submit" name="action" value="Change e-mail" />
+<input type="submit" name="action" value="Go to Calendar" /> 
+ <input type="submit" name="action" value="Act as Proxy Selection" /> </center>
 <hr /><center>
-<input type="submit" name="action" value="Wish Lists" />
+<input type="submit" name="action" value="Wish Lists" /> <input type="submit" name="action" value="Clan Wish Lists" /> 
+<input type="submit" name="action" value="Multiple Wish Lists" /> <input type="submit" name="action" value="Clan Multiple Wish List" /> 
  <input type="submit" name="action" value="Gifts Purchased" />
  <input type="submit" name="action" value="Shopping List" /> </center>
 <hr />
@@ -51,7 +53,7 @@
 <center><b>My Wish List</b></center>
 &nbsp;&nbsp;<b>Last modified by {{ mod.who }} on {{ mod.date }}<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Alternate Wish List Site(s):<b> {{ user.altwsh1 }}<br />
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add another alternate wish site" onclick=""><input type="url" name="altwsh" />
 <table border="5" height="30%" width="90%" align=center>
 <tr><th style="text-align:center; width:5%">Action</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
 

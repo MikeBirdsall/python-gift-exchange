@@ -75,9 +75,9 @@ Here is the area for adding / verifying / editing / deleting a suggestion
      <hr />
 {% elif action == "verifying"  and submitter.name == owner.name %}
      <hr />
-     <b>Description:</b>" {{ twish.des }} "<br />
-     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
-     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
+     <b>Description:</b> {{ twish.des }} <br />
+     <b>Number Desired:</b> {{ twish.ndes }} <br />
+     <b>Expiration Date:</b> {{ dayt.maxday}}  <br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -87,10 +87,10 @@ Here is the area for adding / verifying / editing / deleting a suggestion
      <hr />
 {% elif action == "verifying"  and submitter.name != owner.name %}
      <hr />
-     <b>Description:</b>" {{ twish.des }} "<br />
-     <b>Number Desired:</b>" {{ twish.ndes }} "<br />
-     <b>Expiration Date:</b>" {{ dayt.maxday}} " <br />
-     <b>Note: </b>&nbsp;" {{ dayt.notes}} " <br />
+     <b>Description:</b> {{ twish.des }} <br />
+     <b>Number Desired:</b> {{ twish.ndes }} <br />
+     <b>Expiration Date:</b>"{{ dayt.maxday}}  <br />
+     <b>Note: </b>&nbsp; {{ twish.notes}}  <br />
      <hr />
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
