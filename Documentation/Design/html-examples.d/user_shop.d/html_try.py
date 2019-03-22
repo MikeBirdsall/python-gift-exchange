@@ -31,7 +31,7 @@ wsh = [
          des="Book - Lilo and Stich"),
     dict(num=9, pfor="Erilyn Kovas", npur=0, ndes="3", notes="",
          des="Toy - Stuffed Bear"),
-    dict(num=10, pfor="blocks", npur=0, ndes="2", notes="",
+    dict(num=10, pfor="Wesley Kovas", npur=0, ndes="2", notes="",
          des="wooden blocks"),
 ]
 
