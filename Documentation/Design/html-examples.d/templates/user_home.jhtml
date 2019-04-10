@@ -38,13 +38,26 @@
 
 {% block content2 %}<br />
 <hr /><center>
-<input type="submit" name="action" value="Go to Messages" /> <input type="submit" name="action" value="Go to Calendar" /> 
+<form method="GET" style="display:inline" action="unimplemented.html">
+    <input type="submit" name="action" value="Go to Messages" /> 
+</form>
+<form method="GET" style="display:inline" action="calendar.html">
+    <input type="submit" name="action" value="Go to Calendar" /> 
+</form>
+<form method="GET" style="display:inline" action="unimplemented.html">
 <input type="submit" name="action" value="Edit Profile" />
+</form>
 {% if user.proxy != "None" %} <input type="submit" name="action" value="Act as Proxy Selection" /> {% endif %} </center>
 <hr /><center>
-<input type="submit" name="action" value="Wish Lists" />
+<form method="GET" style="display:inline" action="user_pick_list.html">
+    <input type="submit" name="action" value="Wish Lists" />
+</form>
+<form method="GET" style="display:inline" action="user_purch.html">
  <input type="submit" name="action" value="Gifts Purchased" />
+ </form>
+<form method="GET" style="display:inline" action="user_shop.html">
  <input type="submit" name="action" value="Shopping List" /> </center>
+ </form>
 <hr />
 {% endblock content2 %}
 {% block content3 %}
@@ -56,15 +69,28 @@
 <tr><th style="text-align:center; width:5%">Action</th>  <th style="width:70%">Description</th><th style="text-align:center; width:5%">Desired</th> <th style="text-align:center; width:10%">Expires</th></tr>
 
 {%- for row in wsh -%}
-<tr><td  style="text-align:center"><input type="button" value="Edit" onclick="Edit {{ row.num }} " /></td>  <td>{{ row.des }}</td><td  style="text-align:center">{{ row.ndes }}</td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
+<tr>
+<td  style="text-align:center">
+<form method="GET" style="display:inline" action="user_edit_sug-edt_oo.html">
+    <input type="hidden" name="item" value="{{ row.num }} " />
+    <input type="submit" name="cmd" value="Edit" />
+</form>
+</td>  <td>{{ row.des }}</td><td  style="text-align:center">{{ row.ndes }}</td>  <td  style="text-align:center">{{ row.exp }}</td></tr>
 {% endfor %}
 
 </table>
 <hr />
 <center><input type="hidden" name="owner" value="ed"  />
-<input type="submit" name="action" value="Add Item" /><input type="submit" name="dummy" value="Redraw the screen" /><input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<form method="GET" style="display:inline" action="user_edit_sug-add_oo.html">
+    <input type="submit" name="action" value="Add Item" />
+</form>
+<input type="submit" name="dummy" value="Redraw the screen" />
+<input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <input type="submit" name="action" value="Purge My List" />  <input type="submit" name="action" value="Clear My List" /> </center><br />
+ <input type="submit" name="action" value="Purge My List" />  
+<form method="GET" style="display:inline" action="unimplemented.html">
+    <input type="submit" name="action" value="Clear My List" /> </center><br />
+    </form>
 <hr />
 {% endblock content3 %}
 </div>
