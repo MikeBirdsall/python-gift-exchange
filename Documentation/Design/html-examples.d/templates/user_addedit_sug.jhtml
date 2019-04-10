@@ -26,7 +26,8 @@
 
 {% block content %}
 <input type="hidden" name="jinja2_template" value="user_addedit_sug.jhtml">
-   <div id="main">{% block content1 %}
+   <div id="main">
+{% block content1 %}
 {#
 Here is the area for adding / verifying / editing / deleting a suggestion
      anyone can add and verify the suggestion they just made
@@ -34,120 +35,88 @@ Here is the area for adding / verifying / editing / deleting a suggestion
      only the list owner can delete their suggestions, administrators can delete others
 #}
 <center><b>{{ submitter.name  }} is {{ action }} suggestion for {{ owner.name }} </b><br /></center>
-{% if action == "adding"  and submitter.name == owner.name %}
-     <hr />
-     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
-     <b>Number Desired:</b>
-     <select name="ndes" size="1" >
-     <option value="any">any</option>
-     <option selected="selected" value="1">1</option>
-          {% for x in range (2,10) %}
-               <option value={{ x }}>{{ x }}</option>
-          {% endfor %}
-     </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value="{{ dayt.today }}"> <br />
-     <hr />
+{% if action == "adding" %}
+     {% block addingdescription %}
+         <hr />
+         <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
+         <b>Number Desired:</b>
+         <select name="ndes" size="1" >
+         <option value="any">any</option>
+             <option selected="selected" value="1">1</option>
+              {% for x in range (2,10) %}
+                   <option value={{ x }}>{{ x }}</option>
+              {% endfor %}
+         </select> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value="{{ dayt.today }}"> <br />
+     {% endblock %}
+     {% if submitter.name != owner.name %}
+         <b>Note:</b><input type="text" name="notes" value="{{ twish.notes }}" size="90" /><br />
+     {% endif %}
+     {% block addingbuttons %}
+         <hr />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <form method="GET" style="display:inline" action="user_edit_sug-ver_os.html">
+              <input type="submit" value="Submit Suggestion" name="cmd">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         </form>
+         {% if action == "editing" and submitter.name == owner.name %}
+             <form method="GET" style="display:inline" action="user_edit_sug-del_oo.html">
+                 <input type="submit" value="Delete Suggestion" name="cmd">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             </form>
+         {% endif %}
+         <input type="button" value="Redraw Screen" onclick="">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <input type="button" value="Print page" onclick="">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <form method="GET" style="display:inline" action="user_home.html">
+             <input type="submit" value="Goto Home page" name="cmd"><br />
+         </form>
+         <hr />
+     {% endblock %}
+{% elif action == "editing" %}
+     {{ self.addingdescription() }}
+     {% if submitter.name != owner.name %}
+         <b>Current Note:</b> {{twish.notes}}  <b>Add Note:</b><input type="text" name="desc" size="90" /><br />
+     {% endif %}
+     {{ self.addingbuttons() }}
+{% elif action == "verifying" %}
+     {% block displaydescription %}
+         <hr />
+         <b>Description:</b> {{ twish.des }} <br />
+         <b>Number Desired:</b> {{ twish.ndes }} <br />
+         <b>Expiration Date:</b>"{{ dayt.maxday}}  <br />
+         {% if submitter.name != owner.name %}
+             <b>Note: </b>&nbsp; {{ twish.notes}}  <br />
+         {% endif %}
+         <hr />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     {% endblock %}
+     <form method="GET" style="display:inline" action="user_single_list-an.html">
+         <input type="submit" value="Verify Suggestion" name="cmd">
+     </form>
+
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
+     <form method="GET" style="display:inline" action="user_edit_sug-add_oo.html">
+         <input type="submit" value="Return to Editing" name="cmd">
+     </form>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
-{% elif action == "adding"  and submitter.name != owner.name %}
-     <hr />
-     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
-     <b>Number Desired:</b>
-     <select name="ndes" size="1" >
-     <option value="any">any</option>
-     <option selected="selected" value="1">1</option>
-          {% for x in range (2,10) %}
-               <option value={{ x }}>{{ x }}</option>
-          {% endfor %}
-     </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}}  value="{{ dayt.today }}"> <br />
-     <b>Note:</b><input type="text" name="notes" value="{{ twish.notes }}" size="90" /><br />
-     <hr />
+     <input type="button" value="Print page" onclick="">
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
-{% elif action == "verifying"  and submitter.name == owner.name %}
-     <hr />
-     <b>Description:</b> {{ twish.des }} <br />
-     <b>Number Desired:</b> {{ twish.ndes }} <br />
-     <b>Expiration Date:</b> {{ dayt.maxday}}  <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Return to Editing" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
-{% elif action == "verifying"  and submitter.name != owner.name %}
-     <hr />
-     <b>Description:</b> {{ twish.des }} <br />
-     <b>Number Desired:</b> {{ twish.ndes }} <br />
-     <b>Expiration Date:</b>"{{ dayt.maxday}}  <br />
-     <b>Note: </b>&nbsp; {{ twish.notes}}  <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Return to Editing" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
-{% elif action == "editing" and submitter.name == owner.name %}
-     <hr />
-     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
-     <b>Number Desired:</b>
-     <select name="ndes" size="1" >
-     <option value="any">any</option>
-     <option selected="selected" value="1">1</option>
-          {% for x in range (2,10) %}
-               <option value={{ x }}>{{ x }}</option>
-          {% endfor %}
-     </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
-{% elif action == "editing" and submitter.name != owner.name %}
-     <hr />
-     <b>Description:</b><input type="text" name="desc" value="{{ twish.des }}" size="90" /><br />
-     <b>Number Desired:</b>
-     <select name="ndes" size="1" >
-     <option value="any">any</option>
-     <option selected="selected" value="1">1</option>
-          {% for x in range (2,10) %}
-               <option value={{ x }}>{{ x }}</option>
-          {% endfor %}
-     </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date: </b><input type="date" name="exp" min={{ dayt.today}} max={{ dayt.maxday}} value={{twish.exp}}  > <br />
-     <b>Current Note:</b> {{twish.notes}}  <b>Add Note:</b><input type="text" name="desc" size="90" /><br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
+     <form method="GET" style="display:inline" action="user_home.html">
+         <input type="submit" value="Goto Home page" name="cmd"><br />
+     </form>
      <hr />
 {% elif action == "deleting"  and submitter.name == owner.name %}
-     <hr />
-     <b>Description:</b> {{ twish.des }} <br />
-     <b>Number Desired:</b> {{ twish.ndes }} <br />
-     <b>Expiration Date:</b> {{ dayt.maxday}}  <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
+     {{ self.displaydescription() }}
+     <form method="GET" style="display:inline" action="user_edit_sug-del_oo.html">
+         <input type="submit" value="Delete Suggestion" name="cmd">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     </form>
+     <form method="GET" style="display:inline" action="user_home.html">
+         <input type="submit" value="Goto Home page" name="cmd"><br />
+     </form>
      <hr />
 
 {% else %}

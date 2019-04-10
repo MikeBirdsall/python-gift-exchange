@@ -35,40 +35,55 @@
 <input type="hidden" name="jinja2_template" value="user_addedit_sug.jhtml">
    <div id="main">
 
+
 <center><b>Edward Birdsall is adding suggestion for Edward Birdsall </b><br /></center>
 
-     <hr />
-     <b>Description:</b><input type="text" name="desc" value="" size="90" /><br />
-     <b>Number Desired:</b>
-     <select name="ndes" size="1" >
-     <option value="any">any</option>
-     <option selected="selected" value="1">1</option>
-          
-               <option value=2>2</option>
-          
-               <option value=3>3</option>
-          
-               <option value=4>4</option>
-          
-               <option value=5>5</option>
-          
-               <option value=6>6</option>
-          
-               <option value=7>7</option>
-          
-               <option value=8>8</option>
-          
-               <option value=9>9</option>
-          
-     </select> 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Expiration Date:</b><input type="date" name="exp" min=March 2, 2019 max=2025-12-31 value="March 2, 2019"> <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Submit Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Redraw Screen" onclick=""><input type="button" value="Print page" onclick="">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
-     <hr />
+     
+         <hr />
+         <b>Description:</b><input type="text" name="desc" value="" size="90" /><br />
+         <b>Number Desired:</b>
+         <select name="ndes" size="1" >
+         <option value="any">any</option>
+             <option selected="selected" value="1">1</option>
+              
+                   <option value=2>2</option>
+              
+                   <option value=3>3</option>
+              
+                   <option value=4>4</option>
+              
+                   <option value=5>5</option>
+              
+                   <option value=6>6</option>
+              
+                   <option value=7>7</option>
+              
+                   <option value=8>8</option>
+              
+                   <option value=9>9</option>
+              
+         </select> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <b>Expiration Date:</b><input type="date" name="exp" min=March 2, 2019 max=2025-12-31 value="March 2, 2019"> <br />
+     
+     
+     
+         <hr />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <form method="GET" style="display:inline" action="user_edit_sug-ver_os.html">
+              <input type="submit" value="Submit Suggestion" name="cmd">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         </form>
+         
+         <input type="button" value="Redraw Screen" onclick="">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <input type="button" value="Print page" onclick="">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <form method="GET" style="display:inline" action="user_home.html">
+             <input type="submit" value="Goto Home page" name="cmd"><br />
+         </form>
+         <hr />
+     
 
 
 

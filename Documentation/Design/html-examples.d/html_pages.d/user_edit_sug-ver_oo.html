@@ -35,18 +35,32 @@
 <input type="hidden" name="jinja2_template" value="user_addedit_sug.jhtml">
    <div id="main">
 
+
 <center><b>Edward Birdsall is verifying suggestion for Edward Birdsall </b><br /></center>
 
-     <hr />
-     <b>Description:</b> Rasberry Pi Starter/learning kit <br />
-     <b>Number Desired:</b> 1 <br />
-     <b>Expiration Date:</b> 2025-12-31  <br />
-     <hr />
+     
+         <hr />
+         <b>Description:</b> Rasberry Pi Starter/learning kit <br />
+         <b>Number Desired:</b> 1 <br />
+         <b>Expiration Date:</b>"2025-12-31  <br />
+         
+         <hr />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     <form method="GET" style="display:inline" action="user_single_list-an.html">
+         <input type="submit" value="Verify Suggestion" name="cmd">
+     </form>
+
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Verify Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Return to Editing" onclick=""><input type="button" value="Print page" onclick="">
+     <form method="GET" style="display:inline" action="user_edit_sug-add_oo.html">
+         <input type="submit" value="Return to Editing" name="cmd">
+     </form>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
+     <input type="button" value="Print page" onclick="">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <form method="GET" style="display:inline" action="user_home.html">
+         <input type="submit" value="Goto Home page" name="cmd"><br />
+     </form>
      <hr />
 
 

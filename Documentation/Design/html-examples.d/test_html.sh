@@ -42,6 +42,7 @@ python3 html_try.py "Multiple" "Display"  > ../html_pages.d/user_pick_list-md.ht
 python3 html_try.py "Single" "Shopping"  > ../html_pages.d/user_pick_list-ss.html
 python3 html_try.py "Multiple" "Shopping"  > ../html_pages.d/user_pick_list-ms.html
 python3 html_try.py "Multiple" "Test"  > ../html_pages.d/user_pick_list.html
+python3 html_try.py "Multiple" "Test"  > ../html_pages.d/user_pick_list-mt.html
 echo "Various User pick list"
 cd ..
 echo "Done!"

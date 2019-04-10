@@ -46,9 +46,15 @@
 <input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <input type="submit" name="action" value="Pick Another Multiple List" />
- <input type="submit" name="action" value="Pick A Single List" /> 
- <input type="submit" name="action" value="Home Page" /> </center><br />
+ <form method="GET" style="display:inline" action="user_pick_list-sd.html">
+     <input type="submit" value="Pick A Single List" name="cmd">
+ </form>
+ <form method="GET" style="display:inline" action="user_pick_list-mt.html">
+     <input type="submit" value="Pick Another Multiple List" name="cmd">
+ </form>
+ <form method="GET" style="display:inline" action="user_home.html">
+     <input type="submit" value="Goto Home page" name="cmd">
+ </form>
 <hr />
 
 {% endblock content2 %}
@@ -58,3 +64,4 @@
 {% endblock content3 %}
 </div>
 {% endblock content %}
+

@@ -35,17 +35,25 @@
 <input type="hidden" name="jinja2_template" value="user_addedit_sug.jhtml">
    <div id="main">
 
+
 <center><b>Edward Birdsall is deleting suggestion for Edward Birdsall </b><br /></center>
 
-     <hr />
-     <b>Description:</b> Rasberry Pi Starter/learning kit <br />
-     <b>Number Desired:</b> 1 <br />
-     <b>Expiration Date:</b> 2025-12-31  <br />
-     <hr />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Delete Suggestion" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <input type="button" value="Goto Home page" onclick=""><br />
+     
+         <hr />
+         <b>Description:</b> Rasberry Pi Starter/learning kit <br />
+         <b>Number Desired:</b> 1 <br />
+         <b>Expiration Date:</b>"2025-12-31  <br />
+         
+         <hr />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     <form method="GET" style="display:inline" action="user_edit_sug-del_oo.html">
+         <input type="submit" value="Delete Suggestion" name="cmd">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     </form>
+     <form method="GET" style="display:inline" action="user_home.html">
+         <input type="submit" value="Goto Home page" name="cmd"><br />
+     </form>
      <hr />
 
 

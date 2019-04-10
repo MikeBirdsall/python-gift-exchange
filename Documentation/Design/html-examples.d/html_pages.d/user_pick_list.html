@@ -234,10 +234,19 @@
 
 <center>
 
-     <input type="submit"  value="Display List"> &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Create Shopping List"> 
+     <form method="GET" style="display:inline" action="user_single_list-an.html">
+         <input type="submit" value="Display List" name="cmd">
+     </form>
+     &nbsp;&nbsp;&nbsp;&nbsp; 
+     <form method="GET" style="display:inline" action="shop_list_gen.html">
+         <input type="submit" value="Create Shopping List" name="cmd">
+     </form>
 
  &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  value="Print Page">
-&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit"  value="Go to Home page"></center> 
+&nbsp;&nbsp;&nbsp;&nbsp; 
+<form method="GET" style="display:inline" action="user_home.html">
+    <input type="submit" value="Goto Home page" name="cmd">
+</form>
 
 </div>
 </div>
