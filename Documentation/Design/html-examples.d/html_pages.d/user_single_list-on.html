@@ -118,14 +118,19 @@
 
 <hr />
 <center><input type="hidden" name="owner" value="ed"  />
-<input type="button" name="action" value="Add Suggestion" onclick="Edit() "  />
+<form method="GET" style="display:inline" action="user_edit_sug-add_os.html">
+     <input type="submit" name="action" value="Add Suggestion"    />
+</form>
 <input type="submit" name="dummy" value="Redraw the screen" />
 <input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <input type="submit" name="action" value="Pick Another List" /> 
- <input type="submit" name="action" value="Home Page" /> </center><br />
-<hr />
+<form method="GET" style="display:inline" action="user_pick_list.html">
+    <input type="submit" name="action" value="Pick Another Lists" />
+</form>
+<form method="GET" style="display:inline" action="user_home.html">
+    <input type="submit" value="Home page" name="cmd"></center><br />
+</form><hr />
 
 
 
