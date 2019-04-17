@@ -35,7 +35,9 @@
 {% if row.npur > 0 %}<b>Purchased</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="button"  value="Undo-Purchase" onclick="upur" />{% else %}
 <input type="button"  value="Purchase" onclick="pur" />
 <input type="button"  value="Discard" onclick="dis" />
-<input type="button"  value="Item Detail" onclick="item detail" />
+<form method="GET" style="display:inline" action="user_single_list-ad.html">
+    <input type="submit" value="Item Detail" name="cmd">
+</form>
 <input type="button"  value="Show Wish List" onclick="swl" />
 {% endif %}
 </td></tr>
@@ -46,7 +48,9 @@
 <center><input type="hidden" name="owner" value="ed"  />
 <input type="button"  value="Print Page" onclick="window.print()" />
 <input type="submit" name="dummy" value="Redraw the screen" />
- <input type="submit" name="action" value="Home Page" /> </center><br />
+<form method="GET" style="display:inline" action="user_home.html">
+    <input type="submit" value="Home page" name="cmd">
+</form> </center><br />
 <hr />
 
 {% endblock content2 %}
