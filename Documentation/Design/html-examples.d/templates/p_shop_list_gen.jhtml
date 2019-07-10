@@ -1,0 +1,74 @@
+{% extends "pbase.jhtml" %}
+{# template p_shop_list_generation
+     Function:  The user has used user_pick_list to pick out which people to have on the shopping lists.  This
+          refines that selection by having the user review all the available suggestions and select / reserve  the
+          ones that they are interested in buying.
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes header.jhtml and footer.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          wsh - lists of dicts with peoples names and wishes
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+{% block content %}
+<input type="hidden" name="jinja2_template" value="p_shop_list_gen.jhtml">
+   <div id="pmain">
+{% block content1 %}
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Instructions</h2>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  This page presents all available items desired by this list of selected individuals.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Click on the Select radio button to select it for your shopping list </b> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Click on Reserve radio button to select the item for your shopping list and note it as reserved for others to see </b><br />
+
+{% endblock content1 %}
+{% block content2 %}
+{# Present the list(s) and options #}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:10%">Person</th><th style="text-align:center; width:10%">Pick</th><th style="text-align:center; width:5%">Available</th> <th style="width:60%">Description</th> <th style="width:10%">Expires</th></tr>
+<form>
+{%- for row in wsh -%}
+<tr>
+{% if row.pfor == "" %} <td colspan="6"> &nbsp;</td> {% else %}
+<td  style="text-align:center">{{ row.pfor}}</td><td  style="text-align:center">
+     <input type="radio" name="{{ row.num }}" value="Reserve  {{ row.num }}"   />Select &nbsp;
+      <input type="radio" name="{{ row.num }}" value="Select {{ row.num }} "  />Reserve</td>
+ <td  style="text-align:center">{{ row.ndes }}</td><td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.exp }}</td>
+{% endif %}</tr>
+{% endfor %}
+
+</form>
+</table>
+
+
+{% endblock content2 %}
+{% block content3 %}
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="submit" name="dummy" value="Redraw the screen" />
+<input type="button"  value="Print Page" onclick="window.print()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <form method="GET" style="display:inline" action="user_shop.html">
+     <input type="submit" value="Create My Shopping List" name="cmd">
+ </form>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="submit" name="action" value="Reset list unselecting all" /> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <form method="GET" style="display:inline" action="user_home.html">
+     <input type="submit" value="Goto Home page" name="cmd">
+ </form>
+ </center><br />
+<hr />
+
+
+{% endblock content3 %}
+</div>
+{% endblock content %}

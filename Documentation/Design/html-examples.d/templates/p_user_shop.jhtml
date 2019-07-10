@@ -1,0 +1,53 @@
+{% extends "pbase.jhtml" %}
+{# template p_user_shop
+     Function:  This page shows what the person has purchased and is shopping for
+     --------------------------------------------------------------------------------------------------------------------------- 
+     extends base.jhtml which includes pheader.jhtml and pfooter.jhtml
+     base - hd.loc   page location within website
+     header - hdr.name         who is accessing this page
+                      hdr.page           what page in the website
+                      hdr.today         today's date
+     footer - graphics currently set but should be variable?  don't really change over website
+    --------------------------------------------------------------------------------------------------------------------------- 
+     Graphics are from ../gfx/
+     CSS are from ..css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          wsh - lists of dicts with peoples names and wishes
+          pers - current year secret santa pick
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+{% block content %}
+<input type="hidden" name="jinja2_template" value="p_user_shop.jhtml">
+   <div id="pmain">{% block content1 %}
+<center><b>{{ hdr.name  }}'s Shopping List for {{ pers.event}} {{pers.yr }}</b><br />
+
+&nbsp;&nbsp;<b>Clan: {{pers.clan }} &nbsp;&nbsp;&nbsp;&nbsp;{{ pers.yr}} Secret Santa Pick: {{pers.sspk}}</b></center>
+{% endblock content1 %}
+
+{% block content2 %}
+<table border="5" height="30%" width="90%" align=center>
+<tr><th style="text-align:center; width:10%">For</th><th style="text-align:center; width:40%">Description</th> <th style="width:5%">Desired</th>  <th style="width:5%">Purchased</th> </tr>
+
+{%- for row in wsh -%}
+<tr><td  style="text-align:left"> {{ row.pfor }}</td> <td  style="text-align:left">{{ row.des }} </td>  <td  style="text-align:center">{{ row.ndes }} </td> <td  style="text-align:center">{{ row.npur }} </td></tr>
+{% endfor %}
+
+</table>
+<hr />
+<center><input type="hidden" name="owner" value="ed"  />
+<input type="button"  value="Print Page" onclick="window.print()" />
+<input type="submit" name="dummy" value="Redraw the screen" />
+<form method="GET" style="display:inline" action="user_home.html">
+    <input type="submit" value="Home page" name="cmd">
+</form> </center><br />
+<hr />
+
+{% endblock content2 %}
+
+{% block content3 %}
+
+{% endblock content3 %}
+</div>
+{% endblock content %}

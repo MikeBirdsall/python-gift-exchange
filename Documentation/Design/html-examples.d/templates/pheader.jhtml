@@ -1,0 +1,22 @@
+{# template pheader.
+     Function: header file for web pages
+     --------------------------------------------------------------------------------------------------------------------------- 
+     included in the body part of base.jhtml
+     Graphics are from ../gfx/
+     CSS are from ../css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Variables
+          hdr.name  is the person's name in the header bar
+          hdr.page is the current page name in the website
+          hdr.today is the current date and time of page access
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+    <div id="pheader">
+<input type="hidden" name="jinja2_template" value="pheader.jhtml">
+        {% block header %}
+          <div id=pheader-center>
+               <b>{{ hdr.name }}'s {{hdr.page}} Page</b><br />
+               <b>Today's Date: {{ hdr.today }}</b>
+          </div>
+        {% endblock header %}
+     </div>

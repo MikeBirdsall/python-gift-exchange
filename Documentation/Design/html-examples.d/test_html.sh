@@ -1,32 +1,33 @@
 #!/bin/bash
 
 # Generate html files from jhtml files
+echo "Generating HTML pages for Desktop -----------------------------------------"
 
 cd calendar.d
 python3 html_try.py > ../html_pages.d/calendar.html
-echo "calendar generated"
+echo "--->  calendar generated"
 cd ../shop_list_gen.d
 python3 html_try.py > ../html_pages.d/shop_list_gen.html
-echo "shop_list_gen generated"
+echo "--->  shop_list_gen generated"
 cd ../user_home.d
 python3 html_try.py > ../html_pages.d/user_home.html
 python3 html_try_o.py > ../html_pages.d/user_home_o.html
-echo "user_home generated"
+echo "--->  user_home generated"
 cd ../user_multiple_list.d
 python3 html_try.py > ../html_pages.d/user_multiple_list.html
-echo "Mulitple list generated"
+echo "--->  Mulitple list generated"
 cd ../user_single_list.d
 python3 html_try.py "Edward Birdsall" > ../html_pages.d/user_single_list-on.html
 python3 html_try.py "Michael Birdsall" > ../html_pages.d/user_single_list-an.html
 python3 html_try.py "Edward Birdsall" "Detail" > ../html_pages.d/user_single_list-od.html
 python3 html_try.py "Michael Birdsall" "Detail"> ../html_pages.d/user_single_list-ad.html
-echo "various single lists generated"
+echo "--->  various single lists generated"
 cd ../user_purch.d
 python3 html_try.py > ../html_pages.d/user_purch.html
-echo "user purchases generated"
+echo "--->  user purchases generated"
 cd ../user_shop.d
 python3 html_try.py > ../html_pages.d/user_shop.html
-echo "user shopping list"
+echo "--->  user shopping list"
 cd ../user_edit_sug.d
 python3 html_try.py adding "Edward Birdsall" > ../html_pages.d/user_edit_sug-add_oo.html
 python3 html_try.py adding "Michael Birdsall" > ../html_pages.d/user_edit_sug-add_os.html
@@ -43,6 +44,20 @@ python3 html_try.py "Single" "Shopping"  > ../html_pages.d/user_pick_list-ss.htm
 python3 html_try.py "Multiple" "Shopping"  > ../html_pages.d/user_pick_list-ms.html
 python3 html_try.py "Multiple" "Test"  > ../html_pages.d/user_pick_list.html
 python3 html_try.py "Multiple" "Test"  > ../html_pages.d/user_pick_list-mt.html
-echo "Various User pick list"
+echo "--->  Various User pick list"
 cd ..
-echo "Done!"
+echo "Generating HTML pages for Smartphones -----------------------------------------"
+cd calendar.d
+python3 p_html_try.py > ../html_pages.d/p_calendar.html
+echo "--->  phone calendar generated"
+cd ../shop_list_gen.d
+python3 p_html_try.py > ../html_pages.d/p_shop_list_gen.html
+echo "--->  phone shop_list_gen generated"
+cd ../user_shop.d
+python3 p_html_try.py > ../html_pages.d/p_user_shop.html
+echo "--->  phone user shopping list"
+cd ../user_purch.d
+python3 p_html_try.py > ../html_pages.d/p_user_purch.html
+echo "--->  phone user purchased list"
+cd ..
+echo "Done! ------------------------------------------------------------------------  Done!"

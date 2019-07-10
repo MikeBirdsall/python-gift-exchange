@@ -1,0 +1,19 @@
+{# template pfooter
+     Function: prints the web page footer information.  The information in the footer is static and most is in
+          graphic files for security
+     --------------------------------------------------------------------------------------------------------------------------- 
+     Included in the body part of base.jhtml
+     includes graphics from ../gfx/ directory
+     CSS files are in ../css/
+     --------------------------------------------------------------------------------------------------------------------------- 
+#}
+
+
+    <div id="pfooter">
+<input type="hidden" name="jinja2_template" value="pfooter.jhtml">
+        {% block footer %}
+<div id="pfooter-center">
+           &copy; Copyright 2019 by <a href="https://www.mbirdsall.com/">MBirdsall</a>
+     </div>
+        {% endblock footer %}
+     </div>

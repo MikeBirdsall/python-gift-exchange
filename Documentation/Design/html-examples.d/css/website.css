@@ -19,7 +19,9 @@ body{}
 #header-left { width = 110px;
      position: absolute;
      top: 0px; left: 5px;}
+
 #header-center {text-align: center;}
+
 #header-right { width = 110px; 
      position: absolute;
      top: 0px; right: 5px; }
@@ -31,6 +33,19 @@ body{}
      bottom: 125px;
      background-color: aqua;
 }
+
+#pheader {
+     display: block;
+     width: 98%;
+     height: 40px;
+     top: 5px; left: 5px;
+     position: fixed;
+     border: 5px solid navy;
+     float: left;
+     background-color: aqua;
+}
+
+#pheader-center {text-align: center; background-color: aqua;}
 
 #footer {
      display: block;
@@ -61,13 +76,34 @@ body{}
      position: absolute;
      bottom: 0px; right: 10px; }
 
+#pfooter {
+     display: block;
+     width: 98%;
+     height: 25px;
+     border: 5px solid navy;
+     position: fixed;
+     bottom: 0px; left: 0px;
+     background-color: aqua;
+}
+
+#pfooter-center {text-align: center; background-color: aqua;}
+
+
 #main {
            overflow: scroll;
           display: block; 
           position: absolute; 
           top: 150px; 
           right:0px; left: 0px;
-          bottom: 125px ; 
+          bottom: 120px ; 
+}
+#pmain {
+           overflow: scroll;
+          display: block; 
+          position: absolute; 
+          top: 50px; 
+          right:0px; left: 0px;
+          bottom: 30px ; 
 }
 
 .clearfix::after {
