@@ -1,0 +1,122 @@
+Wishlist Thoughts
+
+A) Wish List
+	1) clan filter?
+	2) for other people's items
+		add reserved column - clears if person
+B) Secret Santa Lists
+     1) Need (Family page) button for screens
+     2) Sort by clan then reverse sort by year filtered by clan association
+C) Multiple Wish Lists
+     1) sort possibiliites by clan association ?
+D) Gifts You Bought
+     1) filter by clan
+     2) possibly an option to filter by year/event (what id I buy in the last 2 months)
+     3) clan / secret santa filter display (limits the number of people)
+E) Change Password
+     1) (family page button) to cancel out and get back to main menu
+     2) "About this script" and "Exit from password changing pages"
+          need different links but they are currently the same
+     3) Perhaps page should fill in ident but ask for old password and then new password twice
+          do all administrator functions in Administrator menu
+F) Administrator Menu
+	For non Administrators a (Family page) button to get them back to main menu
+
+G) Database Ideas
+	Ident - password - Full name - Display name - e-mail address       (one/person)
+	Ident - clan - ?secret Santa group - spouse ident                  (one or more per person)
+	Ident - proxy for ident                                            (zero of more per person)
+	Ident - self? - Desired - Description - expires - reserved - purchased - Notes (many/person)
+	Ident (buyer) - Ident (requestor) - Description - reserved? - purchased? - Notes (many/person)
+	
+	
+	Key for Database ideas
+	     Ident  - identification of person (ed is mine)
+	     Full Name - full name for lists and such
+	     Display name - name displayed instead of ident (Michael James or Michael instead of mike2)
+	     clan - family group ID right now Birdsall and Kirkup
+	     ?secret Santa Group - either none or name of a Secret Santa group say Birdsall or bird1
+	     purchased - decrements desired in others display of ones list - numeric
+	     reserved - just a display number showing intent - goes to 0 if purchsed by reserver
+
+********************************************
+User Types
+	Master Administrator
+	Clan Administrator
+	Parent - is proxy for others
+	Normal
+********************************************
+Tabs? (Self Home with Self Wish List, Self Bought, Self Reserved, Clan Wish List)
+********************************************
+Home Page
+	-Displays a menu of actions and your settings
+	-Sisplays personal profile (name. e-mail, birthday, clan(s)
+	Clan Wish List
+	Personal Wish List
+	Secret Santa Lists
+	Gifts You bought
+	Gifts you reserved
+	Multiple Wish Lists	
+	Edit your profile/Change password
+	
+	*Administrator Menu
+	*Clan Administrator Menu
+		* only if authorized
+		
+Clan Wish List
+	-Displays members of clan(s) ofwhich the user is a part with radio buttons or selection
+	-Displays Secret Santa and year applicable during September through January
+	Choose List
+	Redraw Screen
+	Home Page
+	Print page
+	
+Personal Wish List
+	- Displays name, date/time of last modification
+	- Displays (Delete button, Edit button, Desired number, expiration, Description)
+	Add Suggestion
+	Pick another list
+	Redraw screen
+	Home Page
+	print page
+	Purge gists received
+	
+Another's Wish List
+	- Displays Person's name and daet of last modified by owner, last modified by others
+	- Displays (Buy Button, Reserve Button, Clarify button, Group Purchase Button
+			Remaining, Purchased, Expires, Description, Notes,)
+	Add Suggestion
+	Pick another list
+	Redraw the Screen
+	Home Page
+	print page
+	
+********************************************************
+Set up user
+	Display name
+	Full Name
+	id
+	e-mail
+	password
+	clan
+	Spouse
+	Secret Santa group
+	proxies
+*****
+Set up Secret Santa group
+	group id
+*****
+Secret Santa year record
+	year
+	group id
+	santas (person, santa for)
+*****
+Set up Clan Adminisdtrators
+	clan
+	id
+*****
+***********************************************************
+Initial Set up
+Set up Master Administrator credentials
+Set up first Clan
+Set up Clan Administrator
