@@ -22,7 +22,7 @@ Not Yet Started - User
      user_email_messages_reply
      user_email_messages_send
 
-Not Yeat Started till User done
+Not Yet Started till User done
 Site Initialization
 Various Admin Users
 
