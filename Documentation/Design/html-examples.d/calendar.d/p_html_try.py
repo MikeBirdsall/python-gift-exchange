@@ -1,5 +1,59 @@
 #!/bin/python3
 
+"""
+calendar.d/p_html-try.py
+
+Author: Edward Birdsall
+
+Function: This file sets up needed variables for a calendar HTML display
+          The calendar here is just for display.  Adding appointments and changing views is done by menu selections
+Calls: mcalendar.jhtml
+
+Variables:
+     hd:   Web/TC/Tk page
+     hdr: dictionary with calendar header infomration
+          name - name of calendar
+          page - month year Calendar
+          today - day of week and date of current day
+     days:days of week
+     colorsm - dictionary with colors for background of dates
+          priormonth, thisbefore, today, thismonth, nextmonth, site, neutral, calSclr
+     tdy - dictionary array of information for the days to be displayed
+          bgtclr - background today clear
+          bgeclr - background event clear
+          dnum - day number
+          devt - number of day's events
+          devt1t - day event today first title
+          devt1c - day event today first calendar color
+          devt2t - day event today second title
+          devt2c - day event today second calendar color
+          devt3t - day event today third title
+          devt3c - day event today third calendar color
+          devt4t - day event today fourth title
+          devt4c - day event today fourth calendar color
+     cal - calendar display and control information
+          month - Display Month
+          year - Display Year
+          startwk - week number for first display week
+          calrows - number of rows of calendar to be displayed
+          calAt - name of first calendar
+          calBt - name of second calendar
+          calCt - name of third calendar
+          calDt - name of fourth calendar
+          calEt - name of fifth calendar
+     pref - dictionary of user preferences
+          startday - the starting day of the week 1=Monday, 0 or 7 is Sunday
+          calAclr - color for first calendar
+          calBclr - color for second calendar
+          calCclr - color for third calendar
+          calDclr - color for fourth calendar
+          calEclr - color for fifth calendar
+     dts = list of day numbers used to set up tdy[x]["dnum"]
+
+
+"""
+
+
 from jinja2 import Environment, FileSystemLoader
 
 hd = {"loc":"Month Calendar"}
@@ -14,7 +68,7 @@ for i in range(0, 35,1):
      tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", "devt3c":"",  "devt4t":"", "devt4c":"", })
  
 
-cal = {"month":"March", "year":"2019", "startwk":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
+cal = {"month":"March", "year":"2019", "startwk":8, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
 pref = {  "startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
 dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
 
