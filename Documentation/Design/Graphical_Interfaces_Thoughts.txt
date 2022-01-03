@@ -2,12 +2,12 @@ Graphical Interface thoughts for the Wish List Program
 
 Some of the graphics in python-Tk while others web pages.
 
-python-Tk
+python-tkinter
      Site initialization - single use by Master Site Administrator
      Admin Site
      Admin Site Actions
 
-python-html
+python-html as well aspython-tkinter
      Master Site Administrator Level
           MSA Home page
           Edit User Profile
@@ -29,5 +29,5 @@ python-html
      User
           User Home Page
           Edit User Profile
-          WIsh List
-     
+          Wish List
+          Calendar(s)
