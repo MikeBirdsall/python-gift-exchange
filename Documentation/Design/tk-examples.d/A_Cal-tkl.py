@@ -59,21 +59,28 @@ class MCalendar(Frame):
           self.initUI()
 
      def initUI(self):
-          #=========================================================================================================
-          #Begining of definitions.  Need to remember how to split this into a seperate area that invokes MCalendar
-          #=========================================================================================================
+     #=============================================================================================
+          #Begining of definitions.  Need to remember how to split this into a seperate area that 
+          #invokes MCalendar
+     #=============================================================================================
           hd = {"loc":"Month Calendar"}
           hdr = { "name":"Ed",  "page":"March 2019 Calendar", "today":"Saturday  March  2, 2019" }
-
-
           days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
-          colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua",  "today": "Yellow",  "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", "calSclr": "red" }
-          cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
-          pref = {  "startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
-          dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7  ]
+          colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua", "today": "Yellow",  \
+                     "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral":"silver",\
+                      "calSclr": "red" }
+          cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", \
+                 "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", \
+                 "calEt":""}
+          pref = {"startDay":1,  "calAclr":"yellowgreen", "calBclr":"lightsteelblue", \
+                  "calCclr":"cyan", "calDclr":"magenta", "calEclr":"purple"}
+          dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,\
+                 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7  ]
           tdy = []
           for i in range(0, 42,1):
-               tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", "devt3c":"",  "devt4t":"", "devt4c":"", })
+               tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", \
+                           "devt1c":"", "devt2t":"", "devt2c":"", "devt3t":"", "devt3c":"", \
+                           "devt4t":"", "devt4c":"", })
 
           for i in range(0, 4):
                tdy[i]["bgtclr"] = colorsm["priormonth"]
@@ -118,52 +125,74 @@ class MCalendar(Frame):
           tdy[13]["dev1t"] =  "DST begins"
           tdy[13]["dev1c"] = pref["calBclr"]
           tdy[21]["devt"] = 1
-          #=========================================================================================================
-          #Ending of definitions.  Need to remember how to split this into a seperate area that invokes MCalendar
-          #=========================================================================================================
-
-
+          #========================================================================================
+          #Ending of definitions.  Need to remember how to split this into a seperate area that 
+          # invokes MCalendar
+          #========================================================================================
           #Window Display
           self.master.title(hd.get("loc"))
-          ct = Label(self,text=hdr.get("name")+"'s "+hdr.get("page"), justify=CENTER).grid(row=0, columnspan=8, sticky=W+E)
-
+          ct = Label(self,text=hdr.get("name")+"'s "+hdr.get("page"), justify=CENTER).grid(row=0, \
+                     columnspan=8, sticky=W+E)
           #Header Display
-          
-          wom = Label(self, text="Week", font='serif, 10', bg="white", fg="black", height=1, width=6, borderwidth=3, relief="raised").grid(row=1, column=0)
+          wom = Label(self, text="Week", font='serif, 10', bg="white", fg="black", height=1, \
+                      width=6, borderwidth=3, relief="raised").grid(row=1, column=0)
           for x in range(7):
-               dow = Label(self, text=days[pref.get("startDay")+x], font='serif, 10', bg="white", fg="black", height=1, width=17, borderwidth=3, relief="raised").grid(row=1, column=x+1)
+               dow = Label(self, text=days[pref.get("startDay")+x], font='serif, 10', bg="white",\
+                           fg="black", height=1, width=17, borderwidth=3, \
+                           relief="raised").grid(row=1, column=x+1)
           
           # Weeks Display
           for r in range(1, cal.get("calrows")+1,1):
-               wom =  Label(self, text=cal.get("startwk")+(r-1), background="white", foreground="black", width=8,  borderwidth=3, relief="raised").grid(row=2+((r-1)*5), column=0)
+               wom =  Label(self, text=cal.get("startwk")+(r-1), background="white", \
+                            foreground="black", width=8,  borderwidth=3, \
+                            relief="raised").grid(row=2+((r-1)*5), column=0)
                for d in range(1,8,1):
-                    dow = Label(self, text=tdy[(((r-1)*7)+(d-1))].get("dnum"),background=tdy[(((r-1)*7)+(d-1))].get("bgtclr"), width=17, relief="groove").grid(row=(2+((r-1)*5)), column=d)
-                    dow1 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev1t"), bg=tdy[(((r-1)*7)+(d-1))].get("dev1c"), width=15, state=NORMAL, command="").grid(row=(3+((r-1)*5)), column=d)
-                    dow2 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev2t"), bg=tdy[(((r-1)*7)+(d-1))].get("dev2c"), width=15, state=NORMAL, command="").grid(row=(4+((r-1)*5)), column=d)
-                    dow3 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev3t"), bg=tdy[(((r-1)*7)+(d-1))].get("dev3c"), width=15, state=NORMAL, command="").grid(row=(5+((r-1)*5)), column=d)
-                    dow4 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev4t"), bg=tdy[(((r-1)*7)+(d-1))].get("dev4c"), width=15, state=NORMAL, command="").grid(row=(6+((r-1)*5)), column=d)
+                    dow = Label(self, text=tdy[(((r-1)*7)+(d-1))].get("dnum"), \
+                                background=tdy[(((r-1)*7)+(d-1))].get("bgtclr"), width=17, \
+                                relief="groove").grid(row=(2+((r-1)*5)), column=d)
+                    dow1 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev1t"), \
+                                  bg=tdy[(((r-1)*7)+(d-1))].get("dev1c"), width=15, state=NORMAL, \
+                                  command="").grid(row=(3+((r-1)*5)), column=d)
+                    dow2 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev2t"), \
+                                  bg=tdy[(((r-1)*7)+(d-1))].get("dev2c"), width=15, state=NORMAL, \
+                                  command="").grid(row=(4+((r-1)*5)), column=d)
+                    dow3 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev3t"), \
+                                  bg=tdy[(((r-1)*7)+(d-1))].get("dev3c"), width=15, state=NORMAL, \
+                                  command="").grid(row=(5+((r-1)*5)), column=d)
+                    dow4 = Button(self, text=tdy[(((r-1)*7)+(d-1))].get("dev4t"), \
+                                  bg=tdy[(((r-1)*7)+(d-1))].get("dev4c"), width=15, state=NORMAL, \
+                                  command="").grid(row=(6+((r-1)*5)), column=d)
 
-          
           #Bottom of Page
-
           cb = Label(self,text="Legend").grid(row=32, column=4)
-
-          day1 = Label(self, text="Prior Month", background=colorsm["priormonth"], relief="raised").grid(row=33, column=0)
-          day2 = Label(self, text="This Month Prior to today", background=colorsm["thisbefore"], width=30, relief="raised").grid(row=33, column=1, columnspan=2)
-          day3 = Label(self, text="Today", background=colorsm["today"],width=17, relief="raised").grid(row=33, column=3)
-          day4 = Label(self, text="This Month after today", background=colorsm["thismonth"],width=30, relief="raised").grid(row=33, column=4, columnspan=2)
-          day5 = Label(self, text="Next Month", background=colorsm["nextmonth"],width=17, relief="raised").grid(row=33, column=6)
-          day6 = Label(self, text="Site Down", background=colorsm["site"], width=17, relief="raised").grid(row=33, column=7)
+          day1 = Label(self, text="Prior Month", background=colorsm["priormonth"], \
+                       relief="raised").grid(row=33, column=0)
+          day2 = Label(self, text="This Month Prior to today", background=colorsm["thisbefore"], \
+                       width=30, relief="raised").grid(row=33, column=1, columnspan=2)
+          day3 = Label(self, text="Today", background=colorsm["today"],width=17, \
+                       relief="raised").grid(row=33, column=3)
+          day4 = Label(self, text="This Month after today", background=colorsm["thismonth"], \
+                       width=30, relief="raised").grid(row=33, column=4, columnspan=2)
+          day5 = Label(self, text="Next Month", background=colorsm["nextmonth"],width=17, \
+                       relief="raised").grid(row=33, column=6)
+          day6 = Label(self, text="Site Down", background=colorsm["site"], width=17, \
+                       relief="raised").grid(row=33, column=7)
           
           ca = Label(self, text="Calendars in Use")
           ca.grid(row=34, column=4)
 
-          cal1 = Label(self, text=cal.get("calAt"), background=pref["calAclr"], width=17, relief="raised").grid(row=35, column=1)
-          cal2 = Label(self, text=cal.get("calBt"), background=pref["calBclr"], width=17, relief="raised").grid(row=35, column=2)
-          cal3 = Label(self, text=cal.get("calCt"), background=pref["calCclr"], width=17, relief="raised").grid(row=35, column=3)
-          cal4 = Label(self, text=cal.get("calDt"), background=pref["calDclr"], width=17, relief="raised").grid(row=35, column=4)
-          cal5 = Label(self, text=cal.get("calEt"), background=pref["calEclr"], width=17, relief="raised").grid(row=35, column=5)
-          cal6 = Label(self, text="Site", background="red", width=17, relief="raised").grid(row=35, column=6)
+          cal1 = Label(self, text=cal.get("calAt"), background=pref["calAclr"], width=17, \
+                       relief="raised").grid(row=35, column=1)
+          cal2 = Label(self, text=cal.get("calBt"), background=pref["calBclr"], width=17, \
+                       relief="raised").grid(row=35, column=2)
+          cal3 = Label(self, text=cal.get("calCt"), background=pref["calCclr"], width=17, \
+                       relief="raised").grid(row=35, column=3)
+          cal4 = Label(self, text=cal.get("calDt"), background=pref["calDclr"], width=17, \
+                       relief="raised").grid(row=35, column=4)
+          cal5 = Label(self, text=cal.get("calEt"), background=pref["calEclr"], width=17, \
+                       relief="raised").grid(row=35, column=5)
+          cal6 = Label(self, text="Site", background="red", width=17, \
+                       relief="raised").grid(row=35, column=6)
 
 
           cc = Label(self)

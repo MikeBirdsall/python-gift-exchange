@@ -6,12 +6,12 @@ calendar display prep
 Author: Edward Birdsall
 
 Function: This function sets up needed variables for a calendar display
-          The calendar here is just for display.  Adding appointments and changing views is done by menu selections
-Calls: mcalendar.jhtml
+          The calendar here is just for display.  Adding events and changing views is done by menu selections
+Calls: mcalendar.jhtml or mcalendar.py
 
 Variables:
-     hd:   Web/TC/Tk page
-     hdr: dictionary with calendar header infomration
+     hd:   Web-TCL/Tk page
+     hdr: dictionary with calendar header information
           name - name of calendar
           page - month year Calendar
           today - day of week and date of current day
@@ -53,75 +53,92 @@ Variables:
 
 """
 
-class WishListCal(Calendar)
+"""
+These lines are for display
+     hd = {"loc":"Month Calendar"}
+     hdr = { "name":"Ed",  "page":"March 2019 Calendar", "today":"Saturday  March  2, 2019" }
+     cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", \
+            "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
+     pref = {"startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue", \
+             "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
 
+"""
+
+class WishListCal(Calendar)
+"""
+Calendar methods and objects for the WishList application.     
+"""     
      
-     
-     
-     def PrepareBareCalendarDisplay():
+     def PrepareBareCalendarDisplay(month, year, day, weekstart):
      """
      This prepares the variables for use in either the HTML or Tkinter displays
      This uses the Gregorian Calendar and is meant for current years
-     Input to this is the month&year or month, day and year for the calendar along with the starting day of week
+     Input to this is the month&year or month, day and year for the calendar along with the 
+          starting day of week
      Output is set up for a 4,5, or 6 weeks display of the desired month, filled out as necessary
           for even week
      """
-     hd = {"loc":"Month Calendar"}
-     hdr = { "name":"Ed",  "page":"March 2019 Calendar", "today":"Saturday  March  2, 2019" }
 
      days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
-     colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua",  "today": "Yellow",  "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", "calSclr": "red" }
+     colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua",  "today": "Yellow", \
+                "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", \
+                "calSclr": "red" }
+     a_cal = calendar. (month, year)
+     priorMonth =
+     nextMonth =
+     initial_yearDayNumber = 
+     cal["month"] = month
+     cal["year"] = year
+     cal["startwk"] = a_cal.wknum
+     cal["calrows"] = len(a_cal)/7
+     pref["startDay"] = weekstart
      tdy = []
-for i in range(0, 35,1):
-     tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", "devt3c":"",  "devt4t":"", "devt4c":"", })
-     # devt is intended to hold the number of events for the day to be used in the template with an if or for but can't get to work right now
+     for i in range(0, len(a_cal),1):
+          tdy.append({"yearDayNumber":"1", "bgtclr":"white","bgeclr":"white", "dnum":0, "devt":0,\
+                      "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", \
+                      "devt3c":"", "devt4t":"", "devt4c":"", })
+     
+     for i in range(0,len(a_cal),1):
+          tdy[i]["yearDayNumber"] = initial_yearDayNumber + i
+          tdy[i]["dnum"] = a_cal[i][day]
+          case a_cal[i]["month]
+               priorMonth)
+                    tdy[i]["bgtclr"] = colorsm["priormonth"]
+                    tdy[i]["bgeclr"] = colorsm["priormonth"]
+               thisMonth)
+                    tdy[i]["bgtclr"] = colorsm["thisbefore"]
+                    tdy[i]["beeclr"] = colorsm["thisbefore"]
+                    today
+                    tdy[i]["bgtclr"] = colorsm["today"]
+                    tdy[i]["beeclr"] = colorsm["today"]
+                    after today
+                    tdy[i]["bgtclr"] = colorsm["thisafter"]
+                    tdy[i]["beeclr"] = colorsm["thisafter"]
+               nextMonth)
+                    tdy[i]["bgtclr"] = colorsm["nextmonth"]
+                    tdy[i]["bgeclr"] = colorsm["nextmonth"]
+          esac
 
-for i in range(0, 4):
-          tdy[i]["bgtclr"] = colorsm["priormonth"]
-          tdy[i]["bgeclr"] = colorsm["priormonth"]
+     pass
 
-for i in range(35, 42):
-          tdy[i]["bgtclr"] = colorsm["nextmonth"]
-          tdy[i]["bgeclr"] = colorsm["nextmonth"]
-
-
-
-
-tdy[4]["bgtclr"] = colorsm["thisbefore"]
-tdy[4]["beeclr"] = colorsm["thisbefore"]
-tdy[5]["bgtclr"] = colorsm["today"]
-tdy[5]["beeclr"] = colorsm["today"]
-
-cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
-pref = {  "startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
-dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7  ]
-     for i in range(0,42,1):
-     tdy[i]["dnum"] = dts[i]
-
-     def AddCalendarToDisplay()
+     def AddCalendarToDisplay(myCalendar, tdy)
      """
      This adds calendar events to a Calendar Display
      Input is name and color of Calendar, the calendar and date range to be displayed.
      """
-     tdy[4]["devt"] = 1
-     tdy[4]["dev1t"] =  "Bryan Kovas B'day"
-     tdy[4]["dev1c"] =pref["calCclr"]
-     tdy[6]["devt"] = 1
-     tdy[6]["dev1t"] =  "Helen Birdsall B'day"
-     tdy[6]["dev1c"] =pref["calCclr"]
-     tdy[6]["devt"] = 3
-     tdy[6]["dev1t"] =  "Greg Kovas B'day"
-     tdy[6]["dev1c"] =pref["calCclr"]
-     tdy[6]["dev2t"] =  "Brielle Balmer B'day"
-     tdy[6]["dev2c"] =pref["calCclr"]
-     tdy[6]["dev3t"] =  "Andrew Noyes B'day"
-     tdy[6]["dev3c"] =pref["calCclr"]
+     
+     for i in range():
+          # locate any event on tdy[i]["yearDayNumber"]
+          # for each event on that day then increment tdy[i]["devt"] and add dev_t = title dev_c=color
+     
 
-     tdy[9]["devt"] = 1
-     tdy[9]["dev1t"] =  "Ash Wednesday"
-     tdy[9]["dev1c"] =pref["calAclr"]
-     tdy[13]["devt"] = 1
-     tdy[13]["dev1t"] =  "DST begins"
-     tdy[13]["dev1c"] = pref["calBclr"]
-     tdy[21]["devt"] = 1
-
+     pass
+     
+     def AddEvent()
+     """
+     This method adds an event to a calendar specified by one of the Administrators.
+     For the Wish List events are all day events like birthdays or holidays.
+     """
+     pass
+     
+     
