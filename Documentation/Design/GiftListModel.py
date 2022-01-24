@@ -64,10 +64,18 @@ These lines are for display
 
 """
 
-class WishListCal(Calendar)
+class WLCalendar(Calendar)
 """
 Calendar methods and objects for the WishList application.     
 """     
+
+
+     def __init__(self):
+          super().__init__()
+
+          self.initCal()
+
+     def initCal(self):
      
      def PrepareBareCalendarDisplay(month, year, day, weekstart):
      """
@@ -78,7 +86,9 @@ Calendar methods and objects for the WishList application.
      Output is set up for a 4,5, or 6 weeks display of the desired month, filled out as necessary
           for even week
      """
-
+     
+     
+     
      days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
      colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua",  "today": "Yellow", \
                 "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", \
@@ -141,4 +151,95 @@ Calendar methods and objects for the WishList application.
      """
      pass
      
+class WLPerson()
+"""
+This class 
+"""
+     def AddPerson();
+     """
+     This method is to initialize a person and set in initial values.
+     """
+     pass
      
+     def UpdatePassword();
+     """
+     This method is to allow a person to update their password in use.
+     """
+     pass
+     
+     def ModifyPerson();
+     """
+     This method is to allow an Administrator to change information on a person that the user can not change.
+     These things include name, clan, birthday.
+     """
+     pass
+     
+     def EditPerson();
+     """
+     This method allows a user to change some of their personal information
+     """
+     pass
+
+     def ArchivePerson();
+     """
+     This method marks a person as inactive.
+     """
+     pass
+
+     def AddClan(clanName, clanDescription, clanAdministrator);
+     """
+     This method initializes a clan with a name and administrator.
+     """
+     pass
+
+     def EditClan();
+     """
+     This method is to modify the clan membership by the clan administrator
+     """
+     pass
+
+     def ArchiveClan();
+     """
+     This method marks a clan as inactive.
+     """
+     pass
+
+class WLWish
+"""
+"""
+
+     def AddWish();
+     """
+     This method is to add a new wish to a person's wish list suggested by them or for them.
+     """
+     pass
+
+     def ModifyWish();
+     """
+     This method allows a user to modify their wish.
+     """
+     pass
+
+     def EditWish();
+     """
+     """
+     pass
+
+     def PurgeWish();
+     """
+     """
+     pass
+
+     def AddGift();
+     """
+     """
+     pass
+
+     def EditGift();
+     """
+     """
+     pass
+
+     def ArchiveGift();
+     pass
+
