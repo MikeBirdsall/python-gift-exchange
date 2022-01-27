@@ -58,7 +58,13 @@ from jinja2 import Environment, FileSystemLoader
 hd = {"loc":"Month Calendar"}
 hdr = { "name":"Ed",  "page":"March 2019 Calendar", "today":"Saturday  March  2, 2019" }
 
-days = ('Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split())
+cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
+pref = {  "startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
+
+glcal = calendar.Calendar(pref.get[startday])
+for i in glcal.iterweekdays():
+     days = calendar.day_name[i]
+
 colorsm = {"priormonth": "Orchid", "thisbefore": "Aqua",  "today": "Yellow",  "thismonth": "White",  "nextmonth": "Lime", "site":"Red" , "neutral": "silver", "calSclr": "red" }
 
 # devt is intended to hold the number of events for the day to be used in the template with an if or for but can't get to work right now
@@ -67,8 +73,7 @@ for i in range(0, 35,1):
      tdy.append({"bgtclr":"white","bgeclr":"white", "dnum":0, "devt":-1, "devt1t":"", "devt1c":"",  "devt2t":"", "devt2c":"",  "devt3t":"", "devt3c":"",  "devt4t":"", "devt4c":"", })
  
 
-cal = {"month":"March", "year":"2019", "startwk":8,"calrows":5, "calAt":"Liturgical", "calBt":"US Holidays","calCt":"Birdsall Family", "calDt":"Kirkup Family", "calEt":""}
-pref = {  "startDay":1,  "calAclr": "yellowgreen",  "calBclr": "lightsteelblue",  "calCclr": "cyan",  "calDclr": "magenta",  "calEclr": "purple"}
+
 dts = [25, 26, 27, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7  ]
 
 for i in range(0, 4):
